@@ -91,7 +91,7 @@ class SolicitudController
 
         $solicitud_seniales_nuevas = pg_fetch_all($obj->consult($sql));
 
-        if ( $solicitud_seniales_nuevas) {
+        if ($solicitud_seniales_nuevas) {
             include_once '../view/solicitudSenal/nueva/consult.php';
 
         } else {
@@ -142,11 +142,10 @@ class SolicitudController
         //añadir campo fecha
         //agregar los cambios de estados
 
-        $categoria_senial_id = $_POST['categoria_senial_id'];
-        $tipo_senial_id = $_POST['tipo_senial_id'];
+        
         $senial_id = $_POST['senial_id'];
         $solicitud_senial_nueva_descripcion = $_POST['solicitud_senial_nueva_descripcion'];
-        $solicitud_senial_nueva_direccion ="carrera calle barrio";
+        $solicitud_senial_nueva_direccion = "carrera calle barrio";
 
         $usuario_id = $_SESSION['id'];
 
@@ -155,7 +154,7 @@ class SolicitudController
         $campos = [
             'categoria_senial_id' => 'Es requerido llenar el campo categoria',
             'tipo_senial_id' => 'Es requerido llenar el campo tipo de señal', //todos llegan menos este, revisar
-            'senial_id' => 'Es requerido llenar el campo señal',            
+            'senial_id' => 'Es requerido llenar el campo señal',
 
         ];
 
@@ -171,7 +170,11 @@ class SolicitudController
 
 
 
-        $sql = "INSERT INTO solicitud_seniales_nuevas (solicitud_senial_nueva_descripcion,solicitud_senial_nueva_direccion,senial_id,usuario_id,tipo_solicitud_id,estado_id) VALUES('$solicitud_senial_nueva_descripcion','$solicitud_senial_nueva_direccion',$senial_id,$usuario_id,5,1)";
+        $sql = "INSERT INTO solicitud_seniales_nuevas (solicitud_senial_nueva_descripcion,
+        solicitud_senial_nueva_direccion,senial_id,usuario_id,tipo_solicitud_id,estado_id)
+         VALUES('$solicitud_senial_nueva_descripcion','$solicitud_senial_nueva_direccion',
+         $senial_id,$usuario_id,5,1)";
+
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -271,30 +274,33 @@ class SolicitudController
 
     }
 
-    public function getImgCategoriaSenial(){
+    public function getImgCategoriaSenial()
+    {
         $obj = new SolicitudModel();
 
         $sql = "SELECT * FROM categoria_seniales";
-        $imgs= pg_fetch_all($obj->consult($sql));
+        $imgs = pg_fetch_all($obj->consult($sql));
 
         include_once '../view/solicitudSenal/ayuda.php';
 
     }
 
-    public function getImgTipoSenial(){
+    public function getImgTipoSenial()
+    {
         $obj = new SolicitudModel();
 
         $sql = "SELECT * FROM categoria_seniales";
-        $imgs= pg_fetch_all($obj->consult($sql));
+        $imgs = pg_fetch_all($obj->consult($sql));
 
         include_once '../view/solicitudSenal/ayuda.php';
 
     }
-    public function getImgSenial(){
+    public function getImgSenial()
+    {
         $obj = new SolicitudModel();
 
         $sql = "SELECT * FROM seniales";
-        $imgs= pg_fetch_all($obj->consult($sql));
+        $imgs = pg_fetch_all($obj->consult($sql));
 
         include_once '../view/solicitudSenal/ayuda.php';
 
@@ -330,28 +336,28 @@ class SolicitudController
         $danio_id = $_POST['danio_id'];
         $usuario_id = $_SESSION['id'];
 
-       
-        
+
+
         if (isset($_FILES['solicitud_senial_imagen']) && $_FILES['solicitud_senial_imagen']['error'] === 0) {
             $img = $_FILES['solicitud_senial_imagen']['name'];
-        
+
             // Usar una ruta absoluta para evitar problemas con rutas relativas
-            $ruta = __DIR__ . "/../web/assets/img/img_solicitudes/$img";
-        
+            $ruta = "assets/img/img_solicitudes/$img";
+
             move_uploaded_file($_FILES['solicitud_senial_imagen']['tmp_name'], $ruta);
-               
+
         } else {
             $img = "Sin imagen";
         }
-        
 
 
 
-        if (isset($_POST['solicitud_senial_mal_estado_descripcion'])){
-            $solicitud_senial_mal_estado_descripcion = $_POST['solicitud_senial_mal_estado_descripcion'];
 
-        }else{
-            $solicitud_senial_mal_estado_descripcion = "Sin descripción";
+        if (isset($_POST['solicitud_senial_mal_estado_descripcion'])) {
+            $solicitud_senial_descripcion = $_POST['solicitud_senial_mal_estado_descripcion'];
+
+        } else {
+            $solicitud_senial_descripcion = "Sin descripción";
 
         }
 
@@ -360,7 +366,7 @@ class SolicitudController
         //validaciones 
         $validacion = true;
         $campos = [
-            
+
             'senial_id' => 'Es requerido llenar el campo señal',
             'danio_id' => 'Es requerido llenar el campo daño',
         ];
@@ -374,7 +380,7 @@ class SolicitudController
 
         $sql = "INSERT INTO solicitud_seniales_mal_estado (senial_id,solicitud_senial_mal_estado_descripcion,
         danio_id,usuario_id,solicitud_senial_mal_estado_imagen,
-        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_mal_estado_descripcion',$danio_id,
+        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_descripcion',$danio_id,
         $usuario_id,'$img',1,3)";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -518,13 +524,24 @@ class SolicitudController
         $obj = new SolicitudModel();
 
         $solicitud_reductores_mal_estado_descripcion = $_POST['solicitud_reductores_mal_estado_descripcion'];
-       
+
         $direccion = "carrera  - calle - barrio ";
-        $solicitud_reductores_mal_estado_imagen = $_POST['solicitud_reductores_mal_estado_imagen'];
         $danio_id = $_POST['danio_id'];
         $usuario_id = $_SESSION['id'];
         $reductor_id = $_POST['reductor_id'];
         $categoria_reductor_id = $_POST['categoria_reductor_id'];
+
+        if (isset($_FILES['solicitud_reductor_imagen']) && $_FILES['solicitud_reductor_imagen']['error'] === 0) {
+            $img = $_FILES['solicitud_reductor_imagen']['name'];
+        
+            // Usar una ruta absoluta para evitar problemas con rutas relativas
+            $ruta = "assets/img/img_solicitudes/$img";
+        
+            move_uploaded_file($_FILES['solicitud_reductor_imagen']['tmp_name'], $ruta);
+               
+        } else {
+            $img = "Sin imagen";
+        }
 
         $validacion = true;
         $campos = [
@@ -544,7 +561,10 @@ class SolicitudController
 
         }
 
-        $sql = "INSERT INTO solicitud_reductores_mal_estado (solicitud_reductores_mal_estado_descripcion,solicitud_reductores_mal_estado_direccion,solicitud_reductores_mal_estado_imagen,reductor_id,danio_id,usuario_id,tipo_solicitud_id,estado_id) VALUES('$solicitud_reductores_mal_estado_descripcion','$direccion','$solicitud_reductores_mal_estado_imagen',$reductor_id,$danio_id,$usuario_id,3,4)";
+        $sql = "INSERT INTO solicitud_reductores_mal_estado (solicitud_reductores_mal_estado_descripcion,
+        solicitud_reductores_mal_estado_direccion,solicitud_reductores_mal_estado_imagen,reductor_id,
+        danio_id,usuario_id,tipo_solicitud_id,estado_id) VALUES('$solicitud_reductores_mal_estado_descripcion',
+        '$direccion','$img',$reductor_id,$danio_id,$usuario_id,3,4)";
         // var_dump($sql);
 
         if ($validacion == true) {
@@ -588,7 +608,7 @@ class SolicitudController
         $sql = "SELECT r.*, re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id";
         $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
 
-        if ( $solicitud_reductores_nuevos) {
+        if ($solicitud_reductores_nuevos) {
             include_once '../view/solicitudReductor/nuevo/consult.php';
 
         } else {
@@ -628,7 +648,7 @@ class SolicitudController
 
         //añadir campo fecha
         //agregar los cambios de estados
-        
+
         // $senial_id = $_POST['senial_id'];
         $solicitud_reductor_nuevo_descripcion = $_POST['solicitud_reductor_nuevo_descripcion'];
         $carrera = $_POST['carrera'];
@@ -722,15 +742,26 @@ class SolicitudController
         // $carrera = $_POST['carrera'];
         // $calle = $_POST['calle'];
         // $barrio = $_POST['barrio'];
-         $direccion = "";
-        $imagen = $_POST['solicitud_via_mal_estado_imagen'];
+        $direccion = "";
         $danio = $_POST['danio_id'];
         $usuario = $_SESSION['id'];
-    
-        if($_POST['solicitud_via_mal_estado_descripcion'] ==""){
-            $descripcion= "Sin descripción";
-        }else{
-            $descripcion= $_POST['solicitud_via_mal_estado_descripcion'];
+
+        if (isset($_FILES['solicitud_via_imagen']) && $_FILES['solicitud_via_imagen']['error'] === 0) {
+            $img = $_FILES['solicitud_via_imagen']['name'];
+        
+            // Usar una ruta absoluta para evitar problemas con rutas relativas
+            $ruta = "assets/img/img_solicitudes/$img";
+        
+            move_uploaded_file($_FILES['solicitud_via_imagen']['tmp_name'], $ruta);
+               
+        } else {
+            $img = "Sin imagen";
+        }
+
+        if ($_POST['solicitud_via_mal_estado_descripcion'] == "") {
+            $descripcion = "Sin descripción";
+        } else {
+            $descripcion = $_POST['solicitud_via_mal_estado_descripcion'];
         }
 
 
@@ -757,7 +788,7 @@ class SolicitudController
         // }
 
         $sql = "INSERT INTO solicitud_vias_mal_estado (solicitud_via_mal_estado_descripcion, solicitud_via_mal_estado_direccion, solicitud_via_mal_estado_imagen, danio_id, usuario_id, 
-        tipo_solicitud_id, estado_id) VALUES( '$descripcion', '$direccion', '$imagen', $danio,  $usuario,   2, 4)";
+        tipo_solicitud_id, estado_id) VALUES( '$descripcion', '$direccion', '$img', $danio,  $usuario,   2, 4)";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -997,11 +1028,24 @@ class SolicitudController
         $obj = new SolicitudModel();
 
         // $barrio = $_POST['barrio'];
-        
-        $imagen = $_POST['imagen'];
+
         $tipo_choque = $_POST['tipo_choque'];
         $direccion = "cra calle barrio";
         $id_usuario = $_SESSION['id'];
+
+
+        if (isset($_FILES['solicitud_accidente_imagen']) && $_FILES['solicitud_accidente_imagen']['error'] === 0) {
+            $img = $_FILES['solicitud_accidente_imagen']['name'];
+
+            // Usar una ruta absoluta para evitar problemas con rutas relativas
+            $ruta = "assets/img/img_solicitudes/$img";
+
+            move_uploaded_file($_FILES['solicitud_accidente_imagen']['tmp_name'], $ruta);
+
+        } else {
+            $img = "Sin imagen";
+        }
+
 
         if (isset($_POST['lesionados'])) {
             $lesionados = $_POST['lesionados'];
@@ -1009,25 +1053,25 @@ class SolicitudController
             $lesionados = "Sin lesionados";
         }
 
-        if (isset($_POST['observacion'])){
+        if (isset($_POST['observacion'])) {
             $descripcion = $_POST['observacion'];
-        }else{
+        } else {
             $descripcion = "Sin descripción";
         }
 
-        if ($_POST['detalle_choque'] == ""){
-            $choque_detalle_nombre="Sin detalles";
-        }else{
+        if ($_POST['detalle_choque'] == "") {
+            $choque_detalle_nombre = "Sin detalles";
+        } else {
             $detalle = $_POST['detalle_choque'];
             $sql = "SELECT * FROM choque_detalles WHERE choque_detalle_id = $detalle";
             $choque_detalle = pg_fetch_all($obj->consult($sql));
 
-            foreach ($choque_detalle as $choque){
-                $choque_detalle_nombre= $choque['choque_detalle_descripcion'];
+            foreach ($choque_detalle as $choque) {
+                $choque_detalle_nombre = $choque['choque_detalle_descripcion'];
             }
         }
-        
-    
+
+
         // if (isset($_POST['bis'])) {
         //     $bis = $_POST['bis'];
         // } else {
@@ -1041,7 +1085,7 @@ class SolicitudController
         $campos = [
             'tipo_choque' => 'El campo tipo de choque es requerido'
         ];
-      
+
         foreach ($campos as $campo => $mensaje) {
             if (empty($$campo)) {  // Se usa $$campo para acceder dinámicamente a la variable
 
@@ -1058,8 +1102,8 @@ class SolicitudController
         // }
 
         $sql = "INSERT INTO solicitud_accidentes (solicitud_accidente_direccion,tipo_choque_id,
-        solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_descripcion) VALUES (
-    '$direccion', $tipo_choque, '$imagen','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre');";
+        solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre) VALUES (
+    '$direccion', $tipo_choque, '$img','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre');";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -1138,205 +1182,205 @@ class SolicitudController
     }
     //Termina accidentes
 
-    public function solicitudDetalleMalEstado(){
+    public function solicitudDetalleMalEstado()
+    {
         $obj = new SolicitudModel();
 
         $id_soli = $_POST['id_soli'];
         $name = $_POST['name_soli'];
-        
+
         $name_id = $_POST['name_camp_id'];
         $elemento_vial = $_POST['elemento_vial'];
-        $id_elemento = $elemento_vial."_id";
-        $tabla_elemento = $elemento_vial."es";
-        $nombre_elemento = $elemento_vial."_nombre";
+        $id_elemento = $elemento_vial . "_id";
+        $tabla_elemento = $elemento_vial . "es";
+        $nombre_elemento = $elemento_vial . "_nombre";
 
         $sql = "SELECT * FROM $name WHERE $name_id = $id_soli";
         $solicitudes = pg_fetch_all($obj->consult($sql));
         $solicitud = $solicitudes;
-        
-        
-        foreach($solicitud as $sol){
+
+
+        foreach ($solicitud as $sol) {
             $elemento_v = $sol[$id_elemento];
             $tipo_solicitudes = $sol['tipo_solicitud_id'];
             $usuarios = $sol['usuario_id'];
             $estados = $sol['estado_id'];
             $danios = $sol['danio_id'];
-                
-            
+
+
         }
 
         $sql = "SELECT * FROM $tabla_elemento WHERE $id_elemento = $elemento_v";
         $element = pg_fetch_all($obj->consult($sql));
 
-        foreach($element as $ele){
-            $nombre_ele=$ele[$nombre_elemento];
+        foreach ($element as $ele) {
+            $nombre_ele = $ele[$nombre_elemento];
         }
 
         $sql = "SELECT * FROM tipo_solicitudes WHERE tipo_solicitud_id=$tipo_solicitudes";
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
-        foreach($tipo_solicitudes as $tipo_solicitud){
+        foreach ($tipo_solicitudes as $tipo_solicitud) {
             $nombre_tipo_soli = $tipo_solicitud['tipo_solicitud_nombre'];
         }
 
         $sql = "SELECT * FROM usuarios WHERE usuario_id=$usuarios";
         $usuario = pg_fetch_all($obj->consult($sql));
 
-        foreach($usuario as $usu){
+        foreach ($usuario as $usu) {
             $id_usuario = $usu['usuario_num_identificacion'];
         }
-        
+
         $sql = "SELECT * FROM danios WHERE danio_id=$danios";
         $danio = pg_fetch_all($obj->consult($sql));
 
-        foreach($danio as $dani){
+        foreach ($danio as $dani) {
             $nombre_danio = $dani['danio_nombre'];
         }
-        
+
         $sql = "SELECT * from estados WHERE estado_id=$estados";
         $estado = pg_fetch_all($obj->consult($sql));
 
-        foreach($estado as $estadito){
+        foreach ($estado as $estadito) {
             $nombre_estado = $estadito['estado_nombre'];
         }
         // $sql = "SELECT tipo_solicitud_id From $name";
-        if($name == "solicitud_seniales_mal_estado"){
+        if ($name == "solicitud_seniales_mal_estado") {
             include_once '../view/solicitudes/detalleSM.php';
-        }
-        else if ($name == "solicitud_reductores_mal_estado"){
+        } else if ($name == "solicitud_reductores_mal_estado") {
             include_once '../view/solicitudes/detalleRM.php';
-        }
-        else if ($name == "solicitud_vias_mal_estado"){
+        } else if ($name == "solicitud_vias_mal_estado") {
             include_once '../view/solicitudes/detalleVM.php';
-        }
-        else if ($name == "solicitud_accidentes  "){
+        } else if ($name == "solicitud_accidentes  ") {
             $name_id = "solicitud_acccidente_id";
         }
-        
+
     }
-    public function solicitudDetalleNueva(){
+    public function solicitudDetalleNueva()
+    {
         $obj = new SolicitudModel();
 
         $id_soli = $_POST['id_soli'];
         $name = $_POST['name_soli'];
         $name_id = $_POST['name_camp_id'];
         $elemento_vial = $_POST['elemento_vial'];
-        $id_elemento = $elemento_vial."_id";
-        $tabla_elemento = $elemento_vial."es";
-        $nombre_elemento = $elemento_vial."_nombre";
+        $id_elemento = $elemento_vial . "_id";
+        $tabla_elemento = $elemento_vial . "es";
+        $nombre_elemento = $elemento_vial . "_nombre";
         $sql = "SELECT * FROM $name WHERE $name_id = $id_soli";
         $solicitudes = pg_fetch_all($obj->consult($sql));
         $solicitud = $solicitudes;
-        
-        
-        foreach($solicitud as $sol){
+
+
+        foreach ($solicitud as $sol) {
             $elemento_v = $sol[$id_elemento];
             $tipo_solicitudes = $sol['tipo_solicitud_id'];
             $usuarios = $sol['usuario_id'];
             $estados = $sol['estado_id'];
-            
+
         }
 
         $sql = "SELECT * FROM $tabla_elemento WHERE $id_elemento = $elemento_v";
         $element = pg_fetch_all($obj->consult($sql));
 
-        foreach($element as $ele){
-            $nombre_ele=$ele[$nombre_elemento];
+        foreach ($element as $ele) {
+            $nombre_ele = $ele[$nombre_elemento];
         }
 
         $sql = "SELECT * FROM tipo_solicitudes WHERE tipo_solicitud_id=$tipo_solicitudes";
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
-        foreach($tipo_solicitudes as $tipo_solicitud){
+        foreach ($tipo_solicitudes as $tipo_solicitud) {
             $nombre_tipo_soli = $tipo_solicitud['tipo_solicitud_nombre'];
         }
 
         $sql = "SELECT * FROM usuarios WHERE usuario_id=$usuarios";
         $usuario = pg_fetch_all($obj->consult($sql));
 
-        foreach($usuario as $usu){
+        foreach ($usuario as $usu) {
             $id_usuario = $usu['usuario_num_identificacion'];
         }
 
-        
+
         $sql = "SELECT * from estados WHERE estado_id=$estados";
         $estado = pg_fetch_all($obj->consult($sql));
 
-        foreach($estado as $estadito){
+        foreach ($estado as $estadito) {
             $nombre_estado = $estadito['estado_nombre'];
         }
         // $sql = "SELECT tipo_solicitud_id From $name";
-        if($name == "solicitud_seniales_nuevas"){
+        if ($name == "solicitud_seniales_nuevas") {
             include_once '../view/solicitudes/detalleSN.php';
-        }
-        else if ($name == "solicitud_reductores_nuevos"){
+        } else if ($name == "solicitud_reductores_nuevos") {
             include_once '../view/solicitudes/detalleRN.php';
         }
-       
-        
+
+
     }
-    public function solicitudDetalleAccidente(){
+    public function solicitudDetalleAccidente()
+    {
         $obj = new SolicitudModel();
 
         $id_soli = $_POST['id_soli'];
         $sql = "SELECT * FROM solicitud_accidentes WHERE solicitud_accidente_id= $id_soli";
         $accidentes = pg_fetch_all($obj->consult($sql));
-        
-        
-        foreach($accidentes as $acci){
+
+
+        foreach ($accidentes as $acci) {
             $tipo_choque = $acci['tipo_choque_id'];
             $tipo_solicitudes = $acci['tipo_solicitud_id'];
             $usuarios = $acci['usuario_id'];
             $estados = $acci['estado_id'];
-            
+
         }
 
         $sql = "SELECT * FROM tipo_choques WHERE tipo_choque_id = $tipo_choque";
         $tipo_choq = pg_fetch_all($obj->consult($sql));
 
-        foreach($tipo_choq as $tipo_ch){
-            $nombre_tipo_choque=$tipo_ch['tipo_choque_nombre'];
+        foreach ($tipo_choq as $tipo_ch) {
+            $nombre_tipo_choque = $tipo_ch['tipo_choque_nombre'];
         }
 
         $sql = "SELECT * FROM tipo_solicitudes WHERE tipo_solicitud_id=$tipo_solicitudes";
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
-        foreach($tipo_solicitudes as $tipo_solicitud){
+        foreach ($tipo_solicitudes as $tipo_solicitud) {
             $nombre_tipo_soli = $tipo_solicitud['tipo_solicitud_nombre'];
         }
 
         $sql = "SELECT * FROM usuarios WHERE usuario_id=$usuarios";
         $usuario = pg_fetch_all($obj->consult($sql));
 
-        foreach($usuario as $usu){
+        foreach ($usuario as $usu) {
             $id_usuario = $usu['usuario_num_identificacion'];
         }
 
-        
+
         $sql = "SELECT * from estados WHERE estado_id=$estados";
         $estado = pg_fetch_all($obj->consult($sql));
 
-        foreach($estado as $estadito){
+        foreach ($estado as $estadito) {
             $nombre_estado = $estadito['estado_nombre'];
         }
         // $sql = "SELECT tipo_solicitud_id From $name";
-        
+
         include_once '../view/solicitudes/detalleAcc.php';
-       
-       
-        
+
+
+
     }
-    public function statusUpdate(){
-        $obj  = new SolicitudModel();
+    public function statusUpdate()
+    {
+        $obj = new SolicitudModel();
         $id_userRol = $_SESSION['rol'];
         $sql = "SELECT * FROM roles WHERE rol_id=$id_userRol";
         $roles = pg_fetch_all($obj->consult($sql));
 
-        foreach ($roles as $rol){
-            $rol_nombre= $rol['rol_nombre'];
+        foreach ($roles as $rol) {
+            $rol_nombre = $rol['rol_nombre'];
         }
 
-        
+
     }
 }
 ?>

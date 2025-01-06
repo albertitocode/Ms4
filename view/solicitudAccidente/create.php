@@ -5,7 +5,7 @@
 
 <div class="mt-5">
 
-    <form action="<?php echo getUrl("Solicitud", "Solicitud", "postCreateAccidente"); ?>" method="post" id="formAccidente">
+    <form action="<?php echo getUrl("Solicitud", "Solicitud", "postCreateAccidente"); ?>" method="post" id="formAccidente" enctype="multipart/form-data">
 
         <div class="page-header">
             <h3 class="fw-bold mb-3">Registro</h3>
@@ -123,7 +123,9 @@
 
                                         <div class="form-group mb-3">
                                             <label for="imagen" class="fw-bold">Imagen</label>
-                                            <input type="file" name="imagen" class="form-control">
+                                            <input type="file" name="solicitud_accidente_imagen" class="form-control" accept="image/png, image/jpeg, image/jpg">
+                                            <span class="text-danger" id="error_solicitud_accidente_imagen"></span>
+
                                         </div>
                                     </div>
                                 </div>

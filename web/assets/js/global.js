@@ -554,6 +554,7 @@ $(document).ready(function () {
     var formData = $('#formReductorN').serializeArray();
     let esValido = true;
 
+
     // Limpiar los mensajes de error antes de comenzar la validación
     Object.keys(camposReductorN).forEach(campoReductorN => {
       const error = `error_${campoReductorN}`;
@@ -592,6 +593,24 @@ $(document).ready(function () {
   console.log("funca esto");
   var formData = $('#formReductorM').serializeArray();
   let esValido = true;
+
+  const fileInput = document.querySelector('input[name="solicitud_reductor_imagen"]');
+    const file = fileInput.files[0]; // Accede al archivo seleccionado
+
+    if (!file) {
+      console.log('El archivo no fue seleccionado');
+      
+    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_reductor_imagen").textContent =  `*El formato de la imagen no es valido*`;
+      esValido = false;
+
+    } else if (file.size > 2 * 1024 * 1024) { // 2 MB
+      document.getElementById("error_solicitud_reductor_imagen").textContent =  `*El archivo es demasiado grande*`;
+      esValido = false;
+
+    }else{
+      console.log('archivo ingresado')
+    }
 
   // Limpiar los mensajes de error antes de comenzar la validación
   Object.keys(camposReductorM).forEach(campoReductorM => {
@@ -635,7 +654,26 @@ $(document).ready(function () {
     event.preventDefault();
     //console.log("si net");
     var formData = $('#formAccidente').serializeArray();
+
+    const fileInput = document.querySelector('input[name="solicitud_accidente_imagen"]');
+    const file = fileInput.files[0]; // Accede al archivo seleccionado
     let esValido = true;
+
+    if (!file) {
+      console.log('El archivo no fue seleccionado');
+      
+
+    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_accidente_imagen").textContent =  `*El formato de la imagen no es valido*`;
+      esValido = false;
+
+    } else if (file.size > 2 * 1024 * 1024) { // 2 MB
+      document.getElementById("error_solicitud_accidente_imagen").textContent =  `*El archivo es demasiado grande*`;
+      esValido = false;
+
+    }else{
+      console.log('archivo ingresado')
+    }
 
   
     Object.keys(camposAccidente).forEach(campoAccidente => {
@@ -676,6 +714,23 @@ $(document).ready(function () {
     var formData = $('#formVia').serializeArray();
     let esValido = true;
 
+    const fileInput = document.querySelector('input[name="solicitud_via_imagen"]');
+    const file = fileInput.files[0]; // Accede al archivo seleccionado
+
+    if (!file) {
+      console.log('El archivo no fue seleccionado');
+      
+    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_via_imagen").textContent =  `*El formato de la imagen no es valido*`;
+      esValido = false;
+
+    } else if (file.size > 2 * 1024 * 1024) { // 2 MB
+      document.getElementById("error_solicitud_via_imagen").textContent =  `*El archivo es demasiado grande*`;
+      esValido = false;
+
+    }else{
+      console.log('archivo ingresado')
+    }
   
     Object.keys(camposVia).forEach(campoVia => {
       const error = `error_${campoVia}`;

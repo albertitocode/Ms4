@@ -7,7 +7,7 @@
 
 
     <form action="<?php echo getUrl("Solicitud", "Solicitud", "postCreateReductorMalEstado"); ?>" method="post"
-        id="formReductorM">
+        id="formReductorM" enctype="multipart/form-data">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Registro</h3>
             <ul class="breadcrumbs mb-3">
@@ -112,7 +112,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="image" class="d-block">Imagen del reductor dañado</label>
-                                    <input type="file" name="solicitud_reductores_mal_estado_imagen" class="form-control">
+                                    <input type="file" name="solicitud_reductor_imagen" accept="image/png, image/jpeg, image/jpg" class="form-control">
+                                    <span class="text-danger" id="error_solicitud_reductor_imagen"></span>
+
                                 </div>
                             
                                

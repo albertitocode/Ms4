@@ -100,10 +100,7 @@
                                     </select>
                                     <span class="text-danger" id="error_reductor_id"></span>
                                 </div>
-                                <div class="form-group">
-                                    <label class="d-block">Imagen del reductor dañado</label>
-                                    <input type="file" name="solicitud_reductor_nuevo_imagen" class="form-control">
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@
     </div>
 
     <form action="<?php echo getUrl("Solicitud", "Solicitud", "postCreateVia"); ?>" method="post" id="formVia">
-        <div class="page-header">
+        <div class="page-header" enctype="multipart/form-data>
             <h3 class="fw-bold mb-3">Registro</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
@@ -92,7 +92,9 @@
                                
                                 <div class="form-group ">
                                     <label for="solicitud_via_mal_estado_imagen" class="d-block fw-bold">Imagen</label>
-                                    <input type="file" name="solicitud_via_mal_estado_imagen" class="form-control">
+                                    <input type="file" name="solicitud_via_imagen" accept="image/png, image/jpeg, image/jpg" class="form-control">
+                                    <span class="text-danger" id="error_solicitud_via_imagen"></span>
+
                                 </div>
                             </div>
 
