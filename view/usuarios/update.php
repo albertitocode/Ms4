@@ -18,7 +18,7 @@
     }
 
     ?>
-    <form action="<?php echo getUrl("Usuarios", "Usuarios", "postUpdateUsuarios"); ?>" method="post" id="formUsuUpdate">
+    <form action="<?php echo getUrl("Usuarios", "Usuarios", "postUpdateUsuarios"); ?>" method="post" id="formUsu">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Actualizacion</h3>
             <ul class="breadcrumbs mb-3">

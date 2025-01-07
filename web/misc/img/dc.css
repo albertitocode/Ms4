@@ -47,7 +47,7 @@ a#francobollo
   display: block;
   height: 80px;
   width: 80px;
-  background: url(logo_sm_144x35.jpg) top left no-repeat;
+  /* background: url(logo_sm_144x35.jpg) top left no-repeat; */
   text-indent: -999em;
   text-decoration: none;
   z-index: 100;
@@ -78,7 +78,7 @@ A {TEXT-DECORATION: none}
 BODY
 {
   background-color: white;
-  background-color:#EBEBEB;
+  /* #background-color:#EBEBEB; */
   padding: 0 0 0 0;
   margin-top: 4px;
   margin-bottom: 4px;
@@ -154,7 +154,18 @@ A:visited {COLOR: #115aa4;}
   BACKGROUND-COLOR: #bfd9f4; /* #d5e4f4; */
 }
 
-
+.logo
+{
+  background-image: url(logo_sm_144x35.jpg);
+  background-repeat: no-repeat;
+  background-position:  right center;
+  background-color: #ebf6fa;
+/*  border-bottom: 1px solid #7ea3bf; */
+/*  border-top:    1px solid #7ea3bf; */ /* xxx */
+  padding-left: 16px;
+  width: 144px;
+/* 140px */
+}
 
 .map
 {
@@ -270,11 +281,11 @@ select
   padding-right: 35px;
 }
 
-.text_block i
+/* .text_block i
 {
-/*  background-color: #ebf6fa; */
-/*  font-weight: bold; */
-}
+background-color: #ebf6fa; 
+ font-weight: bold; 
+} */
 
 /*
 .text_block img
@@ -334,15 +345,15 @@ select
   display: none;
 }
 
-#dc_map
+/* #dc_map
 {
-/*
+
   border: 0;
   margin: 0;
   padding: 0;
   cursor: hand;
-*/
-}
+
+} */
 
 /*my_table
 {

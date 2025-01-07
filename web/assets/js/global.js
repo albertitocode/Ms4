@@ -787,6 +787,8 @@ $(document).ready(function () {
   $(document).on('keyup', "#id_data", function () {
     let id_data = $(this).val();
     let url = $(this).attr('data-url');
+    console.log(id_data);
+
     $.ajax({
       url: url,
       type: 'POST',
