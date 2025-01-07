@@ -36,7 +36,7 @@
     #l2 {
         margin-left: 10px;
         border-color: aquamarine;
-        bor
+        
     }
 
     .mapa {
@@ -162,7 +162,7 @@
                             </form>
 
                         </div>
-                        <div style="background-color: #868ffd;">
+                        <div style="background-color: black; color: white">
                             <form method="post" action="maq.php">
                                 <!-- <input type=IMAGE name="image" src="<?php echo $urlImage; ?>" border=1> -->
                             </form>
@@ -181,19 +181,19 @@
                         myMap1 = new msMap(document.getElementById("dc_main"), 'standardRight');
                         myMap1.setCgi('/cgi-bin/mapserv.exe');
                         myMap1.setMapFile('/ms4w/Apache/htdocs/cali.map');
-                        myMap1.setFullExtent(-88, -62, -5);
+                        myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
                         myMap1.setLayers('Cinco Six One Two Puntos');
                         // $map=Mymap1;
                         myMap2 = new msMap(document.getElementById("dc_main2"));
                         myMap2.setActionNone();
-                        myMap2.setFullExtent(-88, -62, -5);
+                        myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
                         myMap2.setMapFile('/ms4w/Apache/htdocs/cali.map');
                         myMap2.setLayers('Cinco Six One Two Puntos');
                         myMap1.setReferenceMap(myMap2);
 
 
                         myMap1.redraw(); myMap2.redraw();
-                        chgLayers();
+                        
 
                         var infola = new msTool('crear punto', infolay, 'misc/img/coordenada.png', investiguen);
                         myMap1.getToolbar(0).addMapTool(infola);
@@ -201,6 +201,9 @@
                         var consult = new msTool('Consultar info', consulta, 'misc/img/coordenada.png', queryMap);
                         myMap1.getToolbar(0).addMapTool(consult);
 
+
+                        chgLayers();
+                        
                         function chgLayers() {
                             var list = "Layers ";
                             var objForm = document.forms[0];

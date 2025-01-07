@@ -43,7 +43,7 @@ $total_usus = $total_usuarios[0];
 // $tipo_solicitudes = pg_fetch_row($obj->consult($sql));
 $total_soli[0] = $totalVia[0] + $totalReduN[0] + $totalSeniN[0] + $totalReduM[0] + $totalSeniM[0] +  $totalAcci[0];
 
-return [
+return array(
  'Accidente' => $Accidente,
  'SenialM' => $totalSm,
  'SenialN' => $SenialN,
@@ -52,7 +52,7 @@ return [
  'Vias' => $Via,
  'Usuarios' => $total_usus,
  'Solicitudes' => $total_soli[0]
-];
+);
 
 
 }
