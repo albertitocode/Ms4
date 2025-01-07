@@ -192,7 +192,8 @@
                         myMap1.setReferenceMap(myMap2);
 
 
-                        myMap1.redraw(); myMap2.redraw();
+                        myMap1.redraw(); 
+                        myMap2.redraw();
                         
 
                         var infola = new msTool('crear punto', infolay, 'misc/img/coordenada.png', investiguen);
