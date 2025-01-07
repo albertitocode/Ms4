@@ -1,11 +1,11 @@
 <?php
 include_once '../model/Acceso/AccesoModel.php';
 include_once '../model/Usuarios/UsuariosModel.php';
-include_once '../vendor/autoload.php';
+// include_once '../vendor/autoload.php';
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
 
 class AccesoController
 {

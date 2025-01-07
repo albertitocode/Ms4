@@ -9,7 +9,6 @@ class SolicitudController
 
         $sql = "SELECT * FROM tipo_solicitudes";
         $tipo_solicitud = pg_fetch_all($obj->consult($sql));
-
         include_once '../view/solicitudes/registrar.php';
     }
     public function buscarSolicitud()
@@ -100,7 +99,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'success',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -151,15 +150,15 @@ class SolicitudController
 
         //validaciones 
         $validacion = true;
-        $campos = [
-            'categoria_senial_id' => 'Es requerido llenar el campo categoria',
-            'tipo_senial_id' => 'Es requerido llenar el campo tipo de señal', //todos llegan menos este, revisar
-            'senial_id' => 'Es requerido llenar el campo señal',
+        $campos = array(
+            
+            'senial_id' => 'Es requerido llenar el campo señal'
 
-        ];
+        );
 
         foreach ($campos as $campo => $mensaje) {
-            if (empty(trim($$campo))) {
+            $c=trim($$campo);
+            if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
                 $validacion = false;
@@ -220,7 +219,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'success',
+                    icon: 'error',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -335,6 +334,7 @@ class SolicitudController
         $senial_id = $_POST['senial_id'];
         $danio_id = $_POST['danio_id'];
         $usuario_id = $_SESSION['id'];
+        $solicitud_direccion = "carrera calle barrio";
 
 
 
@@ -365,11 +365,11 @@ class SolicitudController
 
         //validaciones 
         $validacion = true;
-        $campos = [
+        $campos = array(
 
             'senial_id' => 'Es requerido llenar el campo señal',
             'danio_id' => 'Es requerido llenar el campo daño',
-        ];
+        );
 
         foreach ($campos as $campo => $mensaje) {
             if (empty($_POST[$campo])) {
@@ -378,9 +378,9 @@ class SolicitudController
             }
         }
 
-        $sql = "INSERT INTO solicitud_seniales_mal_estado (senial_id,solicitud_senial_mal_estado_descripcion,
+        $sql = "INSERT INTO solicitud_seniales_mal_estado (senial_id,solicitud_senial_mal_estado_descripcion,solicitud_senial_mal_estado_direccion,
         danio_id,usuario_id,solicitud_senial_mal_estado_imagen,
-        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_descripcion',$danio_id,
+        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_descripcion','$solicitud_direccion',$danio_id,
         $usuario_id,'$img',1,3)";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -544,16 +544,17 @@ class SolicitudController
         }
 
         $validacion = true;
-        $campos = [
+        $campos = array(
             'danio_id' => 'El campo daño es requerido',
             'reductor_id' => 'El campo reductor es requerido',
             'categoria_reductor_id' => 'El campo categoria es requerido'
 
-        ];
+        );
 
 
         foreach ($campos as $campo => $mensaje) {
-            if (empty(trim($$campo))) {
+            $c=trim($$campo);
+            if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
                 $validacion = false;
@@ -662,15 +663,15 @@ class SolicitudController
         $categoria_reductor_id = $_POST['categoria_reductor_id'];
 
         $validacion = true;
-        $campos = [
+        $campos = array(
             'reductor_id' => 'El campo reductor es requerido',
             'categoria_reductor_id' => 'El campo categoria es requerido'
-
-        ];
+        );
 
 
         foreach ($campos as $campo => $mensaje) {
-            if (empty(trim($$campo))) {
+            $c=trim($$campo);
+            if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
                 $validacion = false;
@@ -767,13 +768,14 @@ class SolicitudController
 
         //VALIDACIONES
         $validacion = true;
-        $campos = [
+        $campos = array(
             'danio' => 'El campo daño es requerido'
-        ];
+        );
 
         // Bucle para validar los campos
         foreach ($campos as $campo => $mensaje) {
-            if (empty(trim($$campo))) {
+            $c=trim($$campo);
+            if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
                 $validacion = false;
@@ -895,14 +897,14 @@ class SolicitudController
 
         //VALIDACIONES
         $validacion = true;
-        $campos = [
-            'tipo_pqrs_id' => 'El campo tipo pqrs es requerido',
+        $campos = array(            'tipo_pqrs_id' => 'El campo tipo pqrs es requerido',
             'descripcion_pqrs' => 'El campo descripcion es requerido'
-        ];
+    );
 
         // Bucle para validar los campos
         foreach ($campos as $campo => $mensaje) {
-            if (empty(trim($$campo))) {
+            $c=trim($$campo);
+            if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
                 $validacion = false;
@@ -1082,9 +1084,9 @@ class SolicitudController
 
         //VALIDACIONES
         $validacion = true;
-        $campos = [
+        $campos = array(
             'tipo_choque' => 'El campo tipo de choque es requerido'
-        ];
+        );
 
         foreach ($campos as $campo => $mensaje) {
             if (empty($$campo)) {  // Se usa $$campo para acceder dinámicamente a la variable

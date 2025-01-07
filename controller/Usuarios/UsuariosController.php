@@ -85,7 +85,7 @@ class UsuariosController
 
         $validacion = true;
 
-        $campos = [
+        $campos = array(
 
             'usuario_nombre_1' => 'Primer nombre requerido',
             'usuario_apellido_1' => 'Primer apellido requerido',
@@ -103,7 +103,7 @@ class UsuariosController
             'barrio' => "Barrio requerido",
             'usuario_contrasenia' => 'Contraseña requerido',
             'rol' => 'Rol requerido'
-        ];
+        );
 
         foreach ($campos as $campo => $mensaje) {
             if (empty($_POST[$campo])) {
@@ -177,8 +177,20 @@ class UsuariosController
         $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_id=$id_datos";
         $_SESSION['id_datos'] = $id_datos;
         $usuario = pg_fetch_all($obj->consult($sql));
+        $sql = "SELECT * FROM tipo_documentos";
+        $tipo_documento = pg_fetch_all($obj->consult($sql));
+        $sql = "SELECT * FROM roles";
+        $roles = pg_fetch_all($obj->consult($sql));
 
-        include_once '../view/usuarios/buscarUsuarios.php';
+        if ($usuario) {
+            $_SESSION['usuario_data'] = $usuario;
+            include_once '../view/usuarios/buscarUsuarios.php';
+        }else{
+            echo "<br>";
+            echo "<br>";
+
+            echo "No se encuentra id asociado";
+        }
     }
 
     public function posUpdateStatus()
@@ -260,9 +272,11 @@ class UsuariosController
 
         $obj = new UsuariosModel();
         // dd($_POST);
+
         if (isset($_POST['enviar'])) {
 
-
+            $usuario_bd = $_SESSION['usuario_data'][0];
+        
             $id = $_SESSION['id_datos'];
             $usu_nombre_1 = $_POST['usuario_nombre_1'];
             $usu_nombre_2 = $_POST['usuario_nombre_2'];
@@ -275,80 +289,86 @@ class UsuariosController
             $tipo_documento = $_POST['tipo_documento_id'];
             $numero_documento = $_POST['usuario_num_identificacion'];
 
-            $usu_direccion = $_POST['usuario_direccion'];
+            $campos_a_actualizar = array();
+        
+            // Validaciones y actualizaciones
+            if (!empty($usu_nombre_1) && $usu_nombre_1 != $usuario_bd['usuario_nombre_1']) {
+                $campos_a_actualizar[] = "usuario_nombre_1='" . $usu_nombre_1 . "'";
+            }
+            if (!empty($usu_nombre_2) && $usu_nombre_2 != $usuario_bd['usuario_nombre_2']) {
+                $campos_a_actualizar[] = "usuario_nombre_2='" . $usu_nombre_2 . "'";
+            }
+            if (!empty($usu_apellido_1) && $usu_apellido_1 != $usuario_bd['usuario_apellido_1']) {
+                $campos_a_actualizar[] = "usuario_apellido_1='" . $usu_apellido_1 . "'";
+            }
+            if (!empty($usu_apellido_2) && $usu_apellido_2 != $usuario_bd['usuario_apellido_2']) {
+                $campos_a_actualizar[] = "usuario_apellido_2='" . $usu_apellido_2 . "'";
+            }
+            if (!empty($usu_correo) && $usu_correo != $usuario_bd['usuario_correo']) {
+                $campos_a_actualizar[] = "usuario_correo='" . $usu_correo . "'";
+            }
+            if (!empty($usu_contrasenia) && $usu_contrasenia != $usuario_bd['usuario_contrasenia']) {
+                $campos_a_actualizar[] = "usuario_contrasenia='" . $usu_contrasenia . "'";
+            }
+            if (!empty($rol) && $rol != $usuario_bd['rol_id']) {
+                $campos_a_actualizar[] = "rol_id='" . $rol . "'";
+            }
+            if (!empty($usu_telefono) && $usu_telefono != $usuario_bd['usuario_telefono']) {
+                $campos_a_actualizar[] = "usuario_telefono=" . $usu_telefono;
+            }
+            if (!empty($tipo_documento) && $tipo_documento != $usuario_bd['tipo_documento_id']) {
+                $campos_a_actualizar[] = "tipo_documento_id=" . $tipo_documento;
+            }
+            if (!empty($numero_documento) && $numero_documento != $usuario_bd['usuario_num_identificacion']) {
+                $campos_a_actualizar[] = "usuario_num_identificacion=" . $numero_documento;
+            }
+            // if (!empty($usu_direccion) && $usu_direccion != $usuario_bd['usuario_direccion']) {
+            //     $campos_a_actualizar[] = "usuario_direccion='" . $usu_direccion . "'";
+            // }
+        
         }
+        
 
-        $validaciones = true;
-        $cont = 0;
-        // if (empty($id)) {
-        //     $_SESSION['errores'][] = "El campo id es requerido";
-        //     $validaciones = false;
-        // }
+        if (!empty($campos_a_actualizar)) {
+            $sql = "UPDATE usuarios SET " . implode(", ", $campos_a_actualizar) . " WHERE usuario_id=$id";
 
-        if (!empty($usu_nombre_1)) {
-            $campos[] = "usuario_nombre_1='$usu_nombre_1'";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_nombre_2)) {
-            $campos[] = "usuario_nombre_2='$usu_nombre_2'";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_apellido_1)) {
-            $campos[] = "usuario_apellido_1='$usu_apellido_1'";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_apellido_2)) {
-            $campos[] = "usuario_apellido_2='$usu_apellido_2'";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_correo)) {
-            $campos[] = "usuario_correo='$usu_correo'";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_contrasenia)) {
-            $campos[] = "usuario_contrasenia='$usu_contrasenia'";
-            $cont = $cont + 1;
-        }
-        if (!empty($rol)) {
-            $campos[] = "rol_id='$rol'";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_telefono)) {
-            $campos[] = "usuario_telefono=$usu_telefono";
-            $cont = $cont + 1;
-        }
-        if (!empty($tipo_documento)) {
-            $campos[] = "tipo_documento_id=$tipo_documento";
-            $cont = $cont + 1;
-        }
-        if (!empty($numero_documento)) {
-            $campos[] = "usuario_num_identificacion=$numero_documento";
-            $cont = $cont + 1;
-        }
-        if (!empty($usu_direccion)) {
-            $campos[] = "usuario_direccion='$usu_direccion'";
-            $cont = $cont + 1;
-        }
-
-        if ($cont > 0) {
-            $sql = "UPDATE usuarios SET " . implode(", ", $campos) . " WHERE usuario_id=$id";
-        } else {
-            echo "No se seleccionarion campos para actualizar";
-        }
-        echo $cont;
-
-
-        if ($validaciones == true) {
             $ejecutar = $obj->update($sql);
             if ($ejecutar) {
-                echo "se insertó correctamente";
-                redirect(getUrl("Usuarios", "Usuarios", "getUpdateUsuarios"));
+                echo "<script>
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Los datos se actualizaron correctamente.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    // Redirigimos al usuario después de que cierre la alerta
+                    if (result.isConfirmed) {
+                        window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUpdateUsuarios") . "';
+                    }
+                });
+            </script>";
+
             } else {
-                echo "Se ha presentado un error al insertar";
+                echo "Se ha presentado un error al actualizar.";
             }
         } else {
-            redirect(getUrl("Usuarios", "Usuarios", "getUpdateUsuarios"));
+
+            echo "<script>
+            Swal.fire({
+                title: 'Sin cambios',
+                text: 'No se detectaron cambios en los datos para actualizar.',
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                // Redirigimos al usuario después de que cierre la alerta
+                if (result.isConfirmed) {
+                    window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUpdateUsuarios") . "';
+                }
+            });
+        </script>";
         }
+
+      
     }
     public function updateStatus()
     {

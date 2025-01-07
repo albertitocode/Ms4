@@ -34,12 +34,14 @@ $(document).ready(function () {
     'numero3': 'Número complemento 3',
     'barrio': 'Barrio',
     'usuario_contrasenia': 'Contraseña',
+    'rol':'Rol'
   };
   const camposSenialM = {
     'categoria_senial_id': 'Categoria',
     'danio_id': 'Daño',
     'tipo_senial_id': 'Tipo de señal',
-    'senial_id': 'Señal'  };
+    'senial_id': 'Señal'
+  };
   const camposSenialN = {
     'categoria_senial_id': 'Categoria',
     'tipo_senial_id': 'Tipo de señal',
@@ -60,7 +62,7 @@ $(document).ready(function () {
     // 'detalle_choque': 'Detalle choque'
   }
   const camposVia = {
-    'danio_id' :'Daño'
+    'danio_id': 'Daño'
   }
 
   function validarCampoLetras(input) {
@@ -193,7 +195,6 @@ $(document).ready(function () {
 
 
   $(document).on('input', '#formUsu input, #formUsu select', function () {
-    console.log("input");
     const campoUsu = $(this).attr('name');
 
     const campoNombre = camposUsu[campoUsu];
@@ -462,17 +463,17 @@ $(document).ready(function () {
 
     if (!file) {
       console.log('El archivo no fue seleccionado');
-      
 
-    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
-      document.getElementById("error_solicitud_senial_imagen").textContent =  `*El formato de la imagen no es valido*`;
+
+    } else if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_senial_imagen").textContent = `*El formato de la imagen no es valido*`;
       esValido = false;
 
     } else if (file.size > 2 * 1024 * 1024) { // 2 MB
-      document.getElementById("error_solicitud_senial_imagen").textContent =  `*El archivo es demasiado grande*`;
+      document.getElementById("error_solicitud_senial_imagen").textContent = `*El archivo es demasiado grande*`;
       esValido = false;
 
-    }else{
+    } else {
       console.log('archivo ingresado')
     }
 
@@ -587,68 +588,68 @@ $(document).ready(function () {
     }
   });
 
- //reductor en mal estado
- $(document).on('input', '#formReductorM input, #formReductorM select', function (event) {
-  event.preventDefault();
-  console.log("funca esto");
-  var formData = $('#formReductorM').serializeArray();
-  let esValido = true;
+  //reductor en mal estado
+  $(document).on('input', '#formReductorM input, #formReductorM select', function (event) {
+    event.preventDefault();
+    console.log("funca esto");
+    var formData = $('#formReductorM').serializeArray();
+    let esValido = true;
 
-  const fileInput = document.querySelector('input[name="solicitud_reductor_imagen"]');
+    const fileInput = document.querySelector('input[name="solicitud_reductor_imagen"]');
     const file = fileInput.files[0]; // Accede al archivo seleccionado
 
     if (!file) {
       console.log('El archivo no fue seleccionado');
-      
-    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
-      document.getElementById("error_solicitud_reductor_imagen").textContent =  `*El formato de la imagen no es valido*`;
+
+    } else if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_reductor_imagen").textContent = `*El formato de la imagen no es valido*`;
       esValido = false;
 
     } else if (file.size > 2 * 1024 * 1024) { // 2 MB
-      document.getElementById("error_solicitud_reductor_imagen").textContent =  `*El archivo es demasiado grande*`;
+      document.getElementById("error_solicitud_reductor_imagen").textContent = `*El archivo es demasiado grande*`;
       esValido = false;
 
-    }else{
+    } else {
       console.log('archivo ingresado')
     }
 
-  // Limpiar los mensajes de error antes de comenzar la validación
-  Object.keys(camposReductorM).forEach(campoReductorM => {
-    const error = `error_${campoReductorM}`;
-    document.getElementById(error).textContent = ""; // Limpia los errores
-  });
+    // Limpiar los mensajes de error antes de comenzar la validación
+    Object.keys(camposReductorM).forEach(campoReductorM => {
+      const error = `error_${campoReductorM}`;
+      document.getElementById(error).textContent = ""; // Limpia los errores
+    });
 
-  // Validación de los campos
-  formData.forEach(function (campoData) {
-    const { name, value } = campoData;
-    const error = `error_${name}`;
-    const valor = camposReductorM[name];
+    // Validación de los campos
+    formData.forEach(function (campoData) {
+      const { name, value } = campoData;
+      const error = `error_${name}`;
+      const valor = camposReductorM[name];
 
-    // Validar campos vacíos
-    if (value.trim() === '') {
-      if (camposReductorM[name]) {
+      // Validar campos vacíos
+      if (value.trim() === '') {
+        if (camposReductorM[name]) {
 
-        document.getElementById(error).textContent = `*El campo ${valor} es obligatorio*`;
-        esValido = false;
+          document.getElementById(error).textContent = `*El campo ${valor} es obligatorio*`;
+          esValido = false;
+        }
       }
+    });
+
+    const submitButton = document.getElementById('btnReductorM');
+    if (esValido) {
+      console.log('Formulario válido');
+      submitButton.disabled = false;
+    } else {
+      console.log('Formulario no válido');
+      submitButton.disabled = true;
     }
   });
 
-  const submitButton = document.getElementById('btnReductorM');
-  if (esValido) {
-    console.log('Formulario válido');
-    submitButton.disabled = false;
-  } else {
-    console.log('Formulario no válido');
-    submitButton.disabled = true;
-  }
-});
 
 
- 
 
 
- 
+
 
   $(document).on('input', '#formAccidente input, #formAccidente select', function (event) {
     event.preventDefault();
@@ -661,21 +662,21 @@ $(document).ready(function () {
 
     if (!file) {
       console.log('El archivo no fue seleccionado');
-      
 
-    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
-      document.getElementById("error_solicitud_accidente_imagen").textContent =  `*El formato de la imagen no es valido*`;
+
+    } else if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_accidente_imagen").textContent = `*El formato de la imagen no es valido*`;
       esValido = false;
 
     } else if (file.size > 2 * 1024 * 1024) { // 2 MB
-      document.getElementById("error_solicitud_accidente_imagen").textContent =  `*El archivo es demasiado grande*`;
+      document.getElementById("error_solicitud_accidente_imagen").textContent = `*El archivo es demasiado grande*`;
       esValido = false;
 
-    }else{
+    } else {
       console.log('archivo ingresado')
     }
 
-  
+
     Object.keys(camposAccidente).forEach(campoAccidente => {
       const error = `error_${campoAccidente}`;
       document.getElementById(error).textContent = ""; // Limpia los errores
@@ -695,7 +696,7 @@ $(document).ready(function () {
         }
       }
     });
-  
+
 
     const submitButton = document.getElementById('btnAccidente');
     if (esValido) {
@@ -719,19 +720,19 @@ $(document).ready(function () {
 
     if (!file) {
       console.log('El archivo no fue seleccionado');
-      
-    } else if (![ 'image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
-      document.getElementById("error_solicitud_via_imagen").textContent =  `*El formato de la imagen no es valido*`;
+
+    } else if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_solicitud_via_imagen").textContent = `*El formato de la imagen no es valido*`;
       esValido = false;
 
     } else if (file.size > 2 * 1024 * 1024) { // 2 MB
-      document.getElementById("error_solicitud_via_imagen").textContent =  `*El archivo es demasiado grande*`;
+      document.getElementById("error_solicitud_via_imagen").textContent = `*El archivo es demasiado grande*`;
       esValido = false;
 
-    }else{
+    } else {
       console.log('archivo ingresado')
     }
-  
+
     Object.keys(camposVia).forEach(campoVia => {
       const error = `error_${campoVia}`;
       document.getElementById(error).textContent = ""; // Limpia los errores
@@ -751,7 +752,7 @@ $(document).ready(function () {
         }
       }
     });
-  
+
 
     const submitButton = document.getElementById('btnVia');
     if (esValido) {
@@ -762,7 +763,7 @@ $(document).ready(function () {
       submitButton.disabled = true;
     }
 
-    
+
   });
 
 
@@ -786,13 +787,17 @@ $(document).ready(function () {
   $(document).on('keyup', "#id_data", function () {
     let id_data = $(this).val();
     let url = $(this).attr('data-url');
-    console.log("gola");
     $.ajax({
       url: url,
       type: 'POST',
       data: { 'id_data': id_data },
       success: function (data) {
-        $('#datos').html(data);
+        if (!data.includes("error")) {
+          $('#datos').html(data);
+
+        } else {
+          $('#datos').html("");
+        }
       }
     });
   });
@@ -995,11 +1000,11 @@ $(document).ready(function () {
 
   });
 
-  $('#tipo_choque').on('change', function () {
+  $('#tipo_choque').on('change', function () {
 
     var url = $(this).attr('data-url');
     var tipo_choque = $('#tipo_choque').val();
-  
+
     $.ajax({
       url: url,
       type: 'POST',
@@ -1008,23 +1013,23 @@ $(document).ready(function () {
       },
       success: function (data) {
         if (!data.includes("error")) {
-  
+
           $("#detalle_choque").html(data);
           $('#detalle').removeClass('d-none');
           console.log(data);
-  
+
         } else {
           $('#detalle').addClass('d-none');
         }
-  
-  
-  
+
+
+
       },
       error: function () {
         alert('Error al cargar los detalles del choque.');
       }
     });
-  
+
   });
 
 });

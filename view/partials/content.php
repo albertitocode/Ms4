@@ -40,14 +40,14 @@ $sql = "SELECT COUNT(*) AS totalVia FROM solicitud_vias_mal_estado ";
 $totalVia= pg_fetch_row($obj->consult($sql));
 $Via = $totalVia[0];
 
-return [
+return array(
  'Accidente' => $Accidente,
  'SenialM' => $totalSm,
  'SenialN' => $SenialN,
  'ReductorM' => $ReductorM,
  'ReductorN' => $ReductorN,
  'Vias' => $Via
-];
+);
 }
 
 $reportes = reportes();

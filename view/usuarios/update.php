@@ -18,7 +18,7 @@
     }
 
     ?>
-    <form action="<?php echo getUrl("Usuarios", "Usuarios", "postUpdateUsuarios"); ?>" method="post" id="form">
+    <form action="<?php echo getUrl("Usuarios", "Usuarios", "postUpdateUsuarios"); ?>" method="post" id="formUsuUpdate">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Actualizacion</h3>
             <ul class="breadcrumbs mb-3">
@@ -58,11 +58,12 @@
                         <div class="col-md-3 mt-4">
                             <label for="">Id</label>
                             <input type="text" name="id_data" id="id_data" class="form-control"
-                                placeholder="Buscar por id" data-url='<?php echo getUrl("Usuarios", "Usuarios", "buscarUsuario", false, "ajax");?>'>
+                                placeholder="Buscar por id"
+                                data-url='<?php echo getUrl("Usuarios", "Usuarios", "buscarUsuario", false, "ajax"); ?>'>
                         </div>
                         <div class="row" id="datos">
-                                
-                           
+
+
                         </div>
                     </div>
                 </div>
