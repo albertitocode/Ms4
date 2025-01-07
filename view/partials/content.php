@@ -2,13 +2,6 @@
 include_once '../model/Usuarios/UsuariosModel.php';
 include_once '../model/Reportes/ReportesModel.php';
 
-function usuarios(){
-$obj = new UsuariosModel();
-
-$sql = "SELECT COUNT(*) AS total FROM usuarios";
-$total_usuarios = pg_fetch_assoc($obj->consult($sql));
-}
-
 function reportes(){
   $obj = new ReportesModel();
 
@@ -40,19 +33,33 @@ $sql = "SELECT COUNT(*) AS totalVia FROM solicitud_vias_mal_estado ";
 $totalVia= pg_fetch_row($obj->consult($sql));
 $Via = $totalVia[0];
 
+// $obj = new UsuariosModel();
+
+$sql = "SELECT COUNT(*) AS total FROM usuarios";
+$total_usuarios = pg_fetch_row($obj->consult($sql));
+$total_usus = $total_usuarios[0];
+
+// $sql = "SELECT COUNT(*) AS solicitudes FROM tipo_solicitudes";
+// $tipo_solicitudes = pg_fetch_row($obj->consult($sql));
+$total_soli[0] = $totalVia[0] + $totalReduN[0] + $totalSeniN[0] + $totalReduM[0] + $totalSeniM[0] +  $totalAcci[0];
+
 return array(
  'Accidente' => $Accidente,
  'SenialM' => $totalSm,
  'SenialN' => $SenialN,
  'ReductorM' => $ReductorM,
  'ReductorN' => $ReductorN,
- 'Vias' => $Via
+ 'Vias' => $Via,
+ 'Usuarios' => $total_usus,
+ 'Solicitudes' => $total_soli[0]
 );
+
+
 }
 
 $reportes = reportes();
 
-
+// $usus = usuarios();
 ?>
 
 
@@ -91,7 +98,7 @@ $reportes = reportes();
                 <div class="numbers">
                   <p class="card-category">Usuarios registrados</p>
 
-                  <h4 class="card-tittle"><?php $total_usuarios ?> 123 </h4>
+                  <h4 class="card-tittle"><?= $reportes['Usuarios'] ?></h4>
 
                 </div>
               </div>
@@ -116,7 +123,7 @@ $reportes = reportes();
               <div class="col col-stats ms-3 ms-sm-0">
                 <div class="numbers">
                   <p class="card-category">Solicitudes registradas</p>
-                  <h4 class="card-title">1303</h4>
+                  <h4 class="card-title"><?= $reportes['Solicitudes'] ?><h4>
                 </div>
               </div>
             </div>

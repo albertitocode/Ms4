@@ -36,7 +36,7 @@
     #l2 {
         margin-left: 10px;
         border-color: aquamarine;
-        bor
+        
     }
 
     .mapa {
@@ -162,7 +162,7 @@
                             </form>
 
                         </div>
-                        <div style="background-color: #868ffd;">
+                        <div style="background-color: black; color: white">
                             <form method="post" action="maq.php">
                                 <!-- <input type=IMAGE name="image" src="<?php echo $urlImage; ?>" border=1> -->
                             </form>
@@ -193,7 +193,7 @@
 
 
                         myMap1.redraw(); myMap2.redraw();
-                       
+                        
 
                         var infola = new msTool('crear punto', infolay, 'misc/img/coordenada.png', investiguen);
                         myMap1.getToolbar(0).addMapTool(infola);

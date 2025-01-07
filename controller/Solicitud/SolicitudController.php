@@ -378,10 +378,10 @@ class SolicitudController
             }
         }
 
-        $sql = "INSERT INTO solicitud_seniales_mal_estado (senial_id,solicitud_senial_mal_estado_descripcion,solicitud_senial_mal_estado_direccion,
-        danio_id,usuario_id,solicitud_senial_mal_estado_imagen,
-        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_descripcion','$solicitud_direccion',$danio_id,
-        $usuario_id,'$img',1,3)";
+        $sql = "INSERT INTO solicitud_seniales_mal_estado (senial_id,solicitud_senial_mal_estado_descripcion,
+        danio_id,usuario_id, solicitud_senial_mal_estado_direccion ,solicitud_senial_mal_estado_imagen,
+        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_descripcion',$danio_id,
+        $usuario_id,'$solicitud_direccion','$img',1,3)";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -394,7 +394,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getCreateSenialMalEstado") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getSolicitud") . "';
                     }
                 });
             </script>";
