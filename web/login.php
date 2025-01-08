@@ -18,58 +18,66 @@ include_once '../lib/helphers.php';
 </head>
 
 <body>
-  <main > 
-     <section class="principal">  
-     <!-- <div class="row">  -->
-        <!-- <div class="col-md-12 d-flex "> -->
-          <img class="imagen-central" src="assets/login/img/img1.jpg">
-        <!-- </div> -->
-     
-        <!-- <div class="col-md-6 d-flex justify-content-center align-items-center"> -->
-          <div class="texto">
-            <h1>Bienvenido a nuestra aplicacion de movilidad</h1>
-            <p><br>Agregar descripcion</p>
+  <main>
+    <section class="principal">
+      <!-- <div class="row">  -->
+      <!-- <div class="col-md-12 d-flex "> -->
+      <img class="imagen-central" src="assets/login/img/img1.jpg">
+      <!-- </div> -->
+
+      <!-- <div class="col-md-6 d-flex justify-content-center align-items-center"> -->
+      <div class="texto">
+        <h1>Bienvenido a nuestra aplicacion de movilidad</h1>
+        <p><br>Agregar descripcion</p>
+      </div>
+      <!-- </div> -->
+      <!-- <div class="col-md-6"> -->
+      <!-- <div class="d-flex justify-content-center align-items-center h-100"> -->
+      <div class="formulario">
+        <h3>Iniciar Sesión</h3>
+        <img src="assets/login/img/imagenN.png" class='logo'>
+
+        <form action="<?php echo getUrl("Acceso", "Acceso", "login", "", "ajax"); ?>" method="post" id="formUsu">
+          <div class="inputbox mb-3">
+            <i class='bx bxs-user'></i>
+            <input type="email" class="" name="user" id="user" required>
+            <label for="uname"><b>Correo</b></label>
           </div>
-          <!-- </div> -->
-          <!-- <div class="col-md-6"> -->
-            <!-- <div class="d-flex justify-content-center align-items-center h-100"> -->
-          <div class="formulario">
-            <h3>Iniciar Sesión</h3>
-            <img src="assets/login/img/imagenN.png" class='logo'>
 
-            <form action="<?php echo getUrl("Acceso", "Acceso", "login", "", "ajax"); ?>" method="post" id="formUsu">
-              <div class="inputbox mb-3">
-                <i class='bx bxs-user'></i>
-                <input type="email" class="" name="user" id="user" required>
-                <label for="uname"><b>Correo</b></label>
-              </div>
+          <div class="inputbox mb-3">
+            <i class='bx bxs-lock-alt'></i>
+            <input type="password" class="" name="pass" id="pass" required>
+            <label for="psw"><b>Contraseña</b></label>
 
-              <div class="inputbox mb-3">
-                <i class='bx bxs-lock-alt'></i>
-                <input type="password" class="" name="pass" id="pass" required>
-                <label for="psw"><b>Contraseña</b></label>
-                
-              </div>
-              <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", "", "ajax"); ?>">
-                  <p>Olvidó su contraseña?</p>
-                </a>
+          </div>
+          <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", "", "ajax"); ?>">
+            <p>Olvidó su contraseña?</p>
+          </a>
+          <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+          <br>
+          <br>
+          </form>
 
-              <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-              <br>
-                <br>
-              <form action="<?php echo getUrl("Usuarios", "Usuarios", "getCreate", "", "ajax"); ?>" method="post" id="form2">
-                <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
-              </form>
-            </div>
-            <!-- </div> -->
-          <!-- </div> -->
-        <!-- </div>  -->
+
+         
+          <form action="<?php echo getUrl("Usuarios", "Usuarios", "getCreate", "", "ajax"); ?>" method="post"
+            id="form2">
+            <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
+
+      </div>
+
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- </div>  -->
       <!-- </div> -->
     </section>
   </main>
   <footer>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet nostrum ad aspernatur odio. Quasi optio expedita mollitia excepturi cum, maiores ullam necessitatibus, eos iste inventore magnam. Vel saepe harum quisquam.
-      Deserunt cumque dolorum voluptatem quis provident optio askjbdkjbskdjbkjsbdkjsbJOIjeionlñoIIiouaishdfnujkadkbjadkvbkabvlkbriusbvjkjbrslkhbjkljhsfioejoidnhvkjfheliuhnldn.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet nostrum ad aspernatur odio. Quasi optio expedita
+      mollitia excepturi cum, maiores ullam necessitatibus, eos iste inventore magnam. Vel saepe harum quisquam.
+      Deserunt cumque dolorum voluptatem quis provident optio
+      askjbdkjbskdjbkjsbdkjsbJOIjeionlñoIIiouaishdfnujkadkbjadkvbkabvlkbriusbvjkjbrslkhbjkljhsfioejoidnhvkjfheliuhnldn.
+    </p>
   </footer>
   <script src="assets/login/scrip.js"></script>
 </body>

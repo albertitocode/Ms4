@@ -121,7 +121,6 @@ class UsuariosController
           usuario_telefono, usuario_direccion, rol_id, estado_id) VALUES ($tipo_documento, $numero_documento, 
           '$usu_nombre_1', '$usu_nombre_2', '$usu_apellido_1', '$usu_apellido_2','$usu_fecha_nac', '$usu_clave', '$usu_correo',
            $usu_telefono, '$direccion', $rol, 1)";
-        var_dump($sql);
         if ($validacion) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -183,6 +182,7 @@ class UsuariosController
         $roles = pg_fetch_all($obj->consult($sql));
 
         if ($usuario) {
+            
             $_SESSION['usuario_data'] = $usuario;
             include_once '../view/usuarios/buscarUsuarios.php';
         }else{
@@ -273,10 +273,10 @@ class UsuariosController
         $obj = new UsuariosModel();
         // dd($_POST);
 
-        if (isset($_POST['enviar'])) {
+
 
             $usuario_bd = $_SESSION['usuario_data'][0];
-        
+
             $id = $_SESSION['id_datos'];
             $usu_nombre_1 = $_POST['usuario_nombre_1'];
             $usu_nombre_2 = $_POST['usuario_nombre_2'];
@@ -289,44 +289,32 @@ class UsuariosController
             $tipo_documento = $_POST['tipo_documento_id'];
             $numero_documento = $_POST['usuario_num_identificacion'];
 
+            $campos = array(
+                'usuario_nombre_1' => $usu_nombre_1,
+                'usuario_nombre_2' => $usu_nombre_2,
+                'usuario_apellido_1' => $usu_apellido_1,
+                'usuario_apellido_2' => $usu_apellido_2,
+                'usuario_correo' => $usu_correo,
+                'usuario_contrasenia' => $usu_contrasenia,
+                'rol_id' => $rol,
+                'usuario_telefono' => $usu_telefono,
+                'tipo_documento_id' => $tipo_documento,
+                'usuario_num_identificacion' => $numero_documento
+            );
+            
             $campos_a_actualizar = array();
         
             // Validaciones y actualizaciones
-            if (!empty($usu_nombre_1) && $usu_nombre_1 != $usuario_bd['usuario_nombre_1']) {
-                $campos_a_actualizar[] = "usuario_nombre_1='" . $usu_nombre_1 . "'";
+            foreach ($campos as $campo => $valor) {
+                // Validar si el valor no está vacío y es diferente al valor actual en la base de datos
+                if (!empty($valor) && $valor != $usuario_bd[$campo]) {
+                    if (is_numeric($valor)) {
+                        $campos_a_actualizar[] = "$campo=" . intval($valor);
+                    } else {
+                        $campos_a_actualizar[] = "$campo='" . addslashes($valor) . "'";
+                    }
+                }
             }
-            if (!empty($usu_nombre_2) && $usu_nombre_2 != $usuario_bd['usuario_nombre_2']) {
-                $campos_a_actualizar[] = "usuario_nombre_2='" . $usu_nombre_2 . "'";
-            }
-            if (!empty($usu_apellido_1) && $usu_apellido_1 != $usuario_bd['usuario_apellido_1']) {
-                $campos_a_actualizar[] = "usuario_apellido_1='" . $usu_apellido_1 . "'";
-            }
-            if (!empty($usu_apellido_2) && $usu_apellido_2 != $usuario_bd['usuario_apellido_2']) {
-                $campos_a_actualizar[] = "usuario_apellido_2='" . $usu_apellido_2 . "'";
-            }
-            if (!empty($usu_correo) && $usu_correo != $usuario_bd['usuario_correo']) {
-                $campos_a_actualizar[] = "usuario_correo='" . $usu_correo . "'";
-            }
-            if (!empty($usu_contrasenia) && $usu_contrasenia != $usuario_bd['usuario_contrasenia']) {
-                $campos_a_actualizar[] = "usuario_contrasenia='" . $usu_contrasenia . "'";
-            }
-            if (!empty($rol) && $rol != $usuario_bd['rol_id']) {
-                $campos_a_actualizar[] = "rol_id='" . $rol . "'";
-            }
-            if (!empty($usu_telefono) && $usu_telefono != $usuario_bd['usuario_telefono']) {
-                $campos_a_actualizar[] = "usuario_telefono=" . $usu_telefono;
-            }
-            if (!empty($tipo_documento) && $tipo_documento != $usuario_bd['tipo_documento_id']) {
-                $campos_a_actualizar[] = "tipo_documento_id=" . $tipo_documento;
-            }
-            if (!empty($numero_documento) && $numero_documento != $usuario_bd['usuario_num_identificacion']) {
-                $campos_a_actualizar[] = "usuario_num_identificacion=" . $numero_documento;
-            }
-            // if (!empty($usu_direccion) && $usu_direccion != $usuario_bd['usuario_direccion']) {
-            //     $campos_a_actualizar[] = "usuario_direccion='" . $usu_direccion . "'";
-            // }
-        
-        }
         
 
         if (!empty($campos_a_actualizar)) {
@@ -334,6 +322,7 @@ class UsuariosController
 
             $ejecutar = $obj->update($sql);
             if ($ejecutar) {
+
                 echo "<script>
                 Swal.fire({
                     title: '¡Éxito!',
@@ -367,6 +356,7 @@ class UsuariosController
             });
         </script>";
         }
+        unset($_SESSION['usuario_data']);
 
       
     }

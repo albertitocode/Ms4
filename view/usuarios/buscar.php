@@ -8,6 +8,7 @@ foreach ($usuarios as $usu) {
                     echo "<td>" . $usu['usuario_nombre_2'] . "</td>";
                     echo "<td>" . $usu['usuario_apellido_1'] . "</td>";
                     echo "<td>" . $usu['usuario_apellido_2'] . "</td>";
+                    echo "<td>" . $usu['usuario_fecha_nacimiento'] . "</td>";
                     echo "<td>" . $usu['estado_nombre'] . "</td>";
                     echo "<td>" . $usu['usuario_correo'] . "</td>";
                     echo "<td>" . $usu['usuario_contrasenia'] . "</td>";

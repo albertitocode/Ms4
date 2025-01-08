@@ -316,7 +316,6 @@ $(document).ready(function () {
   // new perfil
   $('#formUsu').submit(function (event) {
     event.preventDefault();
-    console.log("submit");
 
 
     var formData = $('#formUsu').serializeArray();
@@ -330,9 +329,7 @@ $(document).ready(function () {
       const errorElement = document.getElementById(error); // Obtén el elemento
       if (errorElement) { // Verifica si el elemento existe
         errorElement.textContent = ""; // Limpia los errores
-      } else {
-        console.warn(`El elemento con ID "${error}" no existe en el DOM.`);
-      }
+      } 
     });
 
     // Validación de los campos
@@ -340,6 +337,13 @@ $(document).ready(function () {
       const { name, value } = campoData;
       const error = `error_${name}`;
       const valor = camposUsu[name];
+
+      const campoElement = document.getElementsByName(name)[0];
+      const errorElement = document.getElementById(error);
+
+      if (!campoElement || !errorElement) {
+          return; 
+      }
 
       // Validar campos vacíos
       if (valor && valor !== 'Segundo nombre' && value.trim() === '') {
@@ -787,14 +791,15 @@ $(document).ready(function () {
   $(document).on('keyup', "#id_data", function () {
     let id_data = $(this).val();
     let url = $(this).attr('data-url');
-    console.log(id_data);
+    
 
     $.ajax({
       url: url,
       type: 'POST',
       data: { 'id_data': id_data },
       success: function (data) {
-        if (!data.includes("error")) {
+
+        if (!data.includes("No se encuentra id asociado")) {
           $('#datos').html(data);
 
         } else {

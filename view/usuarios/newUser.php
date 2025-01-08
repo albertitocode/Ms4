@@ -11,6 +11,8 @@ include_once '../view/partials/scripts.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>GEO CALI</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <meta charset="UTF-8">
+
     <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" />
 
     <!-- Fonts and icons -->
