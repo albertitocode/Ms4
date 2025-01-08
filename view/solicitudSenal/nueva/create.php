@@ -130,8 +130,10 @@
                                     </select>
                                     <span class="text-danger" id="error_senial_id"></span>
                                 </div>
-
+                            
                             </div>
+                            <input type="hidden" name="coordenada_x_seniN" value="<?php echo $x; ?>">
+                             <input type="hidden" name="coordenada_y_seniN" value="<?php echo $y; ?>">
                         </div>
                     </div>
                 </div>

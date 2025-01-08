@@ -5,6 +5,6 @@ include_once '../lib/helphers.php';
  $conca = $x.$y;
 
 $pure = array("x" => $x, "y" => "$y");
- redirect(getUrl("Solicitud","Solicitud","GetCreateAccidente",array("x"=> $x, "y" => $y)));
+ redirect(getUrl("Solicitud","Solicitud","getSolicitud",array("x"=> $x, "y" => $y)));
 ?>
 

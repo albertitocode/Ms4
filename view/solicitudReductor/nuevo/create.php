@@ -102,6 +102,8 @@
                                 </div>
                                 
                             </div>
+                            <input type="hidden" name="coordenada_x_reduN" value="<?php echo $x; ?>">
+                            <input type="hidden" name="coordenada_y_reduN" value="<?php echo $y; ?>">
                         </div>
                     </div>
                 </div>

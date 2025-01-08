@@ -130,8 +130,8 @@
                                             <span class="text-danger" id="error_solicitud_accidente_imagen"></span>
 
                                         </div>
-                                        <input type="hidden" name="coordenada_x" value="<?php echo $x; ?>">
-                                        <input type="hidden" name="coordenada_y" value="<?php echo $y; ?>">
+                                        <input type="hidden" name="coordenada_x_acci" value="<?php echo $x; ?>">
+                                        <input type="hidden" name="coordenada_y_acci" value="<?php echo $y; ?>">
                                     </div>
                                 </div>
 

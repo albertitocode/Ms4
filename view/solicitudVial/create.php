@@ -101,6 +101,8 @@
                             <div class="mt-3">
                                 <input type="submit" value="Enviar" class="btn btn-success" id="btnVia" disabled>
                             </div>
+                            <input type="hidden" name="coordenada_x_via" value="<?php echo $x; ?>">
+                            <input type="hidden" name="coordenada_y_via" value="<?php echo $y; ?>">
                         </div>
                     </div>
                 </div>

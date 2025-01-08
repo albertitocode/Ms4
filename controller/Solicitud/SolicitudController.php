@@ -6,6 +6,9 @@ class SolicitudController
     public function getSolicitud()
     {
         $obj = new SolicitudModel();
+        
+        $x = $_GET['x'];
+        $y = $_GET['y'];
 
         $sql = "SELECT * FROM tipo_solicitudes";
         $tipo_solicitud = pg_fetch_all($obj->consult($sql));
@@ -19,20 +22,23 @@ class SolicitudController
         // $sql = "SELECT * FROM tipo_solicitudes WHERE tipo_solicitud";
         // $tipo_solicitud = pg_fetch_all($obj->consult($sql));
 
+        $x = $_GET['x'];
+        $y = $_GET['y'];
+
         if ($id_solicitud == 1) {
             // include_once '../view/solicitudSenal/malEstado/create.php';
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateSenialMalEstado"));
+            redirect(getUrl("Solicitud", "Solicitud", "getCreateSenialMalEstado",array("x"=> $x, "y" => $y)));
         } else if ($id_solicitud == 2) {
             // include_once '../view/solicitudVial/create.php';
-            redirect(getUrl("Solicitud", "Solicitud", "GetCreateVia"));
+            redirect(getUrl("Solicitud", "Solicitud", "GetCreateVia",array("x"=> $x, "y" => $y)));
         } else if ($id_solicitud == 4) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente"));
+            redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente",array("x"=> $x, "y" => $y)));
         } else if ($id_solicitud == 5) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateNuevaSenial"));
+            redirect(getUrl("Solicitud", "Solicitud", "getCreateNuevaSenial",array("x"=> $x, "y" => $y)));
         } else if ($id_solicitud == 3) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorMalEstado"));
+            redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorMalEstado",array("x"=> $x, "y" => $y)));
         } else if ($id_solicitud == 6) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorNuevo"));
+            redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorNuevo",array("x"=> $x, "y" => $y)));
         }
     }
 
@@ -121,6 +127,8 @@ class SolicitudController
     {
         $obj = new SolicitudModel();
 
+        $x = $_GET['x'];
+        $y = $_GET['y'];
         $sql = "SELECT * FROM categoria_seniales";
         $categoria_senal = pg_fetch_all($obj->consult($sql));
 
@@ -140,11 +148,12 @@ class SolicitudController
 
         //añadir campo fecha
         //agregar los cambios de estados
-
+        $coordi_x = $_POST['coordenada_x_seniN'];
+        $coordi_y = $_POST['coordenada_y_seniN'];
         
         $senial_id = $_POST['senial_id'];
         $solicitud_senial_nueva_descripcion = $_POST['solicitud_senial_nueva_descripcion'];
-        $solicitud_senial_nueva_direccion = "carrera calle barrio";
+        $solicitud_senial_nueva_direccion = $coordi_x." ".$coordi_y;
 
         $usuario_id = $_SESSION['id'];
 
@@ -309,6 +318,8 @@ class SolicitudController
     public function getCreateSenialMalEstado()
     {
         $obj = new SolicitudModel();
+        $x = $_GET['x'];
+        $y = $_GET['y'];
 
         $sql = "SELECT * FROM categoria_seniales";
         $categoria_senal = pg_fetch_all($obj->consult($sql));
@@ -334,7 +345,10 @@ class SolicitudController
         $senial_id = $_POST['senial_id'];
         $danio_id = $_POST['danio_id'];
         $usuario_id = $_SESSION['id'];
-        $solicitud_direccion = "carrera calle barrio";
+        $coordi_x = $_POST['coordenada_x_seniM'];
+        $coordi_y = $_POST['coordenada_y_seniM'];
+        $solicitud_direccion = $coordi_x." ".$coordi_y;
+
 
 
 
@@ -506,6 +520,9 @@ class SolicitudController
     {
         $obj = new SolicitudModel();
 
+        $x = $_GET['x'];
+        $y = $_GET['y'];
+
         $sql = "SELECT * FROM categoria_reductores";
         $categoria_reductores = pg_fetch_all($obj->consult($sql));
 
@@ -523,9 +540,11 @@ class SolicitudController
     {
         $obj = new SolicitudModel();
 
+        $coordi_x = $_POST['coordenada_x_reduM'];
+        $coordi_y = $_POST['coordenada_y_reduM'];
         $solicitud_reductores_mal_estado_descripcion = $_POST['solicitud_reductores_mal_estado_descripcion'];
 
-        $direccion = "carrera  - calle - barrio ";
+        $direccion = $coordi_x. " ". $coordi_y;
         $danio_id = $_POST['danio_id'];
         $usuario_id = $_SESSION['id'];
         $reductor_id = $_POST['reductor_id'];
@@ -633,6 +652,8 @@ class SolicitudController
     {
         $obj = new SolicitudModel();
 
+        $x = $_GET['x'];
+        $y = $_GET['y'];
         $sql = "SELECT * FROM categoria_reductores";
         $categoria_reductores = pg_fetch_all($obj->consult($sql));
 
@@ -651,11 +672,12 @@ class SolicitudController
         //agregar los cambios de estados
 
         // $senial_id = $_POST['senial_id'];
+        $coordi_x = $_POST['coordenada_x_reduN'];
+        $coordi_y = $_POST['coordenada_y_reduN'];
+
         $solicitud_reductor_nuevo_descripcion = $_POST['solicitud_reductor_nuevo_descripcion'];
-        $carrera = $_POST['carrera'];
-        $calle = $_POST['calle'];
-        $barrio = $_POST['barrio'];
-        $direccion = "carrera $carrera, calle $calle, barrio $barrio";
+      
+        $direccion = $coordi_x. " ". $coordi_y;
         $solicitud_reductor_nuevo_imagen = $_POST['solicitud_reductor_nuevo_imagen'];
         // var_dump($solicitud_reductor_nuevo_imagen);
         $usuario_id = $_SESSION['id'];
@@ -715,6 +737,9 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
+        $x = $_GET['x'];
+        $y = $_GET['y'];
+
         $sql = "SELECT * FROM tipo_solicitudes";
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
@@ -740,10 +765,10 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
-        // $carrera = $_POST['carrera'];
-        // $calle = $_POST['calle'];
-        // $barrio = $_POST['barrio'];
-        $direccion = "";
+      
+        $coordi_x = $_POST['coordenada_x_via'];
+        $coordi_y = $_POST['coordenada_y_via'];
+        $direccion = $coordi_x. " ". $coordi_y;
         $danio = $_POST['danio_id'];
         $usuario = $_SESSION['id'];
 
@@ -966,7 +991,7 @@ class SolicitudController
 
         $x = $_GET['x'];
         $y = $_GET['y'];
-        $z = $_GET['z'];
+
         $sql = "SELECT * FROM tipo_solicitudes";
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
@@ -1037,17 +1062,8 @@ class SolicitudController
         $tipo_choque = $_POST['tipo_choque'];
         
         $id_usuario = $_SESSION['id'];
-        $coordi_x = $_POST['coordenada_x'];
-        $coordi_y = $_POST['coordenada_y'];
-
-        // Enviar un mensaje a la consola del navegador
-echo $coordi_x;
-echo $coordi_y;
-
-
-
-
-
+        $coordi_x = $_POST['coordenada_x_acci'];
+        $coordi_y = $_POST['coordenada_y_acci'];
         $direccion = $coordi_x ." ". $coordi_y;
         
 
@@ -1121,7 +1137,9 @@ echo $coordi_y;
         $sql = "INSERT INTO solicitud_accidentes (solicitud_accidente_direccion,tipo_choque_id,
         solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre) VALUES (
     '$direccion', $tipo_choque, '$img','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre');";
-
+    if($direccion ==" "){
+        echo "error";
+    }else{
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
 
@@ -1135,7 +1153,7 @@ echo $coordi_y;
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "GetSolicitud") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getSolicitud") . "';
                     }
                 });
             </script>";
@@ -1145,6 +1163,8 @@ echo $coordi_y;
         } else {
             redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente"));
         }
+    }
+        
 
 
 
