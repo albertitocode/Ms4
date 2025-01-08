@@ -9,8 +9,7 @@
         <div class="form-group"> <label for="usuario_apellido_1">Primer apellido</label>
             <input type="text" name="usuario_apellido_1" id="usuario_apellido_1" class="form-control"
                 value="<?= $usu['usuario_apellido_1'] ?>">
-                <span class="small-text text-danger"
-                id="error_usuario_apellido_1"></span>
+                
         </div>
         <div class="form-group">
             <label for="usuario_correo">Correo</label>

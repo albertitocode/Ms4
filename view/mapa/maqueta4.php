@@ -154,7 +154,7 @@
 
                 myMap1 = new msMap(document.getElementById('dc_main'), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
-                myMap1.setMapFile('/ms4w/Apache/htdocs/cali.map');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/web/cali.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
                 myMap1.setLayers('Cinco Six One Two Puntos');
                 // $map=Mymap1;
@@ -162,7 +162,7 @@
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap2.setMapFile('/ms4w/Apache/htdocs/cali.map');
+                myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/web/cali.map');
                 myMap2.setLayers('Cinco Six One Two Puntos');
                 myMap1.setReferenceMap(myMap2);
 
@@ -184,7 +184,7 @@
                     var objForm = document.forms[0];
                     for (i = 0; i < document.forms[0].length; i++) {
 
-                        if (objForm.elements["layer[" + i + "]"].checked) {
+                        if (objForm.elements["layer[" + i + "]"].checked){
                             list = list + objForm.elements["layer[" + i + "]"].value + " ";
                         }
                     }

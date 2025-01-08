@@ -3,7 +3,7 @@ MAP
      Size 1000 600
 
      STATUS ON
-     EXTENT  -76.5928 3.33181  -76.4613 3.50587
+     EXTENT  -76.70 3.29 -76.35 3.54
      SHAPEPATH "datos"
 
      FONTSET "misc/fonts/fonts.txt"

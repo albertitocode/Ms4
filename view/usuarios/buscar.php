@@ -16,7 +16,6 @@ foreach ($usuarios as $usu) {
                     echo "<td>" . $usu['tipo_documento_nombre'] . "</td>";
                     echo "<td>" . $usu['usuario_num_identificacion'] . "</td>";
                     
-
                     if($usu['estado_id']==1){
                         $clase='btn btn-danger';
                         $texto='Inhabilitar';
