@@ -80,7 +80,7 @@ class="mt-5">
                                 echo "<td>" . $senial_malo['solicitud_senial_mal_estado_id'] . "</td>";
                                  echo "<td>" . $senial_malo['solicitud_senial_mal_estado_fecha_creacion'] . "</td>"; //cambiar el nombre en la db
                                 echo "<td>" . $senial_malo['solicitud_senial_mal_estado_descripcion'] . "</td>";
-                                echo "<td>" . $senial_malo['solicitud_senial_mal_estado_direccion'] . "</td>";
+                                echo "<td>" . $senial_malo['st_astext'] . "</td>";
                                 echo "<td>" . $senial_malo['solicitud_senial_mal_estado_imagen'] . "</td>";
                                 echo "<td>" . $senial_malo['senial_nombre'] . "</td>";
                                 echo "<td>" . $senial_malo['danio_nombre'] . "</td>";

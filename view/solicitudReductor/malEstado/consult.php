@@ -80,7 +80,7 @@ class="mt-5">
                                 echo "<td>" . $reductor_malo['solicitud_reductores_mal_estado_id'] . "</td>";
                                 echo "<td>" . $reductor_malo['solicitud_senial_mal_estado_fecha_creacion'] . "</td>"; //cambiar el nombre en la db
                                 echo "<td>" . $reductor_malo['solicitud_reductores_mal_estado_descripcion'] . "</td>";
-                                echo "<td>" . $reductor_malo['solicitud_reductores_mal_estado_direccion'] . "</td>";
+                                echo "<td>" . $reductor_malo['st_astext'] . "</td>";
                                 echo "<td>" . $reductor_malo['solicitud_reductores_mal_estado_imagen'] . "</td>";
                                 echo "<td>" . $reductor_malo['reductor_nombre'] . "</td>";
                                 echo "<td>" . $reductor_malo['danio_nombre'] . "</td>";

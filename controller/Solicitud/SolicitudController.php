@@ -88,7 +88,7 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT s.*, se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono,
+        $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_nueva_direccion) ,se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono,
          tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_nuevas s JOIN 
          seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id
           JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN
@@ -178,10 +178,8 @@ class SolicitudController
 
 
 
-        $sql = "INSERT INTO solicitud_seniales_nuevas (solicitud_senial_nueva_descripcion,
-        solicitud_senial_nueva_direccion,senial_id,usuario_id,tipo_solicitud_id,estado_id)
-         VALUES('$solicitud_senial_nueva_descripcion','$solicitud_senial_nueva_direccion',
-         $senial_id,$usuario_id,5,1)";
+        $sql = "INSERT INTO solicitud_seniales_nuevas (solicitud_senial_nueva_descripcion,senial_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_senial_nueva_direccion)
+         VALUES('$solicitud_senial_nueva_descripcion',$senial_id,$usuario_id,5,1,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -216,7 +214,7 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT s.*, se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_mal_estado s JOIN seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON s.estado_id = e.estado_id JOIN danios da ON s.danio_id=da.danio_id";
+        $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_mal_estado_direccion), se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_mal_estado s JOIN seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON s.estado_id = e.estado_id JOIN danios da ON s.danio_id=da.danio_id";
         $solicitud_seniales_mal_estado = pg_fetch_all($obj->consult($sql));
 
         if ($solicitud_seniales_mal_estado) {
@@ -393,9 +391,9 @@ class SolicitudController
         }
 
         $sql = "INSERT INTO solicitud_seniales_mal_estado (senial_id,solicitud_senial_mal_estado_descripcion,
-        danio_id,usuario_id, solicitud_senial_mal_estado_direccion ,solicitud_senial_mal_estado_imagen,
-        tipo_solicitud_id,estado_id) VALUES($senial_id,'$solicitud_senial_descripcion',$danio_id,
-        $usuario_id,'$solicitud_direccion','$img',1,3)";
+        danio_id,usuario_id,solicitud_senial_mal_estado_imagen,
+        tipo_solicitud_id,estado_id,solicitud_senial_mal_estado_direccion) VALUES($senial_id,'$solicitud_senial_descripcion',$danio_id,
+        $usuario_id,'$img',1,3,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -492,7 +490,7 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT r.*, re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_mal_estado r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id JOIN danios da ON r.danio_id=da.danio_id";
+        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_mal_estado_direccion) ,re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_mal_estado r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id JOIN danios da ON r.danio_id=da.danio_id";
         $solicitud_reductores_mal_estado = pg_fetch_all($obj->consult($sql));
 
         if ($solicitud_reductores_mal_estado) {
@@ -581,10 +579,9 @@ class SolicitudController
 
         }
 
-        $sql = "INSERT INTO solicitud_reductores_mal_estado (solicitud_reductores_mal_estado_descripcion,
-        solicitud_reductores_mal_estado_direccion,solicitud_reductores_mal_estado_imagen,reductor_id,
-        danio_id,usuario_id,tipo_solicitud_id,estado_id) VALUES('$solicitud_reductores_mal_estado_descripcion',
-        '$direccion','$img',$reductor_id,$danio_id,$usuario_id,3,4)";
+        $sql = "INSERT INTO solicitud_reductores_mal_estado (solicitud_reductores_mal_estado_descripcion,solicitud_reductores_mal_estado_imagen,reductor_id,
+        danio_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_reductores_mal_estado_direccion) VALUES('$solicitud_reductores_mal_estado_descripcion',
+        '$img',$reductor_id,$danio_id,$usuario_id,3,4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         // var_dump($sql);
 
         if ($validacion == true) {
@@ -625,7 +622,7 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT r.*, re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id";
+        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id";
         $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
 
         if ($solicitud_reductores_nuevos) {
@@ -700,7 +697,7 @@ class SolicitudController
             }
 
         }
-        $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,solicitud_reductor_nuevo_direccion,solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id) VALUES('$solicitud_reductor_nuevo_descripcion','$direccion','$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4)";
+        $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion','$direccion','$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -814,8 +811,8 @@ class SolicitudController
 
         // }
 
-        $sql = "INSERT INTO solicitud_vias_mal_estado (solicitud_via_mal_estado_descripcion, solicitud_via_mal_estado_direccion, solicitud_via_mal_estado_imagen, danio_id, usuario_id, 
-        tipo_solicitud_id, estado_id) VALUES( '$descripcion', '$direccion', '$img', $danio,  $usuario,   2, 4)";
+        $sql = "INSERT INTO solicitud_vias_mal_estado (solicitud_via_mal_estado_descripcion, solicitud_via_mal_estado_imagen, danio_id, usuario_id, 
+        tipo_solicitud_id, estado_id,solicitud_via_mal_estado_direccion) VALUES( '$descripcion', '$direccion', '$img', $danio,  $usuario,   2, 4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -862,7 +859,7 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
-        $sql = "SELECT v.*, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_vias_mal_estado v JOIN usuarios usu  ON v.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON v.estado_id = e.estado_id JOIN danios da ON v.danio_id=da.danio_id";
+        $sql = "SELECT v.*, T_AsText(v.solicitud_via_direccion) , usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_vias_mal_estado v JOIN usuarios usu  ON v.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON v.estado_id = e.estado_id JOIN danios da ON v.danio_id=da.danio_id";
         $vias = pg_fetch_all($obj->consult($sql));
 
         if ($vias) {
@@ -1133,10 +1130,11 @@ class SolicitudController
         //     return preg_match($patron,$input)===1;
 
         // }
+        
 
-        $sql = "INSERT INTO solicitud_accidentes (solicitud_accidente_direccion,tipo_choque_id,
-        solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre) VALUES (
-    '$direccion', $tipo_choque, '$img','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre');";
+        $sql = "INSERT INTO solicitud_accidentes (tipo_choque_id,
+        solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre,solicitud_accidente_direccion) VALUES (
+     $tipo_choque, '$img','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre',ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
     if($direccion ==" "){
         echo "error";
     }else{
@@ -1180,7 +1178,7 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT sa.*, tc.tipo_choque_nombre, e.estado_nombre, tip.tipo_solicitud_nombre, e.estado_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono FROM
+        $sql = "SELECT sa.*, ST_AsText(sa.solicitud_accidente_direccion), tc.tipo_choque_nombre, e.estado_nombre, tip.tipo_solicitud_nombre, e.estado_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono FROM
           solicitud_accidentes sa JOIN
            tipo_choques tc ON sa.tipo_choque_id=tc.tipo_choque_id JOIN usuarios usu  ON sa.usuario_id=usu.usuario_id JOIN 
           tipo_solicitudes tip ON sa.tipo_solicitud_id = tip.tipo_solicitud_id JOIN 

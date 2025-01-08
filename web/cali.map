@@ -86,33 +86,23 @@ MAP
 
   CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log1.txt"
  	DEBUG 5
- #LAYER
- #NAME "Puntos"
-	  #STATUS ON
-    #TYPE POINT
-    #CONNECTIONTYPE postgis
-      # DATA "puntos.shp"
-      # CONNECTION "user=postgres password=123456 dbname=prueba host=localhost port=5433"
-      # DATA "geom FROM (select * from lugares) as punto using unique id SRID=4326"
-       
-    #  QUERYMAP
-    #STATUS ON
-    #TYPE POINT
-    #SIZE 15 # Tamaño del radio en píxeles
-    #FORMAT "text/html"
-    #FORMAT application/json
-   #END
-   #TEMPLATE "template.html"
    
-  #     CLASS
-   #         STYLE
-    #            SYMBOL star
-     #           SIZE 30
-      #       
-       #     END
-        #END
+# LAYER
+ #   CONNECTIONTYPE postgis
+  #  NAME "Puntos"
+	 # STATUS ON
+      # DATA "puntos.shp"
+    #CONNECTION "user=postgres password=123456 dbname=bd_proyecto host=localhost port=5433"
+    #DATA "solicitud_accidente_direccion FROM (select * from solicitud_accidentes) as accidentes using unique id SRID=4326"
+     # TYPE POINT 
+      # CLASS
+       # STYLE
+        #  SYMBOL star
+         # SIZE 30     
+       #  END
+     # END
   
-    #END
+    # END
 
 
     

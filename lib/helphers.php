@@ -81,7 +81,7 @@
         $longitud = 6;
         $min = pow(10, $longitud - 1);
         $max = pow(10, $longitud) - 1;
-        return random_int($min, $max);
+        return mt_rand($min, $max);
     }
 
 ?>

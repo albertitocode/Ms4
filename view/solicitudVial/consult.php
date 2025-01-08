@@ -80,7 +80,7 @@ class="mt-5">
                                 echo "<td>" . $via['solicitud_via_mal_estado_id'] . "</td>";
                                 echo "<td>" . $via['solicitud_via_mal_estado_fecha_creacion'] . "</td>"; //cambiar el nombre en la db
                                 echo "<td>" . $via['solicitud_via_mal_estado_descripcion'] . "</td>";
-                                echo "<td>" . $via['solicitud_via_mal_estado_direccion'] . "</td>";
+                                echo "<td>" . $via['st_astext'] . "</td>";
                                 echo "<td>" . $via['solicitud_via_mal_estado_imagen'] . "</td>";
                                 // echo "<td>" . $reductor_malo['reductor_nombre'] . "</td>";
                                 echo "<td>" . $via['danio_nombre'] . "</td>";
