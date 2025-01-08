@@ -120,6 +120,8 @@
                                
                                
                             </div>
+                            <input type="hidden" name="coordenada_x_reduM" value="<?php echo $x; ?>">
+                            <input type="hidden" name="coordenada_y_reduM" value="<?php echo $y; ?>">
                         </div>
                     </div>
                 </div>
