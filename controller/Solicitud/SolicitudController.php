@@ -1042,6 +1042,8 @@ class SolicitudController
 
         // Enviar un mensaje a la consola del navegador
 echo $coordi_x;
+echo $coordi_y;
+
 
 
 

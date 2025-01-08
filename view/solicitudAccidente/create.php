@@ -48,6 +48,9 @@
             
         </div> -->
                         <div class="row">
+                        <?php echo $x; ?>
+                        <?php echo $y; ?>
+
                             <div class="alert alert-danger d-none" role="alert" id="errorAccidente">
 
                             </div>
@@ -127,7 +130,7 @@
                                             <span class="text-danger" id="error_solicitud_accidente_imagen"></span>
 
                                         </div>
-                                        <input type="hidden" name="coordenada_X" value="<?php echo $x; ?>">
+                                        <input type="hidden" name="coordenada_x" value="<?php echo $x; ?>">
                                         <input type="hidden" name="coordenada_y" value="<?php echo $y; ?>">
                                     </div>
                                 </div>
