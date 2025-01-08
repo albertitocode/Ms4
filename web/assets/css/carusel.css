@@ -1,0 +1,32 @@
+.carousel-item {
+    position: relative;
+    border-radius: 6px;
+  }
+  
+ .btn-click {
+    position: absolute;
+    bottom: 3rem; 
+    left: 3rem;  
+    padding: 10px;
+    font-size: 16px;
+    background-color: #840ca8;
+    color: #fff;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-click:hover {
+    background-color: #e047ff;
+    color: #fff;
+  }
+
+  @media (max-width: 750px) {
+    .btn-click {
+    width: 7rem;
+    height: 3rem;
+    bottom: 1rem;
+    left: 2rem;
+    }
+  }
+  

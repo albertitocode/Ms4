@@ -60,9 +60,37 @@ return array(
 $reportes = reportes();
 
 // $usus = usuarios();
+
+
+if ($_SESSION['rol']==3){
+
+
+
 ?>
 
+<div id="carouselExampleIndicators" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+  <div class="carousel-item active">
+    <img src="../web/assets/img/carusel/carusel1.png" class="d-block w-100" alt="...">
+    <a href="" class="btn-click">Click Aquí</a>
+  </div>
+  <div class="carousel-item">
+    <img src="../web/assets/img/carusel/carusel2.png" class="d-block w-100" alt="...">
+    <a href="" class="btn-click">Click Aquí</a>
+  </div>
+  <div class="carousel-item">
+    <img src="../web/assets/img/carusel/carusel3.png" class="d-block w-100" alt="...">
+    <a href="" class="btn-click">Click Aquí</a>
+  </div>
+</div>
+</div>
 
+ <?php }else{ ?> 
 <div class="container">
   <div class="page-inner">
     <div
@@ -294,3 +322,4 @@ document.getElementById('resetButton').addEventListener('click', function() {
     <!--Fin de boton para reestablecer los localStorage-->
   </div>
 </div>
+ <?php } ?> 

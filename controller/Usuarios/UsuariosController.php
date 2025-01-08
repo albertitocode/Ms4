@@ -172,7 +172,7 @@ class UsuariosController
         $obj = new UsuariosModel();
 
         $id_datos = $_POST['id_data'];
-
+        
         $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_id=$id_datos";
         $_SESSION['id_datos'] = $id_datos;
         $usuario = pg_fetch_all($obj->consult($sql));
@@ -184,6 +184,7 @@ class UsuariosController
         if ($usuario) {
             
             $_SESSION['usuario_data'] = $usuario;
+            
             include_once '../view/usuarios/buscarUsuarios.php';
         }else{
             echo "<br>";

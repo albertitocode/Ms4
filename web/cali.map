@@ -87,22 +87,23 @@ MAP
   CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log1.txt"
  	DEBUG 5
    
-# LAYER
- #   CONNECTIONTYPE postgis
-  #  NAME "Puntos"
-	 # STATUS ON
+ LAYER
+    CONNECTIONTYPE postgis
+    NAME "Puntos"
+	  STATUS ON
       # DATA "puntos.shp"
-    #CONNECTION "user=postgres password=123456 dbname=bd_proyecto host=localhost port=5433"
-    #DATA "solicitud_accidente_direccion FROM (select * from solicitud_accidentes) as accidentes using unique id SRID=4326"
-     # TYPE POINT 
-      # CLASS
-       # STYLE
-        #  SYMBOL star
-         # SIZE 30     
-       #  END
-     # END
+    CONNECTION "user=postgres password=123456 dbname=bd_proyecto host=localhost port=5433"
+    DATA "solicitud_accidente_direccion FROM (select * from solicitud_accidentes) as accidentes using unique solicitud_accidente_id SRID=4326"
+      TYPE POINT 
+       CLASS
+        STYLE
+          SYMBOL star
+          SIZE 30     
+          
+        END
+      END
   
-    # END
+     END
 
 
     
