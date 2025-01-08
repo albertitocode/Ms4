@@ -3,8 +3,7 @@ include_once '../model/Acceso/AccesoModel.php';
 include_once '../model/Usuarios/UsuariosModel.php';
 // include_once '../vendor/autoload.php';
 
-// require_once '../PHPMailer/class.phpmailer.php';
-// require_once '../PHPMailer/class.smtp.php';
+// use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\SMTP;
 // use PHPMailer\PHPMailer\Exception;
 
@@ -60,10 +59,13 @@ class AccesoController
                     }
                 }
             } else {
-                $_SESSION['error'] = "Correo y/o Contraseña incorrecta";
-                header('Location: login.php');
+                $_SESSION['error'] = "El correo y/o Contraseña no se encuentran";
+                redirect('login.php');
             }
-        } 
+        } else {
+            $_SESSION['error'] = "El correo y/o Contraseña no se encuentran";
+            redirect('login.php');
+        }
         if (isset($_POST['registro'])) {
             redirect('../view/usuarios/create.php');
         }
@@ -120,7 +122,7 @@ class AccesoController
                     $mailer->SMTPAuth = true;
                     $mailer->Username = 'gakgroup20.08@gmail.com';
                     $mailer->Password = 'lbwx kwji mtvf iydp';
-                    $mailer->SMTPSecure = 'tls';
+                    $mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                     $mailer->Port = 587;
                     $mailer->isHTML(true);
 
