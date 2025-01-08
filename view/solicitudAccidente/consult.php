@@ -79,7 +79,7 @@ class="mt-5">
                                 echo "<td>" . $accidente['solicitud_accidente_id'] . "</td>";
                                 echo "<td>" . $accidente['solicitud_accidente_fecha_creacion'] . "</td>"; //cambiar el nombre en la db
                                 echo "<td>" . $accidente['solicitud_accidente_descripcion'] . "</td>";
-                                echo "<td>" . $accidente['solicitud_accidente_direccion'] . "</td>";
+                                echo "<td>" . $accidente['st_astext'] . "</td>";
                                 echo "<td>" . $accidente['solicitud_accidente_imagen'] . "</td>";
                                 echo "<td>" . $accidente['tipo_choque_nombre'] . "</td>";
                                 echo "<td>" . $accidente['detalle_choque_nombre'] . "</td>";

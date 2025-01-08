@@ -79,7 +79,7 @@ class="mt-5">
                                 echo "<td>" . $reductor_nuevo['solicitud_reductor_nuevo_id'] . "</td>";
                                 echo "<td>" . $reductor_nuevo['solicitud_reductor_nuevo_fecha_creacion'] . "</td>"; //cambiar el nombre en la db
                                 echo "<td>" . $reductor_nuevo['solicitud_reductor_nuevo_descripcion'] . "</td>";
-                                echo "<td>" . $reductor_nuevo['solicitud_reductor_nuevo_direccion'] . "</td>";
+                                echo "<td>" . $reductor_nuevo['st_astext'] . "</td>";
                                 echo "<td>" . $reductor_nuevo['reductor_nombre'] . "</td>";
                                 echo "<td>" . $reductor_nuevo['tipo_solicitud_nombre'] . "</td>";
                                 echo "<td>" . $reductor_nuevo['estado_nombre'] . "</td>";
