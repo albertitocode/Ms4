@@ -311,6 +311,7 @@ include_once '../view/partials/scripts.php';
                                                             <span class="small-text text-danger" id="error_barrio"></span>
 
                                                         </div>
+                                                        <span  id="direccion">Direccion:</span>
 
                                                     </div>
                                                 </div>

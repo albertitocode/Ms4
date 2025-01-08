@@ -1,3 +1,45 @@
+<?php
+
+
+
+$host = "localhost";
+$user = "postgres";
+$pass = "123456";
+$database = "prueba";
+$port = "5433";
+
+
+
+
+$conect = "host=$host port=$port dbname=$database user=$user password=$pass";
+
+$Hola = pg_connect($conect);
+
+
+// if (!$Hola) {
+//     // echo "Error de conexion";
+// } else {
+//     echo "Conexión exitosa\n";
+// }
+// public function getConnect(){
+//     return $Hola;
+// }
+function getConnect($Hola)
+{
+    return $Hola;
+
+}
+function consultar($sql)
+{
+    $result = pg_query(getConnect(), $sql);
+    if (!$result) {
+        echo "Error en la consulta: " . pg_last_error(getConnect());
+        return false;
+    }
+    return pg_fetch_all($result); // Devuelve los resultados en forma de array asociativo
+}
+
+?>
 <style type="text/css">
     #layer1 {
         position: absolute;
@@ -98,6 +140,27 @@
 
 
 <div class="card">
+    <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm"> <!-- Aquí añadimos 'modal-sm' para hacerla más pequeña -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Información del Punto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="modalContent">Cargando información...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="card-header">
         <h4 class="display-4">Mapa</h4>
     </div>
@@ -143,7 +206,7 @@
                     </form>
 
                 </div>
-              
+
 
             </div>
 
@@ -184,7 +247,7 @@
                     var objForm = document.forms[0];
                     for (i = 0; i < document.forms[0].length; i++) {
 
-                        if (objForm.elements["layer[" + i + "]"].checked){
+                        if (objForm.elements["layer[" + i + "]"].checked) {
                             list = list + objForm.elements["layer[" + i + "]"].value + " ";
                         }
                     }
@@ -225,7 +288,7 @@
                         //document.getElementById("boton1").click();
 
                         consultar1 = new objectoAjax();
-                           
+
                         //    function enviar() {
                         //          x;
                         //          y;
@@ -235,10 +298,10 @@
 
                         //    }
 
-                           
+
                         //    
-                        
-                         consultar1.open("GET", "datosMapa.php?x=" + xx + "&y=" + yy, true);
+
+                        consultar1.open("GET", "datosMapa.php?x=" + xx + "&y=" + yy, true);
 
                         consultar1.onreadystatechange = function () {
                             if (consultar1.readyState == 4) {
@@ -246,7 +309,7 @@
                                 alert(result); //resultado de consulta
                                 window.location.href = "../web/datosMapa.php?x=" + xx + "&y=" + yy;
                             }
-                       
+
                         }
                         consultar1.send(null);
                         seleccionado = false;
@@ -274,7 +337,37 @@
                         consultar2.onreadystatechange = function () {
                             if (consultar2.readyState == 4) {
                                 var result = consultar2.responseText;
-                                alert(result); // Mostrar el resultado de la consulta
+
+                                const data = JSON.parse(result);
+                                if (data.length > 0) {
+                                    // Extraer la información del primer objeto (en caso de que haya más de uno)
+                                    const info = data[0];
+                                    const id = info.id;
+                                    const nombre = info.nombre;
+                                    const geom = info.geom;
+
+                                    // Extraer las coordenadas del campo 'geom'
+                                    const coords = geom.replace('POINT(', '').replace(')', '').split(' ');
+                                    const lat = coords[1];
+                                    const lon = coords[0];
+
+                                    // Crear el contenido para la modal
+                                    const modalContent = `
+                                                    <strong>ID:</strong> ${id} <br>
+                                                    <strong>Nombre:</strong> ${nombre} <br>
+                                                    <strong>Coordenadas:</strong> Lat: ${lat}, Lon: ${lon}
+                                                `;
+
+                                    // Mostrar la información en el cuerpo de la modal
+                                    document.getElementById("modalContent").innerHTML = modalContent;
+
+                                    // Mostrar la modal
+                                    const infoModal = new bootstrap.Modal(document.getElementById("infoModal"));
+                                    infoModal.show();
+                                } else {
+                                    alert("No se encontraron resultados para esta ubicación.");
+                                }
+
                             }
                         };
                         consultar2.send(null);

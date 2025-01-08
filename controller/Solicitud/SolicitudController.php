@@ -226,7 +226,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'error',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -502,7 +502,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'success',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -634,7 +634,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'success',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -871,7 +871,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'success',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -1145,7 +1145,7 @@ class SolicitudController
                 echo "<script>
                 Swal.fire({
                     title: '¡Gracias!',
-                    text: '$coordi_x',
+                    text: 'Tu solicitud se ha registrado correctamente',
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
@@ -1202,7 +1202,7 @@ class SolicitudController
                 Swal.fire({
                     title: '¡Lo sentimos!',
                     text: 'No hay solicitudes Registradas',
-                    icon: 'success',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta

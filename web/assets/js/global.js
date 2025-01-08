@@ -34,7 +34,7 @@ $(document).ready(function () {
     'numero3': 'Número complemento 3',
     'barrio': 'Barrio',
     'usuario_contrasenia': 'Contraseña',
-    'rol':'Rol'
+    'rol': 'Rol'
   };
   const camposSenialM = {
     'categoria_senial_id': 'Categoria',
@@ -187,6 +187,41 @@ $(document).ready(function () {
   });
 
 
+  $('#formLogin').submit(function(e) {
+    e.preventDefault(); 
+
+    var correo = $('#user').val();
+    var contrasenia = $('#pass').val();
+console.log(correo);
+console.log(contrasenia);
+
+    // Limpiar los mensajes de error antes de la validación
+    $('#errorCorreo').hide();
+    $('#errorContrasenia').hide();
+    var valid = true;
+
+    // Validar el correo
+    if (correo === '') {
+        $('#errorCorreo').text('El correo es obligatorio').show();
+        valid = false;
+    } else if (!validarCorreo(correo)) {
+        $('#errorCorreo').text('El correo no es válido').show();
+        valid = false;
+    }
+
+    // Validar la contraseña
+    if (contrasenia === '') {
+        $('#errorContrasenia').text('La contraseña es obligatoria').show();
+        valid = false;
+    }
+
+    if (valid) {
+        // Si la validación es exitosa, puedes hacer el submit o realizar otras acciones
+        // Por ejemplo:
+        // this.submit();
+        console.log('Formulario enviado');
+    }
+});
 
 
 
@@ -329,7 +364,7 @@ $(document).ready(function () {
       const errorElement = document.getElementById(error); // Obtén el elemento
       if (errorElement) { // Verifica si el elemento existe
         errorElement.textContent = ""; // Limpia los errores
-      } 
+      }
     });
 
     // Validación de los campos
@@ -342,7 +377,7 @@ $(document).ready(function () {
       const errorElement = document.getElementById(error);
 
       if (!campoElement || !errorElement) {
-          return; 
+        return;
       }
 
       // Validar campos vacíos
@@ -791,7 +826,7 @@ $(document).ready(function () {
   $(document).on('keyup', "#id_data", function () {
     let id_data = $(this).val();
     let url = $(this).attr('data-url');
-    
+
 
     $.ajax({
       url: url,
@@ -854,6 +889,32 @@ $(document).ready(function () {
       }
     });
   });
+
+  $('select, input').on('input change', function () {
+    // Concatenar los valores de los campos de dirección
+    var tipoVia = $('#tipo_via').val();
+    var numVia = $('#num_via').val();
+    var letra1 = $('#letra1').val();
+    var bis = $('#bis').is(':checked') ? ' Bis' : '';
+    var orientacion = $('#orientacion').val();
+    var numero2 = $('#numero2').val();
+    var letra2 = $('#letra2').val();
+    var numero3 = $('#numero3').val();
+    var barrio = $('#barrio').val();
+
+    // Concatenar la dirección
+    var direccion = (tipoVia + ' ' + numVia)
+    + (letra1 ? ' ' + letra1 : '')
+    + (bis ? ' Bis' : '')
+    + (orientacion ? ' ' + orientacion : '')
+    + (numero2 ? ' #' + numero2 : '')
+    + (letra2 ? ' ' + letra2 : '')
+    + (numero3 ? '-' + numero3 : '')
+    + (barrio ? ', barrio ' + barrio : '');
+    // Mostrar la dirección en el span
+    $('#direccion').text('Dirección: ' + direccion);
+  });
+
 
   $(document).on('click', '#cambiar_estado', function () {
     let id = $(this).attr('data-id');
