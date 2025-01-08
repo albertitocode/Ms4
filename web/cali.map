@@ -3,7 +3,7 @@ MAP
      Size 1000 600
 
      STATUS ON
-     EXTENT  -76.5928 3.33181  -76.4613 3.50587
+     EXTENT  -76.5928 3.33181  -76.4613 3.50587
      SHAPEPATH "datos"
 
      FONTSET "misc/fonts/fonts.txt"
@@ -16,16 +16,15 @@ MAP
     IMAGEPATH "C:/ms4w/tmp/ms_tmp" #Esto puede variar segun tu configuracion
       IMAGEURL "/ms_tmp/"
     END
-
+  
     LAYER
-    CONNECTIONTYPE postgis
+    #CONNECTIONTYPE postgis
       NAME "Cinco"
       STATUS ON
-      #DATA "cinco.shp"
-      CONNECTION "user=postgres password=123456 dbname=prueba host=localhost port=5433"
-        DATA "geom FROM (select * from cinco) as cinco using unique gid SRID=4326"
+      DATA "cinco.shp"
+      #CONNECTION "user=postgres password=123456 dbname=prueba host=localhost port=5433"
+       # DATA "geom FROM (select * from cinco) as cinco using unique gid SRID=4326"
       TYPE POLYGON
-      #  LABELITEM "BARRIO"
         CLASS 
                     STYLE
                     
@@ -40,14 +39,20 @@ MAP
      LAYER
       NAME "Six"
       STATUS ON
-      #DATA "six.shp"
+      DATA "six.shp"
 
       TYPE POLYGON
-        CLASS 
-             STYLE
-               COLOR 248 245 245
-               OUTLINECOLOR 0 0 0
+      LABELITEM "Comuna"
+        CLASS
+		NAME "LABEL"
+            STYLE
+              COLOR 255 255 255
+              OUTLINECOLOR 0 0 0
             END
+			LABEL
+			SIZE SMALL
+			COLOR 0 0 0
+			END
         END
     END
 
@@ -68,7 +73,7 @@ MAP
     LAYER
 		NAME "Two"
         STATUS ON
-       # DATA "two.shp"
+       #DATA "two.shp"
         TYPE LINE
         CLASS
             STYLE
@@ -77,16 +82,18 @@ MAP
             END
         END
     END
-    CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log.txt"
+
+
+  CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log1.txt"
  	DEBUG 5
- LAYER
- NAME "Puntos"
-	  STATUS ON
-    TYPE POINT
-    CONNECTIONTYPE postgis
+ #LAYER
+ #NAME "Puntos"
+	  #STATUS ON
+    #TYPE POINT
+    #CONNECTIONTYPE postgis
       # DATA "puntos.shp"
-       CONNECTION "user=postgres password=123456 dbname=prueba host=localhost port=5433"
-       DATA "geom FROM (select * from lugares) as punto using unique id SRID=4326"
+      # CONNECTION "user=postgres password=123456 dbname=prueba host=localhost port=5433"
+      # DATA "geom FROM (select * from lugares) as punto using unique id SRID=4326"
        
     #  QUERYMAP
     #STATUS ON
@@ -97,15 +104,15 @@ MAP
    #END
    #TEMPLATE "template.html"
    
-       CLASS
-            STYLE
-                SYMBOL star
-                SIZE 30
-             
-            END
-        END
+  #     CLASS
+   #         STYLE
+    #            SYMBOL star
+     #           SIZE 30
+      #       
+       #     END
+        #END
   
-    END
+    #END
 
 
     

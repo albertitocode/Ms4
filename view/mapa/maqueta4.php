@@ -154,15 +154,15 @@
 
                 myMap1 = new msMap(document.getElementById('dc_main'), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
-                myMap1.setMapFile('/ms4w/Apache/htdocs/cali.map');
-                myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
+                myMap1.setMapFile('/ms4w/Apache/htdocs/PlantillaMvc/web/cali.map');
+                myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
                 myMap1.setLayers('Cinco Six One Two Puntos');
                 // $map=Mymap1;
                 myMap2 = new msMap(document.getElementById('dc_main2'), 'standardRight');
 
                 myMap2.setActionNone();
-                myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap2.setMapFile('/ms4w/Apache/htdocs/cali.map');
+                myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
+                myMap2.setMapFile('/ms4w/Apache/htdocs/PlantillaMvc/web/cali.map');
                 myMap2.setLayers('Cinco Six One Two Puntos');
                 myMap1.setReferenceMap(myMap2);
 
@@ -225,16 +225,28 @@
                         //document.getElementById("boton1").click();
 
                         consultar1 = new objectoAjax();
+                           
+                        //    function enviar() {
+                        //          x;
+                        //          y;
+                        //          xx;
+                        //          yy;
+                        //     
 
+                        //    }
 
-                        consultar1.open("GET", "Insertar_punto.php?x=" + xx + "&y=" + yy, true);
+                           
+                        //    
+                        
+                         consultar1.open("GET", "datosMapa.php?x=" + xx + "&y=" + yy, true);
 
                         consultar1.onreadystatechange = function () {
                             if (consultar1.readyState == 4) {
                                 var result = consultar1.responseText;
                                 alert(result); //resultado de consulta
-
+                                window.location.href = "../web/datosMapa.php?x=" + xx + "&y=" + yy;
                             }
+                       
                         }
                         consultar1.send(null);
                         seleccionado = false;

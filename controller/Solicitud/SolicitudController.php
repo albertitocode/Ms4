@@ -961,9 +961,12 @@ class SolicitudController
     //Empieza Accidentes
     public function GetCreateAccidente()
     {
-
+        
         $obj = new SolicitudModel();
 
+        $x = $_GET['x'];
+        $y = $_GET['y'];
+        $z = $_GET['z'];
         $sql = "SELECT * FROM tipo_solicitudes";
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
@@ -1032,9 +1035,19 @@ class SolicitudController
         // $barrio = $_POST['barrio'];
 
         $tipo_choque = $_POST['tipo_choque'];
-        $direccion = "cra calle barrio";
+        
         $id_usuario = $_SESSION['id'];
+        $coordi_x = $_POST['coordenada_x'];
+        $coordi_y = $_POST['coordenada_y'];
 
+        // Enviar un mensaje a la consola del navegador
+echo $coordi_x;
+
+
+
+
+        $direccion = $coordi_x ." ". $coordi_y;
+        
 
         if (isset($_FILES['solicitud_accidente_imagen']) && $_FILES['solicitud_accidente_imagen']['error'] === 0) {
             $img = $_FILES['solicitud_accidente_imagen']['name'];
@@ -1114,7 +1127,7 @@ class SolicitudController
                 echo "<script>
                 Swal.fire({
                     title: '¡Gracias!',
-                    text: 'Tu solicitud se ha registrado correctamente.',
+                    text: '$coordi_x',
                     icon: 'success',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
