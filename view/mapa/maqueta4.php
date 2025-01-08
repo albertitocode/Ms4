@@ -225,16 +225,28 @@
                         //document.getElementById("boton1").click();
 
                         consultar1 = new objectoAjax();
+                           
+                        //    function enviar() {
+                        //          x;
+                        //          y;
+                        //          xx;
+                        //          yy;
+                        //     
 
+                        //    }
 
-                        consultar1.open("GET", "Insertar_punto.php?x=" + xx + "&y=" + yy, true);
+                           
+                        //    
+                        
+                         consultar1.open("GET", "datosMapa.php?x=" + xx + "&y=" + yy, true);
 
                         consultar1.onreadystatechange = function () {
                             if (consultar1.readyState == 4) {
                                 var result = consultar1.responseText;
                                 alert(result); //resultado de consulta
-
+                                window.location.href = "../web/datosMapa.php?x=" + xx + "&y=" + yy;
                             }
+                       
                         }
                         consultar1.send(null);
                         seleccionado = false;
