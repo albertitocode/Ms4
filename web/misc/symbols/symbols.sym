@@ -22,10 +22,11 @@ SYMBOL
 		IMAGE 'star.gif'
 	END
 END 
+
 SYMBOL
-	NAME 'accidentes'
+	NAME 'accidente'
 		TYPE PIXMAP
-		IMAGE 'Accidente.png'
+		IMAGE '/ms4w/Apache/htdocs/plantillaMvc/web/misc/symbols/Accidente.gif'
 	END
 END 
 

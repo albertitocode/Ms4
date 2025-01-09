@@ -1,4 +1,3 @@
-
 <style type="text/css">
     #layer1 {
         position: absolute;
@@ -20,6 +19,7 @@
         top: 216px;
         background-color: #CCCCCC;
         margin-left: 15px;
+        justify-content: center;
     }
 
     body {
@@ -139,24 +139,38 @@
                 </div>
 
                 <div id="Layer2">
-                    <form action="" name="select_layers" class="checkbox">
+                    <form name="select_layers" class="checkbox">
                         <ul>
                             <p align="left">
 
                                 <li><input CHECKED onClick="chgLayers()" type="checkbox" name="layer[0]" id="check1"
-                                        value="Cinco"><label for="check1">Mapa</label></li>
+                                        value="Puntos1"><label for="check1">Accidentes</label></li>
 
                             <p align="left">
 
                                 <li><input CHECKED onClick="chgLayers()" type="checkbox" name="layer[1]" id="check2"
-                                        value="Puntos"><label for="check2">Puntos</label></li>
+                                        value="Puntos2"><label for="check2">Reductores en mal estado</label></li>
 
                             <p align="left">
 
 
                                 <li><input CHECKED onClick="chgLayers()" type="checkbox" name="layer[2]" id="check3"
-                                        value="Two"><label for="check3">Lineas</label></li>
-                            <p>
+                                        value="Puntos3"><label for="check3">Reductores Nuevos</label></li>
+                            <p align="left">
+
+                                <li><input CHECKED onClick="chgLayers()" type="checkbox" name="layer[3]" id="check4"
+                                        value="Puntos4"><label for="check4">Vias en mal estado</label></li>
+
+                            <p align="left">
+
+                                <li><input CHECKED onClick="chgLayers()" type="checkbox" name="layer[4]" id="check5"
+                                        value="Puntos5"><label for="check5">Señales Nuevas</label></li>
+
+                            <p align="left">
+
+
+                                <li><input CHECKED onClick="chgLayers()" type="checkbox" name="layer[5]" id="check6"
+                                        value="Puntos6"><label for="check6">Señales en mal estado</label></li>
 
                         </ul>
 
@@ -174,18 +188,18 @@
             <script type="text/javascript">
                 //<![CDATA[
 
-                myMap1 = new msMap(document.getElementById('dc_main'), 'standardRight');
+                myMap1 = new msMap(document.getElementById("dc_main"), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
                 myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/web/cali.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setLayers('Cinco Six One Two Puntos');
+                myMap1.setLayers('Cinco Six Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
                 // $map=Mymap1;
-                myMap2 = new msMap(document.getElementById('dc_main2'), 'standardRight');
+                myMap2 = new msMap(document.getElementById("dc_main2"), 'standardRight');
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
                 myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/web/cali.map');
-                myMap2.setLayers('Cinco Six One Two Puntos');
+                myMap2.setLayers('Cinco Six Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
                 myMap1.setReferenceMap(myMap2);
 
 
@@ -211,8 +225,7 @@
                         }
                     }
                     myMap1.setLayers(list);
-                    myMap2.redraw();
-
+                    myMap1.redraw();
                 }
                 var seleccionado = false;
                 function infolay(e, map) {
