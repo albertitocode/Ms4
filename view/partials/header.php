@@ -9,7 +9,7 @@
   <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
   <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" height="100" width="100" />
 
-  <script src="misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
+  <script src="../mapa/misc/lib/mscross-1.1.9.js" type="text/javascript"></script>
 
   <!-- SweetAlert2 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css" rel="stylesheet">
@@ -81,13 +81,13 @@
   }
 
   .sidebar {
-    background-color: white;
-    color: black;
+    background-color: #000000;
+    color: white;
   }
 
   .logo-header {
-    background-color: white;
-    color: black;
+    background-color: #000000;
+    color: white;
   }
 
   .sidebar.dark {
@@ -101,8 +101,8 @@
   }
 
   .main-header {
-    background-color: white;
-    color: black;
+    background-color:rgb(28, 128, 242);
+    color: #ffffff;
   }
 
   .main-header.dark {
@@ -127,6 +127,9 @@
 
   .card.dark {
     background-color: #000000;
+    color: white;
+  }
+  .profile-username{
     color: white;
   }
 

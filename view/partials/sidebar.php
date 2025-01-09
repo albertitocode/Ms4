@@ -103,7 +103,7 @@
         </li>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#sidebarLayouts">
-            <i class="fab fa-facebook"></i>
+            <i class="fas fa-moon"></i>
             <p>Pruebas</p>
             <span class="caret"></span>
           </a>

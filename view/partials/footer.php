@@ -14,9 +14,9 @@
            <a class="nav-link" href="#"> Licenses </a>
            
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
            <a id="toggleButton" class="btn btn-primary btn-round">Cambiar a Modo Oscuro</a>
-        </li>
+        </li> -->
      </ul>
     </nav>
   <div class="copyright">
