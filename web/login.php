@@ -39,7 +39,7 @@ include_once '../lib/helphers.php';
 
             <form action="<?php echo getUrl("Acceso", "Acceso", "login", "", "ajax"); ?>" method="post" id="formUsu">
               <div class="inputbox mb-3">
-                
+
               <i class='bx bxs-user'></i>
                 <input type="email" class="" name="user" id="user" required>
                 <label for="uname"><b>Correo</b></label>
@@ -56,9 +56,10 @@ include_once '../lib/helphers.php';
                 </a>
 
               <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-
+              
+              </form>
               <form action="<?php echo getUrl("Usuarios", "Usuarios", "getCreate", "", "ajax"); ?>" method="post" id="form2">
-                <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
+                <button type="submit"  class="btn btn-primary w-100" name="registro"  style="width: 300px;">Registrarme</button>
               </form>
             </div>
             <!-- </div> -->

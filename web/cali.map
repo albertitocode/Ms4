@@ -28,47 +28,47 @@ MAP
         CLASS 
                     STYLE
                     
-                        COLOR 207 167 248
-                      OUTLINECOLOR 85 107 47
+                        COLOR 255 255 255
+                      OUTLINECOLOR 0 0 0
                     END
           END
     END
 
 
 
-     LAYER
+    LAYER
       NAME "Six"
      DATA "six.shp"
       TYPE POLYGON
-      #LABELITEM "Comuna"
+     # LABELITEM "Comuna"
         CLASS
 		#NAME "LABEL"
             STYLE
-              COLOR 255 255 255
+              COLOR 160 160 160
               OUTLINECOLOR 0 0 0
             END
 		#	LABEL
 		#	SIZE SMALL
 		#	COLOR 0 0 0
 		#	END
-        END
     END
+   END
 
   LAYER
       NAME "One"
      DATA "one.shp"
       TYPE POLYGON
-     #LABELITEM "BARRIO"
+   #  LABELITEM "BARRIO"
         CLASS
-		#NAME "LABEL"
+	#	NAME "LABEL"
             STYLE
               COLOR 255 255 255
               OUTLINECOLOR 0 0 0
             END
-			LABEL
-			SIZE SMALL
-			COLOR 0 0 0
-			END
+	#		LABEL
+	#		SIZE SMALL
+	#		COLOR 0 0 0
+	#		END
         END
     END
 
@@ -103,7 +103,7 @@ CONNECTIONTYPE postgis
 			STYLE
 				SYMBOL star
 				 SIZE 50
-				#COLOR 0 34 125
+				#COLOR 160 160 125
 				#OUTLINECOLOR 0 255 0        
 			END
 		END
