@@ -1,25 +1,12 @@
 <?php
-include 'conexion.php'; // Asegúrate de que contiene la conexión
+include_once '../controller/Mapa/MapaController.php';
+$controller = new MapaController();
 
 if (isset($_GET['xx']) && isset($_GET['yy'])) {
-    $xx = floatval($_GET['xx']);
-    $yy = floatval($_GET['yy']);
-    
-    $radio = 0.005; 
-    
-    $sql = "
-        SELECT id, nombre, ST_AsText(geom) AS geom
-        FROM lugares
-        WHERE ST_DWithin(geom, ST_SetSRID(ST_Point($xx, $yy), 4326), $radio)
-        ORDER BY ST_Distance(geom, ST_SetSRID(ST_Point($xx, $yy), 4326)) 
-        LIMIT 1;
-    ";
-
-    $result = consultar($sql);
-
-        echo json_encode($result); // Devuelve el punto encontrado como JSON
-    
+    $x = floatval($_GET['xx']);
+    $y = floatval($_GET['yy']);
+    $controller->consultarPuntosAccidente($x, $y);
 } else {
-    echo "Coordenadas no válidas.";
+    echo json_encode(array('error' => 'Coordenadas no válidas'));
 }
 ?>

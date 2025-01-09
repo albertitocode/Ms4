@@ -1,45 +1,4 @@
-<?php
 
-
-
-$host = "localhost";
-$user = "postgres";
-$pass = "123456";
-$database = "prueba";
-$port = "5433";
-
-
-
-
-$conect = "host=$host port=$port dbname=$database user=$user password=$pass";
-
-$Hola = pg_connect($conect);
-
-
-// if (!$Hola) {
-//     // echo "Error de conexion";
-// } else {
-//     echo "Conexión exitosa\n";
-// }
-// public function getConnect(){
-//     return $Hola;
-// }
-function getConnect($Hola)
-{
-    return $Hola;
-
-}
-function consultar($sql)
-{
-    $result = pg_query(getConnect(), $sql);
-    if (!$result) {
-        echo "Error en la consulta: " . pg_last_error(getConnect());
-        return false;
-    }
-    return pg_fetch_all($result); // Devuelve los resultados en forma de array asociativo
-}
-
-?>
 <style type="text/css">
     #layer1 {
         position: absolute;
@@ -327,7 +286,6 @@ function consultar($sql)
                 function queryMap(event, map, x, y, xx, yy) {
                     if (select) {
                         var coordenadas = xx + " " + yy;
-                        alert("Click en las coordenadas: " + coordenadas);
 
                         // Envía una solicitud AJAX al servidor para obtener los datos.
                         consultar2 = new objectoAjax();
@@ -337,16 +295,14 @@ function consultar($sql)
                         consultar2.onreadystatechange = function () {
                             if (consultar2.readyState == 4) {
                                 var result = consultar2.responseText;
-
                                 const data = JSON.parse(result);
                                 if (data.length > 0) {
                                     // Extraer la información del primer objeto (en caso de que haya más de uno)
                                     const info = data[0];
-                                    const id = info.id;
-                                    const nombre = info.nombre;
-                                    const geom = info.geom;
-
-                                    // Extraer las coordenadas del campo 'geom'
+                                    const id = info.solicitud_accidente_id;
+                                    const nombre = info.detalle_choque_nombre;
+                                    const geom = info.solicitud_accidente_direccion;
+                                    // Extraer las coordenadas del campo
                                     const coords = geom.replace('POINT(', '').replace(')', '').split(' ');
                                     const lat = coords[1];
                                     const lon = coords[0];
@@ -364,8 +320,6 @@ function consultar($sql)
                                     // Mostrar la modal
                                     const infoModal = new bootstrap.Modal(document.getElementById("infoModal"));
                                     infoModal.show();
-                                } else {
-                                    alert("No se encontraron resultados para esta ubicación.");
                                 }
 
                             }

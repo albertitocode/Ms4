@@ -22,6 +22,12 @@ SYMBOL
 		IMAGE 'star.gif'
 	END
 END 
+SYMBOL
+	NAME 'accidentes'
+		TYPE PIXMAP
+		IMAGE 'Accidente.png'
+	END
+END 
 
 
 
