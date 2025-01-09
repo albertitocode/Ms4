@@ -3,10 +3,21 @@ include_once '../model/Mapa/MapaModel.php';
 
 class MapaController
 {
+
     public function abrirMapa()
     {
         $obj = new MapaModel();
         include_once '../view/mapa/maqueta4.php';
+    }
+
+    public function Maparegistro()
+    {
+        $obj = new MapaModel();
+
+
+        $id_solicitud = $_POST['id_solicitud'];    
+        
+        include_once '../view/mapa/mapaRegistro.php';
     }
 
     public function consultarPuntosAccidente($x, $y)

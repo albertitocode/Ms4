@@ -13,8 +13,8 @@ MAP
       UNITS dd
 
     WEB
-    IMAGEPATH "C:/ms4w/tmp/ms_tmp" #Esto puede variar segun tu configuracion
-      IMAGEURL "/ms_tmp/"
+    IMAGEPATH "C:/ms4w/Apache/htdocs/plantillaMvc/web/misc/symbols/" #Esto puede variar segun tu configuracion
+      IMAGEURL "/symbols/"
     END
   
     LAYER
@@ -38,13 +38,29 @@ MAP
 
      LAYER
       NAME "Six"
-      STATUS ON
-      DATA "six.shp"
-
+     DATA "six.shp"
       TYPE POLYGON
-      LABELITEM "Comuna"
+      #LABELITEM "Comuna"
         CLASS
-		NAME "LABEL"
+		#NAME "LABEL"
+            STYLE
+              COLOR 255 255 255
+              OUTLINECOLOR 0 0 0
+            END
+		#	LABEL
+		#	SIZE SMALL
+		#	COLOR 0 0 0
+		#	END
+        END
+    END
+
+  LAYER
+      NAME "One"
+     DATA "one.shp"
+      TYPE POLYGON
+     #LABELITEM "BARRIO"
+        CLASS
+		#NAME "LABEL"
             STYLE
               COLOR 255 255 255
               OUTLINECOLOR 0 0 0
@@ -56,54 +72,42 @@ MAP
         END
     END
 
-     LAYER
-      NAME "One"
-      STATUS ON
-      #DATA "one.shp"
-
-      TYPE POLYGON
-        CLASS 
-             STYLE
-               COLOR 84 236 118
-               OUTLINECOLOR 0 0 0
-            END
-        END
-    END
-
-    LAYER
-		NAME "Two"
-        STATUS ON
-       #DATA "two.shp"
-        TYPE LINE
-        CLASS
-            STYLE
-              COLOR 20 95 248
-              OUTLINECOLOR 0 0 0
-            END
-        END
-    END
+  #  LAYER
+	#	NAME "Two"
+   #     STATUS ON
+    #   DATA "two.shp"
+     #   TYPE POLYGON
+      #  CLASS
+       #     STYLE
+        #      COLOR 20 95 248
+         #     OUTLINECOLOR 0 0 0
+          #  END
+      #  END
+   # END
 
 
-  CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log1.txt"
+  CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log2.txt"
  	DEBUG 5
    
- LAYER
-    CONNECTIONTYPE postgis
-    NAME "Puntos"
-	  STATUS ON
-      # DATA "puntos.shp"
-    CONNECTION "user=postgres password=123456 dbname=bd_proyecto host=localhost port=5433"
-    DATA "solicitud_accidente_direccion FROM (select * from solicitud_accidentes) as accidentes using unique solicitud_accidente_id SRID=4326"
-      TYPE POINT 
-       CLASS
-        STYLE
-          SYMBOL star
-          SIZE 30     
-          
-        END
-      END
-  
-     END
+
+
+LAYER 
+CONNECTIONTYPE postgis
+		NAME "Puntos"
+		STATUS ON
+		#DATA "puntos.shp"
+		TYPE POINT
+   CONNECTION "user=postgres password=123456 dbname=bd_proyecto host=localhost port=5433"
+   DATA "solicitud_accidente_direccion FROM (select * from solicitud_accidentes) as acci using unique solicitud_accidente_id SRID=4326"
+		CLASS 
+			STYLE
+				SYMBOL star
+				 SIZE 50
+				#COLOR 0 34 125
+				#OUTLINECOLOR 0 255 0        
+			END
+		END
+	END
 
 
     

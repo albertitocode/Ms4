@@ -55,7 +55,7 @@
                                 placeholder="Buscar por tipo de solcitud" data-url='
                          -->
                         <label for="">Tipo de solicitud</label>
-                                <select name="tipo_solicitud_id" id="id_solicitud" class="form-select" data-url='<?php echo getUrl("Solicitud", "Solicitud", "buscarSolicitud", array("x"=> $x, "y" => $y), "ajax");?>'>
+                                <select name="tipo_solicitud_id" id="id_solicitud" class="form-select" data-url='<?php echo getUrl("Mapa", "Mapa", "Maparegistro",false, "ajax");?>'>
                                     <option value="">Seleccione...</option>
                                     <?php
                                     foreach ($tipo_solicitud as $tipo_s) {

@@ -14,33 +14,32 @@ class SolicitudController
         $tipo_solicitud = pg_fetch_all($obj->consult($sql));
         include_once '../view/solicitudes/registrar.php';
     }
-    public function buscarSolicitud()
-    {
-        $obj = new SolicitudModel();
+    // public function buscarSolicitud()
+    // {
+    //     $obj = new SolicitudModel();
 
-        $id_solicitud = $_POST['id_solicitud'];
-        // $sql = "SELECT * FROM tipo_solicitudes WHERE tipo_solicitud";
-        // $tipo_solicitud = pg_fetch_all($obj->consult($sql));
+    //     $id_solicitud = $_POST['id_solicitud'];
+       
 
-        $x = $_GET['x'];
-        $y = $_GET['y'];
+    //     $x = $_GET['x'];
+    //     $y = $_GET['y'];
 
-        if ($id_solicitud == 1) {
-            // include_once '../view/solicitudSenal/malEstado/create.php';
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateSenialMalEstado",array("x"=> $x, "y" => $y)));
-        } else if ($id_solicitud == 2) {
-            // include_once '../view/solicitudVial/create.php';
-            redirect(getUrl("Solicitud", "Solicitud", "GetCreateVia",array("x"=> $x, "y" => $y)));
-        } else if ($id_solicitud == 4) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente",array("x"=> $x, "y" => $y)));
-        } else if ($id_solicitud == 5) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateNuevaSenial",array("x"=> $x, "y" => $y)));
-        } else if ($id_solicitud == 3) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorMalEstado",array("x"=> $x, "y" => $y)));
-        } else if ($id_solicitud == 6) {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorNuevo",array("x"=> $x, "y" => $y)));
-        }
-    }
+    //     if ($id_solicitud == 1) {
+    //         // include_once '../view/solicitudSenal/malEstado/create.php';
+    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateSenialMalEstado",array("x"=> $x, "y" => $y)));
+    //     } else if ($id_solicitud == 2) {
+    //         // include_once '../view/solicitudVial/create.php';
+    //         redirect(getUrl("Solicitud", "Solicitud", "GetCreateVia",array("x"=> $x, "y" => $y)));
+    //     } else if ($id_solicitud == 4) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente",array("x"=> $x, "y" => $y)));
+    //     } else if ($id_solicitud == 5) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateNuevaSenial",array("x"=> $x, "y" => $y)));
+    //     } else if ($id_solicitud == 3) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorMalEstado",array("x"=> $x, "y" => $y)));
+    //     } else if ($id_solicitud == 6) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorNuevo",array("x"=> $x, "y" => $y)));
+    //     }
+    // }
 
 
     public function postSolicitud()
@@ -490,7 +489,7 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_mal_estado_direccion) ,re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_mal_estado r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id JOIN danios da ON r.danio_id=da.danio_id";
+        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductores_mal_estado_direccion) ,re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_mal_estado r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id JOIN danios da ON r.danio_id=da.danio_id";
         $solicitud_reductores_mal_estado = pg_fetch_all($obj->consult($sql));
 
         if ($solicitud_reductores_mal_estado) {
@@ -812,7 +811,7 @@ class SolicitudController
         // }
 
         $sql = "INSERT INTO solicitud_vias_mal_estado (solicitud_via_mal_estado_descripcion, solicitud_via_mal_estado_imagen, danio_id, usuario_id, 
-        tipo_solicitud_id, estado_id,solicitud_via_mal_estado_direccion) VALUES( '$descripcion', '$direccion', '$img', $danio,  $usuario,   2, 4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+        tipo_solicitud_id, estado_id,solicitud_via_mal_estado_direccion) VALUES( '$descripcion', '$img', $danio,  $usuario,  2, 4, ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -859,7 +858,7 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
-        $sql = "SELECT v.*, T_AsText(v.solicitud_via_direccion) , usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_vias_mal_estado v JOIN usuarios usu  ON v.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON v.estado_id = e.estado_id JOIN danios da ON v.danio_id=da.danio_id";
+        $sql = "SELECT v.*, ST_AsText(v.solicitud_via_mal_estado_direccion) , usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_vias_mal_estado v JOIN usuarios usu  ON v.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON v.estado_id = e.estado_id JOIN danios da ON v.danio_id=da.danio_id";
         $vias = pg_fetch_all($obj->consult($sql));
 
         if ($vias) {

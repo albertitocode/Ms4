@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document><Folder><name>puntos</name>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>0</i><br />
+      <b>texto:</b> <i>punto0</i><br />
+]]></description>
+      <Point><coordinates>-76.113442200369406,7.308598919785068</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>1</i><br />
+      <b>texto:</b> <i>punto1</i><br />
+]]></description>
+      <Point><coordinates>-76.88761907935293,2.405478686222709</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>2</i><br />
+      <b>texto:</b> <i>punto2</i><br />
+]]></description>
+      <Point><coordinates>-72.406777143417955,3.343874903172443</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>3</i><br />
+      <b>texto:</b> <i>punto3</i><br />
+]]></description>
+      <Point><coordinates>-73.532852603757632,10.428766341142932</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>4</i><br />
+      <b>texto:</b> <i>punto4</i><br />
+]]></description>
+      <Point><coordinates>-70.694204047484689,-1.136967032762536</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>5</i><br />
+      <b>texto:</b> <i>punto5</i><br />
+]]></description>
+      <Point><coordinates>-69.966946979348648,4.93914847198699</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>6</i><br />
+      <b>texto:</b> <i>punto6</i><br />
+]]></description>
+      <Point><coordinates>-76.62956011969176,5.384886675038114</coordinates></Point>
+  </Placemark>
+  <Placemark>
+      <description>
+<![CDATA[
+      <b>Id:</b> <i>7</i><br />
+      <b>texto:</b> <i>punto7</i><br />
+]]></description>
+      <Point><coordinates>-73.274793644096462,6.464042324530308</coordinates></Point>
+  </Placemark>
+</Folder></Document></kml>
