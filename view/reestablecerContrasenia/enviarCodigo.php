@@ -12,7 +12,7 @@
       href="assets/img/kaiadmin/favicon.ico"
       type="image/x-icon"
     />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script>
@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/plugins.min.css" />
     <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
+    <link rel="stylesheet" href="assets/css/estilos.css" />
     
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="assets/css/demo.css" />
@@ -52,13 +53,6 @@
   </head>
   <style>
 
-body {
-    
-    /* background-color: #0adb29; */
-    background: url('../web/assets/img/laquinta.jpg') no-repeat;
-    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
-    
-}
 .card{
     margin-top: 20%;
     flex-direction: column;
@@ -71,24 +65,9 @@ body {
 
 
 <div class="mt-5">
-    <div class="alert alert-danger d-none" role="alert" id="error">
-
-    </div>
-    <?php
-    if (isset($_SESSION['errores'])) {
-        echo "<div class='alert alert-danger' role='alert'>";
-        foreach ($_SESSION['errores'] as $error) {
-            echo $error . "<br>";
-        }
-        echo "</div>";
-        unset($_SESSION['errores']);
-    }
-
-    ?>
-    <form action="<?php echo getUrl2("Acceso", "Acceso", "postEnviarCodigo",); ?>" method="post" id="formlario">
-        <!-- <div class="page-header">
-            <h3 class="fw-bold mb-3">Registrate</h3>
-        </div> -->
+   
+    <form action="<?php echo getUrl2("Acceso", "Acceso", "postEnviarCodigo"); ?>" method="post" id="formlario">
+     
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card align-items-center">
@@ -98,11 +77,7 @@ body {
                         </div>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="col-md-4">
-            <label for="usu_id">Id</label>
-            <input type="text" name="usu_id" class="form-control" placeholder="Id">
-            
-        </div> -->
+          
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">
@@ -124,6 +99,7 @@ body {
         </div>
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
 </html>
 

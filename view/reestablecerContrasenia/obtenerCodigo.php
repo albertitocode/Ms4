@@ -1,8 +1,15 @@
+
+ <!-- include_once '../lib/helphers.php';
+ include_once '../view/partials/scripts.php'; -->
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Tura visor</title>
+    <title>GEOCALI</title>
     <meta
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
@@ -12,9 +19,11 @@
       href="assets/img/kaiadmin/favicon.ico"
       type="image/x-icon"
     />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../web/assets/js/global.js"></script>
     <script>
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -37,7 +46,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/plugins.min.css" />
     <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
-    
+    <link rel="stylesheet" href="assets/css/estilos.css" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="assets/css/demo.css" />
 
@@ -51,14 +60,6 @@
 
   </head>
   <style>
-
-body {
-    
-    /* background-color: #0adb29; */
-    background: url('../web/assets/img/laquinta.jpg') no-repeat;
-    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
-    
-}
 .card{
     margin-top: 20%;
     flex-direction: column;
@@ -85,7 +86,7 @@ body {
     }
 
     ?>
-    <form action="<?php echo getUrl2("Acceso", "Acceso", "postObtenerCodigo"); ?>" method="post" id="form87">
+    <form action="<?php echo getUrl2("Acceso", "Acceso", "postObtenerCodigo"); ?>" method="post" id="formCorreoRecu">
         <!-- <div class="page-header">
             <h3 class="fw-bold mb-3">Registrate</h3>
         </div> -->
@@ -106,8 +107,9 @@ body {
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">
-                                <label for="correo_usuario">Digite aqui tu correo</label>
-                                <input type="text" name="correo_usuario" id="" class="form-control" placeholder="Correo">
+                                <label for="correo_usuario">Digite aqui su correo</label>
+                                <input type="text" name="correo_usuario" id="correo_usuario" class="form-control" placeholder="Correo">
+                                <span class="text-danger" id="error_correo_usuario"></span>
 
                             </div>
                            
@@ -115,7 +117,7 @@ body {
                         </div>
                         
                         <div class="mt-5">
-                            <input type="submit" value="Enviar" class="btn btn-success">
+                            <input type="submit" id="btnEnviarCorreo" value="Enviar" class="btn btn-success" disabled>
                         </div>
                     </div>
                     </div>
@@ -124,6 +126,7 @@ body {
         </div>
     </form>
 </div>
+
 </body>
 </html>
 

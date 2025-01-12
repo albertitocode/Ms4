@@ -81,13 +81,13 @@
   }
 
   .sidebar {
-    background-color: #000000;
-    color: white;
+    background-color: white;
+    color: black;
   }
 
   .logo-header {
-    background-color: #000000;
-    color: white;
+    background-color: white;
+    color: black;
   }
 
   .sidebar.dark {
@@ -101,8 +101,8 @@
   }
 
   .main-header {
-    background-color:rgb(28, 128, 242);
-    color: #ffffff;
+    background-color: white;
+    color: black;
   }
 
   .main-header.dark {
@@ -130,7 +130,7 @@
     color: white;
   }
   .profile-username{
-    color: white;
+    color: black;
   }
 
   .profile-username.dark {

@@ -81,10 +81,25 @@ END
 SYMBOL
 	NAME 'senialM'
 	TYPE PIXMAP
-	IMAGE 'einstein-static.gif'
+	IMAGE 'stop-damaged.gif'
 END
 SYMBOL
 	NAME 'reduN'
 	TYPE PIXMAP
-	IMAGE 'norte.gif'
+	IMAGE 'hump.gif'
+END
+SYMBOL
+	NAME 'reduM'
+	TYPE PIXMAP
+	IMAGE 'hump-damaged.gif'
+END
+SYMBOL
+	NAME 'senialN'
+	TYPE PIXMAP
+	IMAGE 'stop.gif'
+END
+SYMBOL
+	NAME 'via'
+	TYPE PIXMAP
+	IMAGE 'road.gif'
 END

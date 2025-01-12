@@ -51,7 +51,7 @@ include_once '../lib/helphers.php';
                 <label for="psw"><b>Contraseña</b></label>
                 
               </div>
-              <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", "", "ajax"); ?>">
+              <a href="<?php echo getUrl("Acceso", "Acceso", "obtenerCodigo", "", "ajax"); ?>">
                   <p>Olvidó su contraseña?</p>
                 </a>
 

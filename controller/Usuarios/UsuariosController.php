@@ -115,11 +115,11 @@ class UsuariosController
 
 
         // // $id= $obj->autoIncrement("usu_id","usuarios");
-        $usu_clave = password_hash($usu_contrasenia, PASSWORD_DEFAULT);
+        // $usu_clave = password_hash($usu_contrasenia, PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios (tipo_documento_id, usuario_num_identificacion, usuario_nombre_1,
          usuario_nombre_2, usuario_apellido_1, usuario_apellido_2,usuario_fecha_nacimiento, usuario_contrasenia, usuario_correo,
           usuario_telefono, usuario_direccion, rol_id, estado_id) VALUES ($tipo_documento, $numero_documento, 
-          '$usu_nombre_1', '$usu_nombre_2', '$usu_apellido_1', '$usu_apellido_2','$usu_fecha_nac', '$usu_clave', '$usu_correo',
+          '$usu_nombre_1', '$usu_nombre_2', '$usu_apellido_1', '$usu_apellido_2','$usu_fecha_nac', '$usu_contrasenia', '$usu_correo',
            $usu_telefono, '$direccion', $rol, 1)";
         if ($validacion) {
             $ejecutar = $obj->insert($sql);

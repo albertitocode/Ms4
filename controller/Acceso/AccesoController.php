@@ -1,18 +1,19 @@
 <?php
 include_once '../model/Acceso/AccesoModel.php';
 include_once '../model/Usuarios/UsuariosModel.php';
-// include_once '../vendor/autoload.php';
+require '../PHPMailer/PHPMailerAutoload.php';
 
-// require_once '../PHPMailer/class.phpmailer.php';
-// require_once '../PHPMailer/class.smtp.php';
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
+//  use PHPMailer\PHPMailer\PHPMailer;
+//  use PHPMailer\PHPMailer\SMTP;
+//  use PHPMailer\PHPMailer\Exception;
+
 
 class AccesoController
 {
 
-        public function login(){
-            $obj = new UsuariosModel();
+    public function login()
+    {
+        $obj = new UsuariosModel();
 
         $user = $_POST['user'];
         $pass = $_POST['pass'];
@@ -52,10 +53,9 @@ class AccesoController
                         // </script>";
                         echo "Error";
                         redirect('../web/login.php');
-                            
-                        }else{
-                        $_SESSION['auth']='ok';
-                        
+                    } else {
+                        $_SESSION['auth'] = 'ok';
+
                         redirect('../web/index.php');
                     }
                 }
@@ -80,164 +80,182 @@ class AccesoController
 
 
 
-    // public function ObtenerCodigo()
-    // {
-    //     $obj = new AccesoModel();
-    //     include_once '../view/reestablecerContrasenia/obtenerCodigo.php';
-    // }
-    // public function postObtenerCodigo()
-    // {
-    //     $obj = new AccesoModel();
+    public function obtenerCodigo()
+    {
+        $obj = new AccesoModel();
+        include_once '../view/reestablecerContrasenia/obtenerCodigo.php';
+    }
+    public function postObtenerCodigo()
+    {
+        $obj = new AccesoModel();
 
-    //     if(empty($_POST['correo_usuario'])){
-    //         echo "Vacio";
-    //     }else{
-    //         $correo = $_POST['correo_usuario'];
-    //     }
-        
-        
+        if (empty($_POST['correo_usuario'])) {
+            redirect(getUrl2("Acceso","Acceso","obtenerCodigo"));
+        } else {
+            $correo = $_POST['correo_usuario'];
+        }
 
-    //     $sql = "SELECT * FROM usuarios WHERE usuario_correo = '$correo'";
-    //     $usu = pg_fetch_all($obj->consult($sql));
-       
-    //            if ($usu) {
+        $sql = "SELECT * FROM usuarios WHERE usuario_correo = '$correo' limit 1";
+        $usu = pg_fetch_all($obj->consult($sql));
 
-    //         $codigo = generarCodigo();
-    //         foreach($usu as $us)
-    //         {
-    //         $id_usuario =  $us['usuario_id']; 
-    //         var_dump($codigo);
+        if ($usu) {
 
-    //         $sql = "INSERT INTO reestablecerContrasenia (id_usuario,reestablecerContrasenia_codigo,fecha_expiracion) VALUES ($id_usuario,$codigo,NOW() + interval '1 hour')";
-    //         var_dump($sql);
-    //         $reestablecer = $obj->insert($sql);
+            $codigo = generarCodigo();
+            foreach ($usu as $us) {
+                $id_usuario =  $us['usuario_id'];
+                // var_dump($codigo);
 
-    //         if ($reestablecer) {
-    //             $mailer = new PHPMailer(true);
-    //             $nombre_usuario = $us['usuario_nombre_1'];
+                $sql = "INSERT INTO reestablecerContrasenia (id_usuario,reestablecerContrasenia_codigo,fecha_expiracion) VALUES ($id_usuario,$codigo,NOW() + interval '1 hour')";
+                // var_dump($sql);
+                $reestablecer = $obj->insert($sql);
+
+                if ($reestablecer) {
+                    $mailer = new PHPMailer;
+                    $nombre_usuario = $us['usuario_nombre_1'];
+
+                    try {
+                        // $mailer->SMTPDebug = 2;
+                        $mailer->isSMTP();
+                        $mailer->Host = 'smtp.gmail.com';
+                        // $mailer->Host = 'mail.ejip.co.id';
+                        $mailer->SMTPAuth = true;
+                        $mailer->Username = 'gakgroup20.08@gmail.com';
+                        $mailer->Password = 'lbwx kwji mtvf iydp';
+                        $mailer->SMTPSecure = 'tls';
+                        $mailer->Port = 587;
+                        $mailer->isHTML(true);
+
+                        $mailer->setFrom('hgustavo1407@gmail.com', 'GEOCALI');
+                        $mailer->addAddress($correo, $nombre_usuario);
+                        $mailer->Subject = 'Reestablecer contrasenia';
+                        $mailer->Body = 'Hola ' . $nombre_usuario . ', <br> Hemos recibido tu solicitud para restablecer la contraseña. <br> Para seguir con este proceso te pediremos que escribas este codigo: ' . $codigo . '<br> Para que puedas cambiar tu contraseña, ah este codigo se deshabilitará en 5 minutos';
+                        $mailer->AltBody = 'Hola querido ' . $nombre_usuario . ' sabemos que tienes problemas para iniciar sesion, escribe el siguiente codigo para poder ingresar: ' . $codigo . ' ';
+
+                        $mailer->send();
+                        // if (!$mailer->send()) {
+                        //     echo "El mensaje no pudo ser enviado. Error: {$mailer->ErrorInfo}";
+                        // } else {
+
+                            echo "exito";
+                            redirect(getUrl2("Acceso", "Acceso", "enviarCodigo"));
+                    // }
+                    } catch (Exception $e) {
+                        echo "El mensaje no pudo ser enviado. Error: {$mailer->ErrorInfo}";
+                    }
+                } else {
+                    echo "Error1 ";
+                }
+            }
+        } else {
             
-    //             try {
-    //                 $mailer->SMTPDebug = SMTP::DEBUG_SERVER;
-    //                 $mailer->isSMTP();
-    //                 $mailer->Host = 'smtp.gmail.com';
-    //                 $mailer->SMTPAuth = true;
-    //                 $mailer->Username = 'gakgroup20.08@gmail.com';
-    //                 $mailer->Password = 'lbwx kwji mtvf iydp';
-    //                 $mailer->SMTPSecure = 'tls';
-    //                 $mailer->Port = 587;
-    //                 $mailer->isHTML(true);
-
-    //                 $mailer->setFrom('hgustavo1407@gmail.com', 'Tura');
-    //                 $mailer->addAddress($correo, $nombre_usuario);
-    //                 $mailer->Subject = 'Reestablecer contrasenia';
-    //                 $mailer->Body = 'Hola señorita ' . $nombre_usuario . 'sabemos que tienes problemas para iniciar sesion, escribe el siguiente codigo para poder ingresar: ' . $codigo . ' este codigo se deshabilitará en 5 minutos';
-    //                 $mailer->AltBody = 'Hola querido ' . $nombre_usuario . 'sabemos que tienes problemas para iniciar sesion, escribe el siguiente codigo para poder ingresar: ' . $codigo . ' ';
-
-    //                 $mailer->send();
-    //                 echo "exito";
-    //                 redirect(getUrl2("Acceso","Acceso","enviarCodigo"));
-    //             } catch (Exception $e) {
-    //                 echo "El mensaje no pudo ser enviado. Error: {$mailer->ErrorInfo}";
-    //             }
-    //         }else {
-    //             echo "Error1 ";
-    //         }
-
-    //     }
-        
-    //     } else {
-    //         echo "Error2";
-    //     }
-    // }
-    // public function enviarCodigo(){
-    //     $obj = new AccesoModel();
-
-    //     include_once '../view/reestablecerContrasenia/enviarCodigo.php';  
-    // }
-    // public function postEnviarCodigo()
-    // {
-    //     $obj = new AccesoModel();
-
-    //     if(isset($_POST['codigo_acceso'])){
-    //         echo "trae";
-    //     }else{
-    //         echo "no trae";
-    //     }
-    //     $codigo_acceso = $_POST['codigo_acceso'];
-        
-    //     $sql = "SELECT * FROM reestablecerContrasenia WHERE reestablecerContrasenia_codigo=$codigo_acceso";
-    //     var_dump($sql);
-    //     $acceso = pg_fetch_all($obj->consult($sql));
-
-    //     if ($acceso) {
-    //         foreach($acceso as $acc){
-    //             $id = $acc['id_usuario'];
-    //         }
+            echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
             
-    //         $sql = "SELECT * FROM usuarios WHERE usuario_id=$id";
-    //         var_dump($sql);
-    //         $usuario_acceso = $obj->consult($sql);
+            echo "<body>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            Swal.fire({
+                title: '¡Ups!',
+                text: 'El correo que ingresaste no se encuentra registrado en el sistema.',
+                icon: 'error',
+                 timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then((result) => {
+                  window.location.href = '" . getUrl2("Acceso", "Acceso", "obtenerCodigo") . "';
+                
+            });
+        </script>";
+        echo "</body>";
+        }
+    }
+    public function enviarCodigo()
+    {
+        $obj = new AccesoModel();
 
-    //         if ($usuario_acceso){
-    //             if(pg_num_rows($usuario_acceso)>0){
-    //                 $usuario_acceso = pg_fetch_all($usuario_acceso);
-    //                 foreach($usuario_acceso as $usu){
-    //                     // if(password_verify($pass,$usu['usu_clave'])){
-    //                         $_SESSION['id']=$usu['usuario_id'];
-    //                         $_SESSION['primer nombre']=$usu['usuario_nombre_1'];
-    //                         $_SESSION['segundo nombre'] = $usu['usuario_nombre_2'];
-    //                         $_SESSION['primer apellido']=$usu['usuario_apellido_1'];
-    //                         $_SESSION['segundo apellido']=$usu['usuario_apellido_2'];
-    //                         $_SESSION['correo']=$usu['usuario_correo'];
-    //                         $_SESSION['rol']=$usu['rol_id'];
-    //                         $_SESSION['rol nombre']=$usu['rol_nombre'];
-    //                         $_SESSION['telefono']=$usu['usuario_telefono'];
-    //                         $_SESSION['direccion']=$usu['usuario_direccion'];
-    //                         $_SESSION['contrasenia']=$usu['usuario_contrasenia'];
-    //                         $_SESSION['tipo_documento_nombre']=$usu['tipo_documento_nombre'];
-    //                         $_SESSION['tipo_documento_id']=$usu['tipo_documento_id'];
-    //                         $_SESSION['numero_documento']=$usu['usuario_num_identificacion'];
-    //                         $_SESSION['foto']=$usu['foto_perfil'];
+        include_once '../view/reestablecerContrasenia/enviarCodigo.php';
+    }
+    public function postEnviarCodigo()
+    {
+        $obj = new AccesoModel();
 
-    //                         // if($usu['estado_id']==2){
-    //                         //     echo "<script>
-    //                         //     swal({
-    //                         //         title: '¡Lo sentimos!',
-    //                         //         text: 'Estas eliminado del sistema',
-    //                         //         icon: 'success',
-    //                         //         Button: 'OK'
-    //                         //     });
+        if (isset($_POST['codigo_acceso'])) {
+            echo "trae";
+        } else {
+            echo "no trae";
+        }
+        $confirm = "no auth";
+        $codigo_acceso = $_POST['codigo_acceso'];
+        
+        $sql = "SELECT * FROM reestablecerContrasenia WHERE reestablecerContrasenia_codigo=$codigo_acceso";
+        var_dump($sql);
+        $acceso = pg_fetch_all($obj->consult($sql));
 
-    //                         // </script>";
-    //                         // echo "Error";
-    //                         // redirect('../web/login.php');
+        if ($acceso) {
+            foreach ($acceso as $acc) {
+                $id = $acc['id_usuario'];
+            }
 
-    //                         // }else{
-    //                         $_SESSION['auth']='ok';
+            $confirm = "confirm";
+            //$sql = "SELECT * FROM usuarios WHERE usuario_id=$id";
+            // var_dump($sql);
+            //$usuario_acceso = $obj->consult($sql);
+            redirect(getUrl2("Acceso", "Acceso", "getContrasenia",array("id"=> $id, "confirm" => $confirm)));
 
-    //                         redirect('../web/index.php');
-    //                         // }
-    //                 } 
-    //                 }else{
-    //                     $_SESSION['error']="El correo y/o Contraseña no se encuentran";
-    //                    redirect('login.php');
-    //                 }
+        } else {
+            echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
+            
+            echo "<body>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            Swal.fire({
+                title: '¡Oh!',
+                text: 'Parece que el codigo que estás ingresando no es el mismo que te mandamos.',
+                icon: 'error',
+                 timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then((result) => {
+                  window.location.href = '" . getUrl2("Acceso", "Acceso", "enviarCodigo") . "';
+                
+            });
+        </script>";
+        echo "</body>";
+        }
+    }
 
-    //         }else{
-    //             echo  "No se encontraron coincidencias";
-    //         }
-    //     } else {
-    //         echo  "No se econtró coincidencia con algun codigo";
-    //     }
-    // }
+    public function getContrasenia()
+    {
+        $obj = new AccesoModel();
 
-    // public function getIndex(){
+        $id =$_GET['id'];
+        $confirm = $_GET['confirm'];
 
-    //     $obj = new UsuariosModel();
+        if($confirm =='confirm'){
+          $sql = "SELECT * FROM usuarios WHERE usuario_id=$id";
+            var_dump($sql);
+            $usuario_acceso = $obj->consult($sql);
 
-    //     $sql = "SELECT COUNT(*) AS total FROM usuarios";
-    //     $total_usuarios= pg_fetch_all($obj->consult($sql));
+            include_once '../view/reestablecerContrasenia/contrasenia.php';
+        }else{
+            echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
+            
+            echo "<body>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            Swal.fire({
+                title: 'Ah!',
+                text: 'Parece que el codigo que estás ingresando no es el mismo que te mandamos.',
+                icon: 'error',
+                 timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then((result) => {
+                  window.location.href = '" . getUrl2("Acceso", "Acceso", "enviarCodigo") . "';
+                
+            });
+        </script>";
+        echo "</body>";
 
-    //     redirect('../web/index.php');
-    // }
+        }
+    }
 }

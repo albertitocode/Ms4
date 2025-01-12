@@ -103,8 +103,8 @@
         </li>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#sidebarLayouts">
-            <i class="fas fa-moon"></i>
-            <p>Pruebas</p>
+            <i class="fas fa-comment"></i>
+            <p>PQRS</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="sidebarLayouts">
@@ -137,7 +137,7 @@
               </li>
             </ul>
           </div>
-        </li> -->
+        </li>
 
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#maps">

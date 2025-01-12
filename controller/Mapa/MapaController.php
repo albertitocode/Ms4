@@ -10,7 +10,7 @@ class MapaController
         include_once '../mapa/maqueta4.php';
     }
 
-    public function Maparegistro()
+    public function mapaRegistro()
     {
         $obj = new MapaModel();
 

@@ -192,16 +192,16 @@
 
                 myMap1 = new msMap(document.getElementById("dc_main"), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
-                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/Geo/mapa/cali.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                myMap1.setLayers('Cinco Six One Two Puntos1');
                 // $map=Mymap1;
                 myMap2 = new msMap(document.getElementById("dc_main2"), 'standardRight');
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
-                myMap2.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/Geo/mapa/cali.map');
+                myMap1.setLayers('Cinco Six One Two Puntos1');
                 myMap1.setReferenceMap(myMap2);
 
 
@@ -209,10 +209,10 @@
                 myMap2.redraw();
 
 
-                var infola = new msTool('crear punto', infolay, 'misc/img/seleccionar.png', investiguen);
+                var infola = new msTool('crear punto', infolay, '../mapa/misc/img/seleccionar.png', investiguen);
                 myMap1.getToolbar(0).addMapTool(infola);
 
-                var consult = new msTool('Consultar info', consulta, 'misc/img/consultar.png', queryMap);
+                var consult = new msTool('Consultar info', consulta, '../mapa/misc/img/consultar.png', queryMap);
                 myMap1.getToolbar(0).addMapTool(consult);
 
                 chgLayers();

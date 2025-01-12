@@ -76,7 +76,7 @@
                 
                 
                 <li class="nav-item">
-           <a id="toggleButton"  class="btn" style="color: white;">
+           <a id="toggleButton"  class="btn" style="color: black;">
               <i class="fas fa-moon"></i>
            Cambiar a Modo Oscuro
            </a>
@@ -98,7 +98,7 @@
                       />
                     </div>
                     <span class="profile-username">
-                      <span class="op-7">Hi,</span>
+                      <!-- <span class="op-7">Hi,</span> -->
                       <span class="fw-bold"><?=$_SESSION['primer nombre']?></span>
                     </span>
                   </a>

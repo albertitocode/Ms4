@@ -141,7 +141,7 @@
                 <div id="Layer2">
                     <form name="select_layers" class="checkbox">
                         <ul>
-                            <!-- <p align="left">
+                            <p align="left">
 
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[0]" value="Cinco">
                                 <strong>Cinco</strong>
@@ -150,12 +150,12 @@
                                 <strong>Six</strong>
                             <p align="left">
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[2]" value="One">
-                                <strong>One</strong>     -->
+                                <strong>One</strong>    
                             <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[0]" value="Puntos1">
+                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[3]" value="Puntos1">
                                 <strong>Puntos</strong>
 
-                            <p align="left">
+                            <!-- <p align="left">
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[1]" value="Puntos2">
                                 <strong>Puntos 2</strong>
 
@@ -172,7 +172,7 @@
 
                                 <p align="left">
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[5]" value="Puntos6">
-                                <strong>Puntos 6</strong>
+                                <strong>Puntos 6</strong> -->
                         </ul>
 
 
@@ -192,16 +192,16 @@
 
                 myMap1 = new msMap(document.getElementById("dc_main"), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
-                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/cali1.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                myMap1.setLayers('Cinco Six One Two Puntos1');
                 // $map=Mymap1;
                 myMap2 = new msMap(document.getElementById("dc_main2"), 'standardRight');
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
-                myMap2.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/cali1.map');
+                myMap2.setLayers('Cinco Six One Two Puntos1');
                 myMap1.setReferenceMap(myMap2);
 
 
@@ -209,11 +209,9 @@
                 myMap2.redraw();
 
 
-                var infola = new msTool('crear punto', infolay, 'misc/img/seleccionar.png', investiguen);
+                var infola = new msTool('crear punto', infolay, '../mapa/misc/img/seleccionar.png', investiguen);
                 myMap1.getToolbar(0).addMapTool(infola);
 
-                var consult = new msTool('Consultar info', consulta, 'misc/img/consultar.png', queryMap);
-                myMap1.getToolbar(0).addMapTool(consult);
 
                 chgLayers();
 
