@@ -698,7 +698,11 @@ class SolicitudController
             }
 
         }
-        $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion','$direccion','$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+        $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,
+        solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,
+        solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion',
+        '$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4,
+        ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {

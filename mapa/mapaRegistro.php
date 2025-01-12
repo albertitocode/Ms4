@@ -94,7 +94,6 @@
 </style>
 
 
-</head>
 
 
 
@@ -194,14 +193,14 @@
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
                 myMap1.setMapFile('/ms4w/Apache/htdocs/cali1.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setLayers('Cinco Six One Two Puntos1');
+                myMap1.setLayers('Cinco Six One Two');
                 // $map=Mymap1;
                 myMap2 = new msMap(document.getElementById("dc_main2"), 'standardRight');
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setMapFile('/ms4w/Apache/htdocs/cali1.map');
-                myMap2.setLayers('Cinco Six One Two Puntos1');
+                myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
+                myMap2.setLayers('Cinco Six One Two');
                 myMap1.setReferenceMap(myMap2);
 
 
@@ -256,8 +255,7 @@
 
                 function investiguen(event, map, x, y, xx, yy) {
                     if (seleccionado) {
-                        alert("Click sobre las coordenadas : x " + x + "y: " + y + "y reales : x" + xx +
-                            "y: " + yy);
+                       
                         //document.getElementById("boton1").click();
 
                         consultar1 = new objectoAjax();
@@ -279,7 +277,6 @@
                         consultar1.onreadystatechange = function() {
                             if (consultar1.readyState == 4) {
                                 var result = consultar1.responseText;
-                                alert(result); //resultado de consulta
                                 window.location.href = "datosMapa.php?x=" + xx + "&y=" + yy + "&id=" + <?php echo $id_solicitud ?>;
                             }
 

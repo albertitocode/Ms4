@@ -29,8 +29,8 @@ MAP
         CLASS 
                     STYLE
                     
-                        COLOR 160 160 160 
-                      OUTLINECOLOR 0 0 0
+                          COLOR 200 200 200 # Nuevo color de relleno (gris claro)
+
                     END
           END
     END
@@ -41,12 +41,13 @@ MAP
       NAME "Six"
      DATA "six.shp"
       TYPE POLYGON
+	    TRANSPARENCY 30 # Transparencia del 30%
+
      # LABELITEM "Comuna"
         CLASS
 		#NAME "LABEL"
             STYLE
               COLOR 230 233 234
-              OUTLINECOLOR 0 0 0
             END
 		#	LABEL
 		#	SIZE SMALL
@@ -59,12 +60,14 @@ MAP
       NAME "One"
      DATA "one.shp"
       TYPE POLYGON
-   #  LABELITEM "BARRIO"
+  TRANSPARENCY 70 # Transparencia del 70%
+
+     LABELITEM "BARRIO"
         CLASS
-	#	NAME "LABEL"
+		NAME "LABEL"
             STYLE
-              COLOR 230 233 234 
-              OUTLINECOLOR 0 0 0
+             COLOR 255 230 200 # Nuevo color de relleno (naranja claro)
+    		OUTLINECOLOR 100 50 0 # Nuevo color de contorno (marrón oscuro)
             END
 			LABEL
 			SIZE SMALL
@@ -79,18 +82,16 @@ LAYER
 		STATUS ON
 		DATA "two.shp"
   	    TYPE LINE
+          TRANSPARENCY 40 # Transparencia del 50%
+
 		#LABELITEM "BARRIO"
 		CLASS 
 			STYLE
-				# SYMBOL star
-				# SIZE 1000
-				COLOR 100 100 100 
-				OUTLINECOLOR 255 255 255
+				
+				COLOR 120 120 120 # Gris medio (armoniza bien con el fondo)
 				
 			END
-#			SIZE SMALL
-#	  		COLOR 0 0 0
-#			END
+
 
 		END
 	END
@@ -99,6 +100,7 @@ LAYER
   CONFIG "MS_ERRORFILE" "C:/ms4w/apache/htdocs/log2.txt"
  	DEBUG 5
    
+
 
 
 LAYER 
@@ -129,8 +131,8 @@ CONNECTIONTYPE postgis
    DATA "solicitud_reductores_mal_estado_direccion FROM (select * from solicitud_reductores_mal_estado) as acci using unique solicitud_reductores_mal_estado_id SRID=4326"
 		CLASS 
 			STYLE
-				SYMBOL senialM
-				 SIZE 30
+				SYMBOL reduM
+				 SIZE 50
 				#COLOR 0 34 125
 				#OUTLINECOLOR 0 255 0        
 			END
@@ -166,8 +168,8 @@ CONNECTIONTYPE postgis
    DATA "solicitud_via_mal_estado_direccion FROM (select * from solicitud_vias_mal_estado) as acci using unique solicitud_via_mal_estado_id SRID=4326"
 		CLASS 
 			STYLE
-				SYMBOL star
-				 SIZE 40
+				SYMBOL via
+				 SIZE 50
 				COLOR 0 34 125
 				OUTLINECOLOR 0 255 0        
 			END
@@ -184,7 +186,7 @@ CONNECTIONTYPE postgis
    DATA "solicitud_senial_nueva_direccion FROM (select * from solicitud_seniales_nuevas) as acci using unique solicitud_senial_nueva_id SRID=4326"
 		CLASS 
 			STYLE
-				SYMBOL tent
+				SYMBOL senialN
 				 SIZE 50
 				COLOR 0 34 125
 				OUTLINECOLOR 0 255 0        
@@ -202,8 +204,8 @@ CONNECTIONTYPE postgis
    DATA "solicitud_senial_mal_estado_direccion FROM (select * from solicitud_seniales_mal_estado) as acci using unique solicitud_senial_mal_estado_id SRID=4326"
 		CLASS 
 			STYLE
-				SYMBOL tent
-				 SIZE 30
+				SYMBOL senialM
+				 SIZE 50
 				COLOR 0 34 125
 				OUTLINECOLOR 0 255 0        
 			END

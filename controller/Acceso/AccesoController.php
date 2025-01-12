@@ -7,6 +7,10 @@ require '../PHPMailer/PHPMailerAutoload.php';
 //  use PHPMailer\PHPMailer\SMTP;
 //  use PHPMailer\PHPMailer\Exception;
 
+//  use PHPMailer\PHPMailer\PHPMailer;
+//  use PHPMailer\PHPMailer\SMTP;
+//  use PHPMailer\PHPMailer\Exception;
+
 
 class AccesoController
 {
