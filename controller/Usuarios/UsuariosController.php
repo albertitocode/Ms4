@@ -67,7 +67,7 @@ class UsuariosController
         $numero3 = $_POST['numero3'];
         $barrio = $_POST['barrio'];
 
-
+        $foto_perfil='../web/assets/img/imagen_usuario.png';
         if (isset($_POST['rol'])) {
 
             $rol = $_POST['rol'];
@@ -118,9 +118,9 @@ class UsuariosController
         // $usu_clave = password_hash($usu_contrasenia, PASSWORD_DEFAULT);
         $sql = "INSERT INTO usuarios (tipo_documento_id, usuario_num_identificacion, usuario_nombre_1,
          usuario_nombre_2, usuario_apellido_1, usuario_apellido_2,usuario_fecha_nacimiento, usuario_contrasenia, usuario_correo,
-          usuario_telefono, usuario_direccion, rol_id, estado_id) VALUES ($tipo_documento, $numero_documento, 
+          usuario_telefono, usuario_direccion, rol_id, estado_id,foto_perfil) VALUES ($tipo_documento, $numero_documento, 
           '$usu_nombre_1', '$usu_nombre_2', '$usu_apellido_1', '$usu_apellido_2','$usu_fecha_nac', '$usu_contrasenia', '$usu_correo',
-           $usu_telefono, '$direccion', $rol, 1)";
+           $usu_telefono, '$direccion', $rol, 1,$foto_perfil)";
         if ($validacion) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -273,12 +273,18 @@ class UsuariosController
 
         $obj = new UsuariosModel();
         // dd($_POST);
-
+        $identificador = $_POST['identificador_update'];
 
 
             $usuario_bd = $_SESSION['usuario_data'][0];
+            if($identificador==1){
 
-            $id = $_SESSION['id_datos'];
+                $id = $_SESSION['id_datos'];
+            }else if($identificador==2){
+                $id = $_SESSION['id'];
+            }
+
+            
             $usu_nombre_1 = $_POST['usuario_nombre_1'];
             $usu_nombre_2 = $_POST['usuario_nombre_2'];
             $usu_apellido_1 = $_POST['usuario_apellido_1'];

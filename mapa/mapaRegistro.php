@@ -191,7 +191,7 @@
 
                 myMap1 = new msMap(document.getElementById("dc_main"), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
-                myMap1.setMapFile('/ms4w/Apache/htdocs/cali1.map');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
                 myMap1.setLayers('Cinco Six One Two');
                 // $map=Mymap1;

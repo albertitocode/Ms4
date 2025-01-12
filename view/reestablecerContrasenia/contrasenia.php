@@ -66,7 +66,7 @@
     <h3 class="display-4">Registrar usuario</h3>
 </div> -->
 
-
+<?php echo $id ?>
 <div class="mt-5">
    
     <form action="<?php echo getUrl2("Acceso", "Acceso", "postContrasenia"); ?>" method="post" id="formContra">
@@ -93,7 +93,7 @@
                                 <input type="text" name="contrasenia_2" id="contrasenia_2" class="form-control" placeholder="Codigo">
                                 <span class="text-danger" id="error_contrasenia_2" ></span>
                             </div>
-                           
+                            <input type="hidden" name="id" id="" class="form-control" value="<?php echo $id; ?>">
                         </div>
                         
                         <div class="mt-5">

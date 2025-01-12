@@ -238,7 +238,7 @@ class AccesoController
           $sql = "SELECT * FROM usuarios WHERE usuario_id=$id";
             var_dump($sql);
             $usuario_acceso = $obj->consult($sql);
-
+            $acceso=$id;
             include_once '../view/reestablecerContrasenia/contrasenia.php';
         }else{
             echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
@@ -261,5 +261,62 @@ class AccesoController
         echo "</body>";
 
         }
+    }
+    public function postContrasenia(){
+        $obj = new AccesoModel();
+
+        $id = $_POST['id'];
+        $contrasenia = $_POST['contrasenia_1'];
+
+        $sql = "SELECT * FROM usuarios WHERE usuario_id=$id";
+        $cambio_clave = pg_fetch_all($obj->consult($sql));
+
+        $sql = "UPDATE usuarios set usuario_contrasenia='$contrasenia' WHERE usuario_id=$id";
+        var_dump($sql);
+        $nueva_contrasenia = $obj->update($sql);
+        if($nueva_contrasenia){
+            foreach($cambio_clave as $clave){
+                $nombre_us = $clave['usuario_nombre_1'];
+            echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
+            
+            echo "<body>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            Swal.fire({
+                title: 'Yess!',
+                text: ' $nombre_us Hemos actualizado tu contraseña, serás redirigido al login para que puedas iniciar sesión ',
+                icon: 'succes',
+                 timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then((result) => {
+                  window.location.href = '" . getUrl2("Acceso", "Acceso", "login") . "';
+                
+            });
+
+        </script>";
+    }
+        echo "</body>";
+        }else{
+            echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
+            
+            echo "<body>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            Swal.fire({
+                title: 'Ups!',
+                text: 'No hemos logrado actualizar tu contraseña, por favor intentalo de nuevo'
+                icon: 'error',
+                 timer: 5000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then((result) => {
+                  window.location.href = '" . getUrl2("Acceso", "Acceso", "obtenerCodigo") . "';
+                
+            });
+        </script>";
+        echo "</body>";
+        }
+        
     }
 }
