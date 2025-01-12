@@ -62,10 +62,14 @@ include_once '../view/partials/scripts.php';
   }
     body {
 
-        /* background-color: #0adb29; */
-        background: url('../web/assets/img/laquinta.jpg') no-repeat;
-        background-size: cover;
-        /* Ajusta la imagen para cubrir todo el fondo */
+        background: linear-gradient(to bottom, #004594, #2c5c93 );
+    display:flex;
+    height: 98vh;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 
     }
 </style>

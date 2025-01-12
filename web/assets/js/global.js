@@ -64,6 +64,9 @@ $(document).ready(function () {
   const camposVia = {
     'danio_id': 'Daño'
   }
+  const campoCorreo = {
+    'correo_usuario' : 'Correo'
+  }
 
   function validarCampoLetras(input) {
     const patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u;
@@ -806,7 +809,6 @@ console.log(contrasenia);
   });
 
 
-
   //filtracion
   $(document).on('keyup', "#buscar", function () {
     let buscar = $(this).val();
@@ -1100,6 +1102,47 @@ console.log(contrasenia);
 
   });
 
+$(document).on('input', '#formCorreoRecu', function (event) {
+  event.preventDefault();
+  var formData = $('#formCorreoRecu').serializeArray();
+  let esValido = true;
+  var correo = document.getElementById('correo_usuario');
+
+  // Limpiar los mensajes de error antes de comenzar la validación
+  Object.keys(campoCorreo).forEach(campCorreo => {
+    const error = `error_${campCorreo}`;
+    document.getElementById(error).textContent = ""; // Limpia los errores
+  });
+
+  // Validación de los campos
+  formData.forEach(function (campoData) {
+    const { name, value } = campoData;
+    const error = `error_${name}`;
+    const valor = campoCorreo[name];
+
+    // Validar campos vacíos
+    if (value.trim() === '') {
+      if (campoCorreo[name]) {
+
+        document.getElementById(error).textContent = `*El campo ${valor} es obligatorio*`;
+        esValido = false;
+      }
+    }else if(!validarCorreo(campoCorreo[name])){
+      document.getElementById(error).textContent = `*Por favor ingrese un ${valor} válido*`;
+       esValido = false;
+    }else{
+      esValido = true;
+    }
+  });
+
+  const submitButton = document.getElementById('btnEnviarCorreo');
+  if (esValido) {
+    console.log('Formulario válido');
+    submitButton.disabled = false;
+  } else {
+    console.log('Formulario no válido');
+    submitButton.disabled = true;
+  }
 });
 
-
+});

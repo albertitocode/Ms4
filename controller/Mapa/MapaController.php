@@ -4,13 +4,19 @@ include_once '../model/Mapa/MapaModel.php';
 class MapaController
 {
 
-    public function abrirMapa()
+    public function abrirMapaPuntos()
     {
         $obj = new MapaModel();
         include_once '../mapa/maqueta4.php';
     }
 
-    public function Maparegistro()
+    public function abrirMapaAccidentes()
+    {
+        $obj = new MapaModel();
+        include_once '../mapa/maquetaAccidentes.php';
+    }
+
+    public function mapaRegistro()
     {
         $obj = new MapaModel();
 

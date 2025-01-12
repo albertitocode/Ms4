@@ -53,31 +53,31 @@ class SolicitudController
         include_once '../view/solicitudes/consultar.php';
     }
 
-    public function obtenerSolicitudes()
-    {
-        $obj = new SolicitudModel();
+    // public function obtenerSolicitudes()
+    // {
+    //     $obj = new SolicitudModel();
 
-        $id_solicitud = $_POST['id_solicitud'];
+    //     $id_solicitud = $_POST['id_solicitud'];
 
-        if ($id_solicitud == 1) {
-            // include_once '../view/solicitudSenal/malEstado/create.php';
-            redirect(getUrl("Solicitud", "Solicitud", "getSenialMalEstado"));
-        } else if ($id_solicitud == 2) {
-            // include_once '../view/solicitudVial/create.php';
-            redirect(getUrl("Solicitud", "Solicitud", "getVias"));
-        } else if ($id_solicitud == 4) {
-            redirect(getUrl("Solicitud", "Solicitud", "getAccidentes"));
-        } else if ($id_solicitud == 5) {
-            redirect(getUrl("Solicitud", "Solicitud", "getSenialNueva"));
-        } else if ($id_solicitud == 3) {
-            redirect(getUrl("Solicitud", "Solicitud", "getReductorMalEstado"));
-        } else if ($id_solicitud == 6) {
-            redirect(getUrl("Solicitud", "Solicitud", "getReductorNuevo"));
-        }
+    //     if ($id_solicitud == 1) {
+    //         // include_once '../view/solicitudSenal/malEstado/create.php';
+    //         redirect(getUrl("Solicitud", "Solicitud", "getSenialMalEstado"));
+    //     } else if ($id_solicitud == 2) {
+    //         // include_once '../view/solicitudVial/create.php';
+    //         redirect(getUrl("Solicitud", "Solicitud", "getVias"));
+    //     } else if ($id_solicitud == 4) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getAccidentes"));
+    //     } else if ($id_solicitud == 5) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getSenialNueva"));
+    //     } else if ($id_solicitud == 3) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getReductorMalEstado"));
+    //     } else if ($id_solicitud == 6) {
+    //         redirect(getUrl("Solicitud", "Solicitud", "getReductorNuevo"));
+    //     }
 
 
 
-    }
+    // }
 
     //Empieza señales
     //Empieza señales nuevas
@@ -208,6 +208,8 @@ class SolicitudController
     //Termina señales nuevas
 
     //Empieza Señal en mal estado
+
+
     public function getSenialMalEstado()
     {
 
@@ -696,7 +698,11 @@ class SolicitudController
             }
 
         }
-        $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion','$direccion','$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+        $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,
+        solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,
+        solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion',
+        '$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4,
+        ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
@@ -1403,18 +1409,18 @@ class SolicitudController
 
 
     }
-    public function statusUpdate()
-    {
-        $obj = new SolicitudModel();
-        $id_userRol = $_SESSION['rol'];
-        $sql = "SELECT * FROM roles WHERE rol_id=$id_userRol";
-        $roles = pg_fetch_all($obj->consult($sql));
+    // public function statusUpdate()
+    // {
+    //     $obj = new SolicitudModel();
+    //     $id_userRol = $_SESSION['rol'];
+    //     $sql = "SELECT * FROM roles WHERE rol_id=$id_userRol";
+    //     $roles = pg_fetch_all($obj->consult($sql));
 
-        foreach ($roles as $rol) {
-            $rol_nombre = $rol['rol_nombre'];
-        }
+    //     foreach ($roles as $rol) {
+    //         $rol_nombre = $rol['rol_nombre'];
+    //     }
 
 
-    }
+    // }
 }
 ?>

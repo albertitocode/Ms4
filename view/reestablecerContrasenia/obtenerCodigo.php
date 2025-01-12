@@ -1,3 +1,10 @@
+<?php
+include_once '../lib/helphers.php';
+include_once '../view/partials/scripts.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +22,8 @@
 
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../web/assets/js/global.js"></script>
     <script>
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -85,7 +94,7 @@ body {
     }
 
     ?>
-    <form action="<?php echo getUrl2("Acceso", "Acceso", "postObtenerCodigo"); ?>" method="post" id="form87">
+    <form action="<?php echo getUrl2("Acceso", "Acceso", "postObtenerCodigo"); ?>" method="post" id="formCorreoRecu">
         <!-- <div class="page-header">
             <h3 class="fw-bold mb-3">Registrate</h3>
         </div> -->
@@ -107,7 +116,8 @@ body {
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">
                                 <label for="correo_usuario">Digite aqui tu correo</label>
-                                <input type="text" name="correo_usuario" id="" class="form-control" placeholder="Correo">
+                                <input type="text" name="correo_usuario" id="correo_usuario" class="form-control" placeholder="Correo">
+                                <span class="text-danger" id="error_correo_usuario"></span>
 
                             </div>
                            
@@ -115,7 +125,7 @@ body {
                         </div>
                         
                         <div class="mt-5">
-                            <input type="submit" value="Enviar" class="btn btn-success">
+                            <input type="submit" id="btnEnviarCorreo" value="Enviar" class="btn btn-success" disabled>
                         </div>
                     </div>
                     </div>

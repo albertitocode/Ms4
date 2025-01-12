@@ -1,4 +1,77 @@
 <style type="text/css">
+    .mscross
+{
+  border: 1px solid #7ea3bf;
+  /* color: #000000; */
+}
+
+.mscross_report_title
+{
+  color: #000000;
+}
+
+.mscross_report_attr_name
+{
+  color: #000000;
+  font-weight: normal;
+}
+
+.mscross_report_attr_value
+{
+  color: #115aa4;
+  font-weight: bold;
+}
+
+.mscross_reference_zoombox
+{
+  color: #115aa4;
+  background: #000000;
+  font-weight: bold;
+  border: 1px solid #000000;
+}
+
+
+
+.maintable
+{
+  border: 1px solid #7ea3bf; /* maintable */
+}
+
+
+a#francobollo
+{
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 80px;
+  width: 80px;
+  /* background: url(logo_sm_144x35.jpg) top left no-repeat; */
+  text-indent: -999em;
+  text-decoration: none;
+  z-index: 100;
+}
+
+
+
+TD A:hover {
+    BACKGROUND-COLOR: #ffffcc;
+           }
+
+LAYER {
+    BORDER-RIGHT: #008080 thin inset;
+    BORDER-TOP: #008080 thin inset;
+    FONT-SIZE: 11px;
+    PADDING-BOTTOM: 5px;
+    BORDER-LEFT: #33aaaa thin inset;
+    PADDING-TOP: 5px;
+    BORDER-BOTTOM: #33aaaa thin inset;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    WHITE-SPACE: nowrap;
+    BACKGROUND-COLOR: #ff9999;
+    FONT-VARIANT: normal}
+
     #layer1 {
         position: absolute;
         width: 562px;
@@ -200,8 +273,8 @@
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
-                myMap2.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
+                myMap1.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
                 myMap1.setReferenceMap(myMap2);
 
 
@@ -209,10 +282,7 @@
                 myMap2.redraw();
 
 
-                var infola = new msTool('crear punto', infolay, 'misc/img/seleccionar.png', investiguen);
-                myMap1.getToolbar(0).addMapTool(infola);
-
-                var consult = new msTool('Consultar info', consulta, 'misc/img/consultar.png', queryMap);
+                var consult = new msTool('Consultar info', consulta, '../mapa/misc/img/consultar.png', queryMap);
                 myMap1.getToolbar(0).addMapTool(consult);
 
                 chgLayers();
@@ -256,44 +326,7 @@
                     }
                 }
 
-                function investiguen(event, map, x, y, xx, yy) {
-                    if (seleccionado) {
-                        alert("Click sobre las coordenadas : x " + x + "y: " + y + "y reales : x" + xx +
-                            "y: " + yy);
-                        //document.getElementById("boton1").click();
-
-                        consultar1 = new objectoAjax();
-
-                        //    function enviar() {
-                        //          x;
-                        //          y;
-                        //          xx;
-                        //          yy;
-                        //     
-
-                        //    }
-
-
-                        //    
-
-                        consultar1.open("GET", "datosMapa.php?x=" + xx + "&y=" + yy, true);
-
-                        consultar1.onreadystatechange = function() {
-                            if (consultar1.readyState == 4) {
-                                var result = consultar1.responseText;
-                                alert(result); //resultado de consulta
-                                window.location.href = "datosMapa.php?x=" + xx + "&y=" + yy;
-                            }
-
-                        }
-                        consultar1.send(null);
-                        seleccionado = false;
-                        map.getTagMap().style.cursor = "default";
-                    }
-
-
-
-                }
+                
                 var select = false;
 
                 function consulta(e, map) {
@@ -308,7 +341,7 @@
                         // Envía una solicitud AJAX al servidor para obtener los datos.
                         consultar2 = new objectoAjax();
 
-                        consultar2.open("GET", "procesar.php?xx=" + xx + "&yy=" + yy, true);
+                        consultar2.open("GET", "../mapa/procesar.php?xx=" + xx + "&yy=" + yy, true);
 
                         consultar2.onreadystatechange = function() {
                             if (consultar2.readyState == 4) {

@@ -85,10 +85,8 @@ body {
     }
 
     ?>
-    <form action="<?php echo getUrl2("Acceso", "Acceso", "postEnviarCodigo",); ?>" method="post" id="formlario">
-        <!-- <div class="page-header">
-            <h3 class="fw-bold mb-3">Registrate</h3>
-        </div> -->
+    <form action="<?php echo getUrl2("Acceso", "Acceso", "postEnviarCodigo"); ?>" method="post" id="formlario">
+     
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card align-items-center">
@@ -98,11 +96,7 @@ body {
                         </div>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="col-md-4">
-            <label for="usu_id">Id</label>
-            <input type="text" name="usu_id" class="form-control" placeholder="Id">
-            
-        </div> -->
+          
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">

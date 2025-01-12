@@ -15,7 +15,7 @@
 // Old code
 //Object.prototype.objRef = null;
 
-var pixel_img = new Image(); pixel_img.src = 'misc/img/pixel.gif';
+var pixel_img = new Image(); pixel_img.src = '../mapa/misc/img/pixel.gif';
 var browser = new Browser();
 var dragObj = new Object();
 dragObj.zIndex = 0;
@@ -76,7 +76,7 @@ function msMap(DivTag, ControlType, p_protocol)
   var _toolbars = new Array(); // Array of toolbars
   this.getToolbar = function(p){return _toolbars[p];}
   //var _iconLoading = 'img/button_loading.png';
-  var _iconLoading = 'misc/img/cargando.gif';
+  var _iconLoading = '../mapa/misc/img/cargando.gif';
 
   // WMS.GetMap protocol specific
   var _wms_imageformat = 'image/png';
@@ -1886,11 +1886,11 @@ function msToolbar(p_msMap, _control, _default)
   var _tagMap = _msMap.getTagMap();
 
   // Toolbar Default Icons...
-  var _iconFullExtentButton = 'misc/img/alpha_button_fullExtent.png';
-  var _iconZoomboxButton    = 'misc/img/alpha_button_zoombox.png';
-  var _iconPanButton        = 'misc/img/alpha_button_pan.png';
-  var _iconZoominButton     = 'misc/img/alpha_button_zoomIn.png';
-  var _iconZoomoutButton    = 'misc/img/alpha_button_zoomOut.png';
+  var _iconFullExtentButton = '../mapa/misc/img/alpha_button_fullExtent.png';
+  var _iconZoomboxButton    = '../mapa/misc/img/alpha_button_zoombox.png';
+  var _iconPanButton        = '../mapa/misc/img/alpha_button_pan.png';
+  var _iconZoominButton     = '../mapa/misc/img/alpha_button_zoomIn.png';
+  var _iconZoomoutButton    = '../mapa/misc/img/alpha_button_zoomOut.png';
 
 
   this.getTag = function(){return _tagToolbar;}

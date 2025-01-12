@@ -103,8 +103,8 @@
         </li>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#sidebarLayouts">
-            <i class="fas fa-moon"></i>
-            <p>Pruebas</p>
+            <i class="fas fa-comment"></i>
+            <p>PQRS</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="sidebarLayouts">
@@ -122,7 +122,7 @@
             </ul>
           </div>
         </li>
-        <!-- <li class="nav-item">
+        <!-- <!-- <li class="nav-item">
           <a data-bs-toggle="collapse" href="#forms">
             <i class="fas fa-pen-square"></i>
             <p>Forms</p>
@@ -148,7 +148,7 @@
           <div class="collapse" id="maps">
             <ul class="nav nav-collapse">
               <li>
-              <a href="<?php echo getUrl("Mapa", "Mapa", "abrirMapa")?>">
+              <a href="<?php echo getUrl("Mapa", "Mapa", "abrirMapaAccidentes")?>">
               <span class="sub-item">Google Maps</span>
                 </a>
               </li>
