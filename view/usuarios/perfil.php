@@ -18,7 +18,7 @@
     }
 
     ?>
-    <form action="<?php echo getUrl("Usuarios", "Usuarios", "postUpdateUsuarios"); ?>" method="post" id="form1">
+    <form action="<?php echo getUrl("Usuarios", "Usuarios", "postUpdateUsuarios"); ?>" method="post" id="formUsu">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Mi perfil</h3>
             <ul class="breadcrumbs mb-3">
@@ -86,9 +86,10 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="usuario_nombre_2">Segundo nombre</label>
-                                                <input type="text" name="usuario_nombre_2" id="" class="form-control"
+                                                <input type="text" name="usuario_nombre_2" id="usuario_nombre_2" class="form-control"
                                                     value="<?= $_SESSION['segundo nombre'] ?>">
-
+                                                    <span class="small-text text-danger"
+                                                    id="error_usuario_nombre_2" ></span>
                                             </div>
 
                                            
@@ -96,6 +97,8 @@
                                                 <label for="usuario_correo">correo</label>
                                                 <input type="text" name="usuario_correo" id="" class="form-control"
                                                     value="<?= $_SESSION['correo'] ?>">
+                                                    <span class="small-text text-danger"
+                                                        id="error_usuario_correo"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -113,6 +116,7 @@
                                                     }
                                                     ?>
                                                 </select>
+                                                <span class="small-text text-danger" id="error_tipo_documento_id"></span>
                                             </div>
                                           
                                             <div class="form-group">
@@ -126,11 +130,13 @@
                                                 <label for="usuario_contrasenia">Contraseña</label>
                                                 <input type="password" name="usuario_contrasenia" id=""
                                                     class="form-control" placeholder="<?= $_SESSION['contrasenia'] ?>">
+                                                    <span class="small-text text-danger" id="error_usuario_contrasenia"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="usuario_telefono">Telefono</label>
                                                 <input type="text" name="usuario_telefono" id="" class="form-control"
                                                     value="<?= $_SESSION['telefono'] ?>">
+                                                    <span class="small-text text-danger" id="error_usuario_telefono"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +160,7 @@
                                             <div class="form-group">
                                                 <label for="usuario_direccion">Direccion </label>
                                                 <input type="text" name="usuario_direccion" id="" class="form-control"
-                                                    value="<?= $_SESSION['direccion'] ?>">
+                                                    value="<?= $_SESSION['direccion'] ?>" readonly>
                                             </div>
                                            
                                           
@@ -165,6 +171,7 @@
                                                     value="<?= $_SESSION['rol'] ?>" readonly>
 
                                             </div>
+                                            <input type="hidden"  name="identificador_update" value="2">
                                         </div>
                                     </div>
 
@@ -176,7 +183,7 @@
                             </div>
                         </div>
                         <div class="mt-3 text-center">
-                                    <button type="submit" class="btn btn-success">Enviar</button>
+                                    <input type="submit" id="btnSubmit" class="btn btn-success" value="Enviar">
                                 </div>
 
                     </div>

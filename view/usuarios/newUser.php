@@ -62,7 +62,7 @@ include_once '../view/partials/scripts.php';
   }
     body {
 
-        background: linear-gradient(to bottom, #004594, #2c5c93 );
+    background: linear-gradient(to bottom, #004594, #2c5c93 );
     display:flex;
     height: 98vh;
     width: 100%;

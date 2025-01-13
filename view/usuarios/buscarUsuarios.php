@@ -92,5 +92,5 @@
         <input type="submit" value="Enviar" class="btn btn-success" name="enviar">
 
     </div>
-
+                <input type="hidden"  name="identificador_update" value="1">
 <?php } ?>

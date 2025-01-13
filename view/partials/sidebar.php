@@ -122,22 +122,6 @@
             </ul>
           </div>
         </li>
-        <!-- <!-- <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#forms">
-            <i class="fas fa-pen-square"></i>
-            <p>Forms</p>
-            <span class="caret"></span>
-          </a>
-          <div class="collapse" id="forms">
-            <ul class="nav nav-collapse">
-              <li>
-                <a href="forms/forms.html">
-                  <span class="sub-item">Basic Form</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li> -->
 
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#maps">
@@ -180,7 +164,7 @@
               </li>
             </ul>
           </div>
-        </li>
+        </li> 
         <!-- <li class="nav-item">
           <a href="widgets.html">
             <i class="fas fa-user-plus"></i>

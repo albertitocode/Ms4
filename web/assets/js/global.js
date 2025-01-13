@@ -1102,40 +1102,105 @@ console.log(contrasenia);
 
   });
 
-$(document).on('input', '#formCorreoRecu', function (event) {
-  event.preventDefault();
-  var formData = $('#formCorreoRecu').serializeArray();
+$(document).on('input', '#formCorreoRecu input', function () {
+  
   let esValido = true;
-  var correo = document.getElementById('correo_usuario');
+  var correo = document.getElementById('correo_usuario').value;
+  
+  // console.log(correo);
+  
+  document.getElementById('error_correo_usuario').textContent = '';
 
-  // Limpiar los mensajes de error antes de comenzar la validación
-  Object.keys(campoCorreo).forEach(campCorreo => {
-    const error = `error_${campCorreo}`;
-    document.getElementById(error).textContent = ""; // Limpia los errores
-  });
-
-  // Validación de los campos
-  formData.forEach(function (campoData) {
-    const { name, value } = campoData;
-    const error = `error_${name}`;
-    const valor = campoCorreo[name];
-
-    // Validar campos vacíos
-    if (value.trim() === '') {
-      if (campoCorreo[name]) {
-
-        document.getElementById(error).textContent = `*El campo ${valor} es obligatorio*`;
+    if (correo === '') {
+        document.getElementById('error_correo_usuario').textContent = `*El campo Correo es obligatorio*`;
         esValido = false;
-      }
-    }else if(!validarCorreo(campoCorreo[name])){
-      document.getElementById(error).textContent = `*Por favor ingrese un ${valor} válido*`;
+      
+    }else if(!validarCorreo(correo)){      
+      document.getElementById('error_correo_usuario').textContent = `*Por favor ingrese un Correo válido*`;
        esValido = false;
-    }else{
-      esValido = true;
     }
-  });
 
   const submitButton = document.getElementById('btnEnviarCorreo');
+  if (esValido) {
+    console.log('Formulario válido');
+    submitButton.disabled = false;
+  } else {
+    console.log('Formulario no válido');
+    submitButton.disabled = true;
+  }
+});
+function validarContrasenias(input,contrasenia_id) {
+  const errores = [];
+  const longitudMinima = 8;
+  const tieneMinuscula = /[a-zñ]/.test(input);
+  const tieneMayuscula = /[A-ZÑ]/.test(input);
+  const tieneNumero = /[0-9]/.test(input);
+  const tieneEspecial = /[!@#$%^&*()_+.\-]/.test(input);
+  let valido = true;
+
+  if (input.length < longitudMinima) {
+    errores.push("al menos 8 caracteres");
+    valido = false;
+
+  }
+  if (!tieneMinuscula) {
+    errores.push("una letra minúscula");
+    valido = false;
+
+  }
+  if (!tieneMayuscula) {
+    errores.push("una letra mayúscula");
+    valido = false;
+
+  }
+  if (!tieneNumero) {
+    errores.push("un número");
+    valido = false;
+
+  }
+  if (!tieneEspecial) {
+    errores.push("un carácter especial");
+    valido = false;
+
+  }
+
+  if (errores.length > 0) {
+    document.getElementById(contrasenia_id).textContent = `*La contraseña debe contener al menos: ${errores.join(', ')}.*`;
+    valido = false;
+
+  }
+  return valido;
+}
+$(document).on('input', '#formContra input', function () {
+  
+  let esValido = true;
+  var contrasenia_1 = document.getElementById('contrasenia_1').value;
+  var contrasenia_2 = document.getElementById('contrasenia_2').value;
+  // var contrasenias = array (
+    
+  // )
+  console.log(contrasenia_1);
+  
+  document.getElementById('error_contrasenia_1').textContent = '';
+  document.getElementById('error_contrasenia_2').textContent = '';
+  
+  error_1 = 'error_contrasenia_1'; 
+  error_2 = 'error_contrasenia_2';
+ 
+    if (contrasenia_1 === '') {
+        document.getElementById('error_contrasenia_1').textContent = `*Este campo es obligatorio*`;
+        esValido = false;
+      
+    }else if(!validarContrasenias(contrasenia_1,error_1)){      
+       esValido = false;
+    }else if(!validarContrasenias(contrasenia_2,error_2)){
+      esValido = false;
+    }else if(contrasenia_1 !== contrasenia_2){
+      document.getElementById('error_contrasenia_2').textContent = `*Las contraseñas deben ser iguales*`;
+      esValido = false;
+    }
+
+  const submitButton = document.getElementById('btnContrasenia');
   if (esValido) {
     console.log('Formulario válido');
     submitButton.disabled = false;

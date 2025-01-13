@@ -1,15 +1,15 @@
-<?php
-include_once '../lib/helphers.php';
-include_once '../view/partials/scripts.php';
+
+ <!-- include_once '../lib/helphers.php';
+ include_once '../view/partials/scripts.php'; -->
 
 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Tura visor</title>
+    <title>GEOCALI</title>
     <meta
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
@@ -19,7 +19,7 @@ include_once '../view/partials/scripts.php';
       href="assets/img/kaiadmin/favicon.ico"
       type="image/x-icon"
     />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -46,7 +46,7 @@ include_once '../view/partials/scripts.php';
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/plugins.min.css" />
     <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
-    
+    <link rel="stylesheet" href="assets/css/estilos.css" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="assets/css/demo.css" />
 
@@ -60,14 +60,6 @@ include_once '../view/partials/scripts.php';
 
   </head>
   <style>
-
-body {
-    
-    /* background-color: #0adb29; */
-    background: url('../web/assets/img/laquinta.jpg') no-repeat;
-    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
-    
-}
 .card{
     margin-top: 20%;
     flex-direction: column;
@@ -115,7 +107,7 @@ body {
                     <div class="row">
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">
-                                <label for="correo_usuario">Digite aqui tu correo</label>
+                                <label for="correo_usuario">Digite aqui su correo</label>
                                 <input type="text" name="correo_usuario" id="correo_usuario" class="form-control" placeholder="Correo">
                                 <span class="text-danger" id="error_correo_usuario"></span>
 
@@ -134,6 +126,7 @@ body {
         </div>
     </form>
 </div>
+
 </body>
 </html>
 
