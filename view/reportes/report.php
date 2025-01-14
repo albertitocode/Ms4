@@ -6,7 +6,8 @@
 <div class="mt-5">
 
 
-    <form action="<?php echo getUrl("Reportes", "Reportes", "postReporteAcci"); ?>" method="post">
+    <form action="<?php echo getUrl("Reportes", "Reportes", "postReporte"); ?>" method="post"
+        id="formReductorM">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Reporte</h3>
             <ul class="breadcrumbs mb-3">
@@ -43,35 +44,7 @@
 
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label for="">Tipo de diagrama</label>
-                                    <select name="diagrama" id="diagrama" class="form-control">
-                                        <option value="">Seleccione categoria...</option>
-                                        <option value="bar">Barra</option>
-                                        <option value="pie">Circular</option>
-                                        <option value="line">Lineal</option>
-                                    </select>
-
-                                </div>
-                             
-                               
-
-                            </div>
-
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <label for="startDate">Tipo de reporte</label>
-                                    <select name="tipo_reporte" id="tipo_reporte" class="form-control">
-                                    <option value="">Seleccione el tipo de reporte</option>
-                                        <option value="estado">Filtración por estado</option>
-                                        <option value="tipo_choque">Filtración por tipo de choque</option>
-                                        </select>
-                                </div>
-                             
-
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                            <div class="form-group">
-                                    <label for="categoria_reductor_id">Tipo de reporte</label>
+                                    <label for="categoria_reductor_id">Tipo de solicitud</label>
                                     <select name="categoria_reductor_id" id="categoria_reductor_id" class="form-control">
                                         <option value="">Seleccione el tipo de solicitud...</option>
                                         <?php
@@ -79,6 +52,39 @@
                                         echo "<option  value='" . $tipo_s['tipo_solicitud_id'] . "'>" . $tipo_s['tipo_solicitud_nombre'] . "</option>";
                                     }
                                     ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tipo de diagrama</label>
+                                    <select name="diagrama" id="diagrama" class="form-control">
+                                        <option value="">Seleccione categoria...</option>
+                                        <option value="barra">Barra</option>
+                                        <option value="circ">Circ</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="startDate">Fecha de Inicio:</label>
+                                    <input type="date" id="fecha_inicio" class="form-control" min="01-01-2025">
+                                </div>
+                                <div class="form-group">
+                                    <label for="endDate">Fecha de Fin:</label>
+                                    <input type="date" id="fecha_fin" class="form-control">
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <label for="">Reporte</label>
+                                    <select name="reporte" id="reporte" class="form-control">
+                                        <option value="">Seleccione el tipo de reporte...</option>
+                                        <option value="estado">Estado de las Solicitudes</option>
+                                        <option value="">Total de solicitudes por cada tipo</option>
+                                        <option value=""></option>
                                     </select>
                                 </div>
                             </div>

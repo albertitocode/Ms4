@@ -133,9 +133,9 @@ $(document).ready(function () {
   }
   function loadColor() {
     // Verifica el modo guardado en localStorage
-    const darkMode = localStorage.getItem('dark-mode');
+    const mode = localStorage.getItem('modo');
 
-    if (darkMode === 'enabled') {
+    if (mode === 'oscuro') {
       const sidebar_color = document.querySelector('.sidebar');
       const header_logo_color = document.querySelector('.logo-header');
       const main_header_color = document.querySelector('.main-header');
@@ -144,6 +144,7 @@ $(document).ready(function () {
       const userName = document.querySelector('.profile-username');
       const sidebarText = document.querySelector('.sub-item');
       const userBox = document.querySelector('.dropdown-user-scroll scrollbar-outer');
+      
       document.body.classList.add('dark');
       sidebar_color.classList.add('dark');
       header_logo_color.classList.add('dark');
@@ -154,6 +155,7 @@ $(document).ready(function () {
       userBox.classList.add('dark');
       sidebarText.classList.add('dark');
       document.getElementById('toggleButton').textContent = 'Cambiar a Modo Claro';
+      document.querySelector("#dl-icon").setAttribute("class", "bi bi-sun-fill");
     } else {
       document.body.classList.remove('dark');
       document.getElementById('toggleButton').textContent = 'Cambiar a Modo Oscuro';
@@ -178,12 +180,14 @@ $(document).ready(function () {
       card_color.classList.toggle('dark');
       userName.classList.toggle('dark');
       userBox.classList.toggle('dark');
+      
       // Actualiza el texto del botón
       if (document.body.classList.contains('dark') && header_logo_color.classList.contains('dark') && sidebar_color.classList.contains('dark') && main_header_color.classList.contains('dark')) {
-        localStorage.setItem('dark-mode', 'enabled');
+        localStorage.setItem('modo', 'oscuro');
         this.textContent = 'Cambiar a Modo Claro';
+        
       } else {
-        localStorage.setItem('dark-mode', 'disabled');
+        localStorage.setItem('modo', 'claro');
         this.textContent = 'Cambiar a Modo Oscuro';
       }
     });

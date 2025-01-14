@@ -67,7 +67,7 @@ if ($_SESSION['rol']==3){
 
 
 ?>
-
+<script src="../web/assets/js/global.js"></script>
 <div id="carouselExampleIndicators" class="carousel slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -92,6 +92,7 @@ if ($_SESSION['rol']==3){
 
  <?php }else{ ?> 
 <div class="container">
+  
   <div class="page-inner">
     <div
       class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">

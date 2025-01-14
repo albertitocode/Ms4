@@ -44,18 +44,11 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="col-md-4">
-            <label for="usu_id">Id</label>
-            <input type="text" name="usu_id" class="form-control" placeholder="Id">
-            
-        </div> -->
+  
                         <div class="col-md-3 mt-4">
-                            <!-- <label for="">Id</label>
-                            <input type="text" name="id_solicitud" id="id_solicitud" class="form-control"
-                                placeholder="Buscar por tipo de solcitud" data-url='
-                         -->
+                    
                         <label for="">Tipo de solicitud</label>
-                                <select name="id_reporte" id="id_reporte" class="form-select" data-url='<?php echo getUrl("Reportes", "Reportes", "selectReporte", false, "ajax");?>'>
+                                <select name="id_reporte" id="id_reporte" class="form-select" data-url='<?php echo getUrl("Reportes", "Reportes", "postReporteAcci", false, "ajax");?>'>
                                     <option value="">Seleccione...</option>
                                     <?php
                                     foreach ($tipo_solicitudes as $tipo_s) {

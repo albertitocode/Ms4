@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 
-<div class="sidebar " onload='loadColor();'>
+<div class="sidebar" onload="loadColor();">
   <div class="sidebar-logo">
     <!-- Logo Header -->
     <div class="logo-header" onload="loadColor();">
@@ -154,12 +154,12 @@
             <ul class="nav nav-collapse">
               <li>
                 <a href="<?php echo getUrl("Reportes","Reportes","getReporte") ?>">
-                  <span class="sub-item">Crear reporte</span>
+                  <span class="sub-item">Reportes generales</span>
                 </a>
               </li>
               <li>
-                <a href="charts/sparkline.html">
-                  <span class="sub-item">Sparkline</span>
+              <a href="<?php echo getUrl("Reportes","Reportes","getReporte") ?>">
+                  <span class="sub-item">Reportes personalizados</span>
                 </a>
               </li>
             </ul>
