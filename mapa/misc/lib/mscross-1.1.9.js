@@ -1951,19 +1951,19 @@ function msToolbar(p_msMap, _control, _default)
   box.style.border     = '0px';
   box.style.margin     = '0px';
   box.style.padding    = '0px';
-  box.style.background = '#404040';
+  box.style.background = '#c39ff3';
   box.style.lineHeight = '0';
-  box.style.opacity    = '0.20';               // Gecko
+  box.style.opacity    = '0.80';               // Gecko
   box.style.filter     = 'alpha(opacity=20)';  // Windows
   _tagToolbar.appendChild(box);
 
   if (_default == true)
   {
-    var t_fullext = new msTool('Full Extent', _msMap.fullExtent, _iconFullExtentButton);
-    var t_pan     = new msTool('Pan', _msMap.setActionPan, _iconPanButton, function(e, map, x, y){map.dragStart(e);});
-    var t_zoom    = new msTool('Zoom', _msMap.setActionZoombox, _iconZoomboxButton, function(e, map, x, y){map.zoomStart(e);});
-    var t_zoomin  = new msTool('Zoom In', _msMap.setActionZoomIn, _iconZoominButton);
-    var t_zoomout = new msTool('Zoom Out', _msMap.setActionZoomOut, _iconZoomoutButton);
+    var t_fullext = new msTool('Mostrar Cali', _msMap.fullExtent, _iconFullExtentButton);
+    var t_pan     = new msTool('Mover mapa', _msMap.setActionPan, _iconPanButton, function(e, map, x, y){map.dragStart(e);});
+    var t_zoom    = new msTool('Seleccione area a acercar', _msMap.setActionZoombox, _iconZoomboxButton, function(e, map, x, y){map.zoomStart(e);});
+    var t_zoomin  = new msTool('Acerque', _msMap.setActionZoomIn, _iconZoominButton);
+    var t_zoomout = new msTool('Aleje', _msMap.setActionZoomOut, _iconZoomoutButton);
     this.addMapTool(t_fullext);
     this.addMapTool(t_pan);
     this.addMapTool(t_zoom);

@@ -1,76 +1,71 @@
 <style type="text/css">
-    .mscross
-{
-  border: 1px solid #7ea3bf;
-  /* color: #000000; */
-}
+    .mscross {
+        border: 1px solid #7ea3bf;
+        /* color: #000000; */
+    }
 
-.mscross_report_title
-{
-  color: #000000;
-}
+    .mscross_report_title {
+        color: #000000;
+    }
 
-.mscross_report_attr_name
-{
-  color: #000000;
-  font-weight: normal;
-}
+    .mscross_report_attr_name {
+        color: #000000;
+        font-weight: normal;
+    }
 
-.mscross_report_attr_value
-{
-  color: #115aa4;
-  font-weight: bold;
-}
+    .mscross_report_attr_value {
+        color: #115aa4;
+        font-weight: bold;
+    }
 
-.mscross_reference_zoombox
-{
-  color: #115aa4;
-  background: #000000;
-  font-weight: bold;
-  border: 1px solid #000000;
-}
+    .mscross_reference_zoombox {
+        color: #115aa4;
+        background: #000000;
+        font-weight: bold;
+        border: 1px solid #000000;
+    }
 
 
 
-.maintable
-{
-  border: 1px solid #7ea3bf; /* maintable */
-}
+    .maintable {
+        border: 1px solidrgb(181, 171, 24);
+        /* maintable */
+    }
 
 
-a#francobollo
-{
-  position: fixed;
-  left: 0;
-  top: 0;
-  display: block;
-  height: 80px;
-  width: 80px;
-  /* background: url(logo_sm_144x35.jpg) top left no-repeat; */
-  text-indent: -999em;
-  text-decoration: none;
-  z-index: 100;
-}
+    a#francobollo {
+        position: fixed;
+        left: 0;
+        top: 0;
+        display: block;
+        height: 80px;
+        width: 80px;
+        /* background: url(logo_sm_144x35.jpg) top left no-repeat; */
+        text-indent: -999em;
+        text-decoration: none;
+        z-index: 100;
+    }
 
 
 
-TD A:hover {
-    BACKGROUND-COLOR: #ffffcc;
-           }
+    TD A:hover {
+        BACKGROUND-COLOR: #ffffcc;
+    }
 
-LAYER {
-    BORDER-RIGHT: #008080 thin inset;
-    BORDER-TOP: #008080 thin inset;
-    FONT-SIZE: 11px;
-    PADDING-BOTTOM: 5px;
-    BORDER-LEFT: #33aaaa thin inset;
-    PADDING-TOP: 5px;
-    BORDER-BOTTOM: #33aaaa thin inset;
-    FONT-STYLE: normal;
-    FONT-FAMILY: Arial, Helvetica, sans-serif;
-    WHITE-SPACE: nowrap;
-    BACKGROUND-COLOR: #ff9999;
-    FONT-VARIANT: normal}
+    LAYER {
+        BORDER-RIGHT: #008080 thin inset;
+        BORDER-TOP: #008080 thin inset;
+        FONT-SIZE: 11px;
+        PADDING-BOTTOM: 5px;
+        BORDER-LEFT: #33aaaa thin inset;
+        PADDING-TOP: 5px;
+        BORDER-BOTTOM: #33aaaa thin inset;
+        FONT-STYLE: normal;
+        FONT-FAMILY: Arial, Helvetica, sans-serif;
+        WHITE-SPACE: nowrap;
+        BACKGROUND-COLOR: #ff9999;
+        FONT-VARIANT: normal
+    }
 
     #layer1 {
         position: absolute;
@@ -164,6 +159,16 @@ LAYER {
     .checkbox ul li input[type="checkbox"] {
         opacity: 0;
     }
+
+    .custom-spacing {
+        line-height: 2.9;
+        /* Ajusta el valor según lo necesites */
+    }
+
+    .img {
+        width: 60px;
+        height: 60px;
+    }
 </style>
 
 
@@ -194,7 +199,7 @@ LAYER {
 
 
     <div class="card-header">
-        <h4 class="display-4">Mapa</h4>
+        <h4 class="display-4">Consulte su solicitud en el Mapa</h4>
     </div>
     <div class="card-body">
         <div class="contenedor">
@@ -202,6 +207,50 @@ LAYER {
             <div class="mscross" style="overflow: hidden; width: 500px; height: 400px;
     -moz-user-select: none; position: relative; border-radius: 15px;" id="dc_main">
 
+            </div>
+            <div class="custom-spacing">
+                <span class="d-block ms-2  text-primary" tabindex="0" data-bs-toggle="popover" data-bs-trigger="click"
+                    data-bs-html="true" data-bs-content="Si presionas sobre este icono <img src='../mapa/misc/img/alpha_button_fullExtent.png' alt='Icono Mundo' style='width: 5px; height: 5px;'> 
+                                    <strong>Mostar cali </strong> que se encuentra al lado izquierdo de este mensaje
+                                    se enfocará el mapa de cali automaticamente<br> <a href='<?php echo getUrl("Solicitud", "Solicitud", "getImgCategoriaSenial"); ?>' 
+                                    target='_blank'>Ver más</a>">
+                    <i class="bi bi-info-circle mt-3" style="font-size: 1rem; cursor: pointer;"></i>
+                </span>
+                <span class="d-block ms-2 text-primary" tabindex="0" data-bs-toggle="popover" data-bs-trigger="click"
+                    data-bs-html="true" data-bs-content="Si presionas sobre este icono <img src='../mapa/misc/img/alpha_button_pan.png' alt='Icono Mundo' style='width: 5px; height: 5px;'> 
+                                     <strong>Mover mapa</strong> que se encuentra al lado izquierdo de este mensaje
+                                    podras mover el mapa haciendo click sobre el y arrastrandolo a tu preferencia<br>  <a href='<?php echo getUrl("Solicitud", "Solicitud", "getImgCategoriaSenial"); ?>' 
+                                    target='_blank'>Ver más</a>">
+                    <i class="bi bi-info-circle mt-2" style="font-size: 1rem; cursor: pointer;"></i>
+                </span>
+                <span class="d-block ms-2 text-primary" tabindex="0" data-bs-toggle="popover" data-bs-trigger="click"
+                    data-bs-html="true" data-bs-content="Si presionas sobre este icono <img src='../mapa/misc/img/alpha_button_zoombox.png' alt='Icono Mundo' style='width: 5px; height: 5px;'> 
+                                    <strong>Área a acercar</strong> que se encuentra al lado izquierdo de este mensaje 
+                                    podras seleccionar un área del mapa para acercar<br>  <a href='<?php echo getUrl("Solicitud", "Solicitud", "getImgCategoriaSenial"); ?>' 
+                                    target='_blank'>Ver más</a>">
+                    <i class="bi bi-info-circle mt-2" style="font-size: 1rem; cursor: pointer;"></i>
+                </span>
+                <span class="d-block ms-2 text-primary" tabindex="0" data-bs-toggle="popover" data-bs-trigger="click"
+                    data-bs-html="true" data-bs-content="Si presionas sobre este icono  <img src='../mapa/misc/img/alpha_button_zoomin.png' alt='Icono Mundo' style='width: 5px; height: 5px;'> 
+                                     <strong>Acercar</strong> que se encuentra al lado izquierdo de este mensaje
+                                    el mapa se acercará automaticamente sin moverlo ni presionar sobre el<br>  <a href='<?php echo getUrl("Solicitud", "Solicitud", "getImgCategoriaSenial"); ?>' 
+                                    target='_blank'>Ver más</a>">
+                    <i class="bi bi-info-circle mt-2" style="font-size: 1rem; cursor: pointer;"></i>
+                </span>
+                <span class="d-block ms-2 text-primary" tabindex="0" data-bs-toggle="popover" data-bs-trigger="click"
+                    data-bs-html="true" data-bs-content="Si presionas sobre este icono  <img src='../mapa/misc/img/alpha_button_zoomOut.png' alt='Icono Mundo' style='width: 5px; height: 5px;'> 
+                                    <strong>Alejar</strong> que se encuentra al lado izquierdo de este mensaje
+                                    el mapa se alejara automaticamente sin moverlo ni presionar sobre el<br> <a href='<?php echo getUrl("Solicitud", "Solicitud", "getImgCategoriaSenial"); ?>' 
+                                    target='_blank'>Ver más</a>">
+                    <i class="bi bi-info-circle mt-2" style="font-size: 1rem; cursor: pointer;"></i>
+                </span>
+                <span class="d-block ms-2 text-primary" tabindex="0" data-bs-toggle="popover" data-bs-trigger="click"
+                    data-bs-html="true" data-bs-content="Si presionas sobre este icono  <img src='../mapa/misc/img/consultar.png' alt='Icono Mundo' style='width: 5px; height: 5px;'> 
+                                    <strong>Consultar puntos solicitud</strong> que se encuentra al lado izquierdo de este mensaje 
+                                    podras presionar sobre uno de los simbolos del mapa y consultar información sobre una solicitud<br> <a href='<?php echo getUrl("Solicitud", "Solicitud", "getImgCategoriaSenial"); ?>' 
+                                    target='_blank'>Ver más</a>">
+                    <i class="bi bi-info-circle mt-4" style="font-size: 1rem; cursor: pointer;"></i>
+                </span>
             </div>
 
 
@@ -211,52 +260,117 @@ LAYER {
          position: relative; z-index: 200; border-radius: 15px; margin-left: 15px; " id="dc_main2"> </div>
                 </div>
 
-                <div id="Layer2">
-                    <form name="select_layers" class="checkbox">
-                        <ul>
-                            <!-- <p align="left">
-
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[0]" value="Cinco">
-                                <strong>Cinco</strong>
-                            <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[1]" value="Six">
-                                <strong>Six</strong>
-                            <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[2]" value="One">
-                                <strong>One</strong>     -->
-                            <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[0]" value="Puntos1">
-                                <strong>Puntos</strong>
-
-                            <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[1]" value="Puntos2">
-                                <strong>Puntos 2</strong>
-
-                             <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[2]" value="Puntos3">
-                                <strong>Puntos 3</strong>
-                                <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[3]" value="Puntos4">
-                                <strong>Puntos 4</strong>
-
-                                <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[4]" value="Puntos5">
-                                <strong>Puntos 5</strong>
-
-                                <p align="left">
-                                <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[5]" value="Puntos6">
-                                <strong>Puntos 6</strong>
-                        </ul>
-
-
-
-
-                    </form>
-
-                </div>
+               
 
 
             </div>
+            <div id="Layer2">
+                    <div class="card ms-4">
+                        <div class="card-header">
+                            <div class="card-tittle">
+                                Simbolos del mapa
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img class="img" src="../mapa/misc/symbols/reducN.gif" alt="Nuevo reductor">
+
+                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                                    <span>Solicitud Nuevo reductor</span>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <img class="img" src="../mapa/misc/symbols/senialN.gif" alt="Nuevo reductor">
+                                </div>
+
+                                <div class="col-md-3 mt-3">
+
+                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+                                </div>
+
+                                <div class="col-md-5 mt-3">
+
+                                    <span>Solicitud Nuevo reductor</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img" src="../mapa/misc/symbols/hump.gif" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-5 mt-3">
+                                    <span>Solicitud Nuevo reductor</span>
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img" src="../mapa/misc/symbols/senialM.gif" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-5 mt-3">
+                                    <span>Solicitud Nuevo reductor</span>
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img" src="../mapa/misc/symbols/reducM.gif" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-5 mt-3">
+                                    <span>Solicitud Nuevo reductor</span>
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img class="img" src="../mapa/misc/symbols/Accidente.gif" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                                </div>
+                                <div class="col-md-5 mt-3">
+                                    <span>Solicitud Nuevo reductor</span>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
 
 
 
@@ -273,8 +387,8 @@ LAYER {
 
                 myMap2.setActionNone();
                 myMap2.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
-                myMap1.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                myMap2.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
+                myMap2.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
                 myMap1.setReferenceMap(myMap2);
 
 
@@ -282,7 +396,7 @@ LAYER {
                 myMap2.redraw();
 
 
-                var consult = new msTool('Consultar info', consulta, '../mapa/misc/img/consultar.png', queryMap);
+                var consult = new msTool('Consultar solicitud', consulta, '../mapa/misc/img/consultar.png', queryMap);
                 myMap1.getToolbar(0).addMapTool(consult);
 
                 chgLayers();
@@ -326,7 +440,7 @@ LAYER {
                     }
                 }
 
-                
+
                 var select = false;
 
                 function consulta(e, map) {
@@ -343,7 +457,7 @@ LAYER {
 
                         consultar2.open("GET", "../mapa/procesar.php?xx=" + xx + "&yy=" + yy, true);
 
-                        consultar2.onreadystatechange = function() {
+                        consultar2.onreadystatechange = function () {
                             if (consultar2.readyState == 4) {
                                 var result = consultar2.responseText;
                                 const data = JSON.parse(result);

@@ -4,20 +4,7 @@
 
 
 <div class="mt-5">
-    <div class="alert alert-danger d-none" role="alert" id="error">
 
-    </div>
-    <?php
-    if (isset($_SESSION['errores'])) {
-        echo "<div class='alert alert-danger' role='alert'>";
-        foreach ($_SESSION['errores'] as $error) {
-            echo $error . "<br>";
-        }
-        echo "</div>";
-        unset($_SESSION['errores']);
-    }
-
-    ?>
     <form action="" method="post" id="form">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Solicitudes</h3>

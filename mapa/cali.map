@@ -9,7 +9,7 @@ MAP
      FONTSET "misc/fonts/fonts.txt"
      SYMBOLSET "misc/symbols/symbols.sym"
 
-      IMAGECOLOR 255 255 255
+      IMAGECOLOR 234 244 252
       UNITS dd
 
    WEB 
