@@ -43,7 +43,7 @@
                                 placeholder="Buscar por tipo de solcitud" data-url='
                          -->
                         <label for="">Tipo de solicitud a consultar</label>
-                                <select name="tipo_solicitud_id" id="id_consult_solicitud" class="form-select" data-url='<?php echo getUrl("Mapa", "Mapa", "abrirMapaPuntos", false, "ajax");?>'>
+                                <select name="tipo_solicitud_id" id="id_consult_solicitud" class="form-select" data-url='<?php echo getUrl("Solicitud", "Solicitud", "obtenerSolicitudes", false, "ajax");?>'>
                                     <option value="">Seleccione...</option>
                                     <?php
                                     foreach ($tipo_solicitud as $tipo_s) {

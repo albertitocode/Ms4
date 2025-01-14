@@ -72,7 +72,7 @@ class="mt-5">
                                 echo "<input type='hidden'  name='name_soli' value='solicitud_seniales_nuevas'> ";
                                 echo "<input type='hidden'  name='name_camp_id' value='solicitud_senial_nueva_id'> ";
                                 echo "<input type='hidden'  name='elemento_vial' value='senial'>";
-                                echo "<button type ='submit 'class='btnV'>Acción 3</button>";
+                                echo "<button type ='submit 'class='btnV'>Ver detalles</button>";
                                 echo "</form>";
                                 echo"</td>";
                                 echo "<td>" . $senial_nueva['solicitud_senial_nueva_id'] . "</td>";

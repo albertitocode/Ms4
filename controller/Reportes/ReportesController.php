@@ -141,7 +141,7 @@ class ReportesController{
 
     }
 
-    public function GetReporteAccidente()
+    public function getReporteAccidente()
     {
 
         $obj = new ReportesModel();

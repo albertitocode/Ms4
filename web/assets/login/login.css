@@ -7,14 +7,15 @@
 
 
 .logo{
-    height: 6rem;
-    width: 6rem;
+    height: 10rem;
+    width: 10rem;
 }
 
 /* contenido menu */
 
 main .principal {
-    background: linear-gradient(to bottom, #004594, #2c5c93 );
+    /* background: linear-gradient(to bottom, #ffffff, #08BAEA ); */
+    background: linear-gradient(to bottom, #ebebeb, #ffffff );
     display:flex;
     height: 98vh;
     width: 100%;
@@ -28,25 +29,27 @@ main .principal {
 
 main .texto{
     width: 25rem;
-    color: #fff;
+    color: #000000;
     font-size: 14px;
     font-family: sans-serif;
 }
 
 main .texto h1{
-    color: #fff;
+    color: #000000;
     font-weight: 800;
     font-size: 2.6rem;
     line-height: 1;
 }
-
+.texto h3{
+    border-color: #b90fdb;
+}
 
 /* imagen compu central */
 
-main .imagen-central{
+/* main .imagen-central{
     width: 30rem;
     border-radius: 8px;
-}
+} */
 
 /* formulario */
 
@@ -62,6 +65,9 @@ main .formulario{
     padding: 2rem;
     padding: 23px;
     box-sizing: border-box;
+    border-color: #b90fdb;
+    border: 2px;
+
 }
 
 main .formulario h2{
@@ -76,7 +82,7 @@ main .formulario form{
     margin-top: 10px;
 }
 
-/* main .formulario  form input{
+main .formulario  form input{
     border: none;
     border-bottom:1px solid rgb(151, 150, 150);
     width: 270px;
@@ -84,12 +90,12 @@ main .formulario form{
     font-size: 15px;
     font-family: Nunito; 
     margin-bottom: 1px;
-} */
+}
 
 
 
 main .formulario button{
-    background-color: #2336a0;
+    background-color:  #9305af;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -105,7 +111,6 @@ main .formulario button:hover{
     background-color:#5c6dbb ;
     color: #ffffff;
 }
-
 
 
 

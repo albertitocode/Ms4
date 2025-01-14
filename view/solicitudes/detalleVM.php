@@ -79,27 +79,30 @@
                         echo "    <div class='form-group'>";
                         echo "       <label for='image' class='d-block'>Imagen de la señal dañada</label>";
                         echo "       <img src=" . $soli['solicitud_via_mal_estado_imagen'] . " class='img-fluid' data-toggle='modal' data-target='#imageModal' ";
-                        echo "       onClick='setImage(". "../web/assets/img/calva.jpg" .")'";
+                        echo "       onClick='setImage(" . "../web/assets/img/calva.jpg" . ")'";
 
-                        echo "    </div>";
-
+                        
+                        echo "</div>";
+                        
+                        // echo  "         <input type='text' class='btn btn-success' value='Aprobar'>"; 
+                        
                         echo "</div>";
 
-                            echo "<div class='modal fade' id='imageModal' tabindex='-1' role='dialog' aria-labelledby='imageModalLabel' aria-hidden='true'>";
-                            echo "  <div class='modal-dialog' role='document'>";
-                            echo "     <div class='modal-content'>";
-                            echo "       <div class='modal-header'>";
-                            echo "          <h5 class='modal-tittle' id='imageModalLabel'>Img</h5>";
-                            echo "         <button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
-                            echo "           <span aria-hidden='true'>&times;</span>";
-                            echo "         </button>";
-                            echo "       </div>";
-                            echo "       <div class='modal-body'>";
-                            echo "        <img id='modalImage' src='' alt='' class='img-fluid'>";
-                            echo "       </div>";
-                            echo "     </div>";
-                            echo "  </div>";
-                            echo "</div>";
+                        // echo "<div class='modal fade' id='imageModal' tabindex='-1' role='dialog' aria-labelledby='imageModalLabel' aria-hidden='true'>";
+                        // echo "  <div class='modal-dialog' role='document'>";
+                        // echo "     <div class='modal-content'>";
+                        // echo "       <div class='modal-header'>";
+                        // echo "          <h5 class='modal-tittle' id='imageModalLabel'>Img</h5>";
+                        // echo "         <button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+                        // echo "           <span aria-hidden='true'>&times;</span>";
+                        // echo "         </button>";
+                        // echo "       </div>";
+                        // echo "       <div class='modal-body'>";
+                        // echo "        <img id='modalImage' src='' alt='' class='img-fluid'>";
+                        // echo "       </div>";
+                        // echo "     </div>";
+                        // echo "  </div>";
+                        // echo "</div>";
                     }
                     ?>
                     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -109,6 +112,12 @@
                         }
                     </script>
                 </div>
+                <div class="col-md-6 col-lg-4">
+                    <button type="Submit" class="btn btn-success">Aprobar</button>
+                    <button class="btn btn-danger">Rechazar</button>
+                </div>
+
+           
             </div>
         </div>
     </div>

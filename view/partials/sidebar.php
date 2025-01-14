@@ -66,7 +66,7 @@
           </div>
 
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a data-bs-toggle="collapse" href="#usuarios">
             <i class="fas fa-user"></i>
             <p>Usuarios</p>
@@ -94,7 +94,7 @@
 
 
 
-        </li>
+        </li> -->
 
         <!-- termina accidente -->
 
@@ -111,13 +111,13 @@
             <ul class="nav nav-collapse">
               <li>
                 <a href="<?php echo getUrl("Solicitud", "Solicitud", "GetCreatePQRS"); ?>">
-                  <span class="sub-item">test 1pq</span>
+                  <span class="sub-item">Crear pqrs</span>
                 </a>
               </li>
               <li>
-                <a href="icon-menu.html">
+                <!-- <a href="icon-menu.html">
                   <span class="sub-item">Icon Menu</span>
-                </a>
+                </a> -->
               </li>
             </ul>
           </div>
@@ -126,21 +126,21 @@
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#maps">
             <i class="fas fa-map-marker-alt"></i>
-            <p>Maps</p>
+            <p>Mapa</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="maps">
             <ul class="nav nav-collapse">
               <li>
               <a href="<?php echo getUrl("Mapa", "Mapa", "abrirMapaAccidentes")?>">
-              <span class="sub-item">Google Maps</span>
+              <span class="sub-item">Ver Mapa</span>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="maps/jsvectormap.html">
                   <span class="sub-item">Jsvectormap</span>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </li>
@@ -164,14 +164,14 @@
               </li>
             </ul>
           </div>
-        </li> 
+        </li>  
         <!-- <li class="nav-item">
           <a href="widgets.html">
             <i class="fas fa-user-plus"></i>
             <p>Widgets</p>
             <span class="badge badge-success">4</span>
           </a>
-        </li> -->
+        </li>
         <li class="nav-item">
           <a href="../../documentation/index.html">
             <i class="fas fa-file"></i>
@@ -199,7 +199,7 @@
               </li>
             </ul>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </div>

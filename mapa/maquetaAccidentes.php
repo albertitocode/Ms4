@@ -278,7 +278,7 @@
 
                                     <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
 
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Via en mal estado</span>
                                 </div>
 
 
@@ -296,7 +296,7 @@
 
                                 <div class="col-md-5 mt-3">
 
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Señal en mal estado</span>
                                 </div>
 
                             </div>
@@ -312,7 +312,7 @@
 
                                 </div>
                                 <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Reductor en mal estado</span>
 
                                 </div>
 
@@ -328,7 +328,7 @@
 
                                 </div>
                                 <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Nueva señal</span>
 
                                 </div>
 
@@ -360,7 +360,7 @@
 
                                 </div>
                                 <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Accidente</span>
 
                                 </div>
 

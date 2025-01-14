@@ -48,7 +48,7 @@
                         <div class="col-md-3 mt-4">
                     
                         <label for="">Tipo de solicitud</label>
-                                <select name="id_reporte" id="id_reporte" class="form-select" data-url='<?php echo getUrl("Reportes", "Reportes", "postReporteAcci", false, "ajax");?>'>
+                                <select name="id_reporte" id="id_reporte" class="form-select" data-url='<?php echo getUrl("Reportes", "Reportes", "selectReporte", false, "ajax");?>'>
                                     <option value="">Seleccione...</option>
                                     <?php
                                     foreach ($tipo_solicitudes as $tipo_s) {
@@ -56,7 +56,7 @@
                                     }
                                     ?>
                                 </select>
-                                <a href="<?php echo getUrl("Reportes","Reportes","postReportes") ?>" class="btn btn-primary btn-round">Cargar prueba de grafica</a>
+                                <!-- <a href="<?php echo getUrl("Reportes","Reportes","postReportes") ?>" class="btn btn-primary btn-round">Cargar prueba de grafica</a> -->
                                 </div> 
 
                                 <!-- <a id="toggleButton" class="btn btn-primary btn-round">Cambiar a Modo Oscuro</a> -->

@@ -113,7 +113,7 @@ if ($_SESSION['rol']==3){
     </div>
 
     <div class="row">
-      <div class="col-sm-6 col-md-6">
+      <!-- <div class="col-sm-6 col-md-6">
         <div class="card card-stats card-round">
           <div class="card-body">
             <div class="row align-items-center">
@@ -134,7 +134,7 @@ if ($_SESSION['rol']==3){
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="col-sm-6 col-md-6">
         <div class="card card-stats card-round">
           <div class="card-body">
@@ -206,6 +206,8 @@ if ($_SESSION['rol']==3){
    
     <div class="card" style="width: 50rem;">
       <div class="card-body">
+      <button class="btn btn-success ">Descargar</button>
+
         <canvas id="chartPrincipal"></canvas>
         <script>
           var ctx = document.getElementById("chartPrincipal").getContext("2d");
@@ -252,6 +254,7 @@ if ($_SESSION['rol']==3){
         </script>
 
       </div>
+
     </div>
     <!--Grafica con lightweight-charts -->
 

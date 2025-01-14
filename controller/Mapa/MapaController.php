@@ -13,7 +13,7 @@ class MapaController
     public function abrirMapaAccidentes()
     {
         $obj = new MapaModel();
-        include_once '../mapa/maquetaAccidentes.php';
+        include_once '../mapa/maqueta4.php';
     }
 
     public function mapaRegistro()

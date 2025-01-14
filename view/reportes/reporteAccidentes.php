@@ -69,19 +69,7 @@
                              
 
                             </div>
-                            <div class="col-md-6 col-lg-4">
-                            <div class="form-group">
-                                    <label for="categoria_reductor_id">Tipo de reporte</label>
-                                    <select name="categoria_reductor_id" id="categoria_reductor_id" class="form-control">
-                                        <option value="">Seleccione el tipo de solicitud...</option>
-                                        <?php
-                                    foreach ($tipo_solicitudes as $tipo_s) {
-                                        echo "<option  value='" . $tipo_s['tipo_solicitud_id'] . "'>" . $tipo_s['tipo_solicitud_nombre'] . "</option>";
-                                    }
-                                    ?>
-                                    </select>
-                                </div>
-                            </div>
+                            
                             <div class="mt-5">
                                 <input type="submit" id="btnReportes" value="Enviar" class="btn btn-success">
                             </div>

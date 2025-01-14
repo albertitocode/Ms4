@@ -12,7 +12,6 @@
 </body>
 
  -->
-<?= $dato1 ?>
 <div class="mt-5">
     <h3 class="display-4">Reporte accidentes</h3>
 </div>
@@ -21,6 +20,8 @@
 
  <div class="card" style="width: 50rem;">
       <div class="card-body">
+      <button class="btn btn-success ">Descargar</button>
+
         <canvas id="chartis"></canvas>
         
         <script>
