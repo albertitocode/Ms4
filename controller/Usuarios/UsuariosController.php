@@ -105,12 +105,12 @@ class UsuariosController
             'rol' => 'Rol requerido'
         );
 
-        foreach ($campos as $campo => $mensaje) {
-            if (empty($_POST[$campo])) {
-                $_SESSION['errores'][] = $mensaje; // Guardamos el error en sesión
-                $validacion = false; // Marcamos que la validación falló
-            }
-        }
+        // foreach ($campos as $campo => $mensaje) {
+        //     if (empty($_POST[$campo])) {
+        //         $_SESSION['errores'][] = $mensaje; // Guardamos el error en sesión
+        //         $validacion = false; // Marcamos que la validación falló
+        //     }
+        // }
 
 
 
@@ -120,25 +120,17 @@ class UsuariosController
          usuario_nombre_2, usuario_apellido_1, usuario_apellido_2,usuario_fecha_nacimiento, usuario_contrasenia, usuario_correo,
           usuario_telefono, usuario_direccion, rol_id, estado_id,foto_perfil) VALUES ($tipo_documento, $numero_documento, 
           '$usu_nombre_1', '$usu_nombre_2', '$usu_apellido_1', '$usu_apellido_2','$usu_fecha_nac', '$usu_contrasenia', '$usu_correo',
-           $usu_telefono, '$direccion', $rol, 1,$foto_perfil)";
+           $usu_telefono, '$direccion', $rol, 1,'$foto_perfil')";
         if ($validacion) {
             $ejecutar = $obj->insert($sql);
             if ($ejecutar) {
-                echo "<script>
-                Swal.fire({
-                    title: '¡Felicidades!',
-                    text: 'El usuario ha sido registrado exitosamente',
-                    icon: 'success',
-                    confirmButtonText: 'Aceptar'
-                }).then((result) => {
-                    // Redirigimos al usuario después de que cierre la alerta
-                    if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUsuarios") . "';
-                    }
-                });
-            </script>";
+                $_SESSION['new_User'] = true;
+                redirect(getUrl2("Acceso", "Acceso", "login"));
+
             } else {
                 echo "Se ha presentado un error al insertar";
+                redirect(getUrl("Usuarios", "Usuarios", "getCreate"));
+
             }
         } else {
             redirect(getUrl("Usuarios", "Usuarios", "getCreate"));
@@ -255,12 +247,12 @@ class UsuariosController
 
         $usuario = pg_fetch_all($obj->consult($sql));
         foreach ($usuario as $usu) {
-            $usu_telefono=$usu['usuario_telefono'];
+            $usu_telefono = $usu['usuario_telefono'];
         }
         if ($usuario) {
             $_SESSION['usuario_data_perfil'] = $usuario;
             include_once '../view/usuarios/perfil.php';
-        }else{
+        } else {
             echo "Usuario no encontrado";
         }
     }
@@ -299,7 +291,7 @@ class UsuariosController
         $identificador = $_POST['identificador_update'];
 
 
-       
+
 
 
         $usu_nombre_1 = $_POST['usuario_nombre_1'];
@@ -371,8 +363,8 @@ class UsuariosController
                         }
                     });
                 </script>";
-        
-        
+
+
                 } else if ($identificador == 2) {
                     echo "<script>
                     Swal.fire({
@@ -387,10 +379,10 @@ class UsuariosController
                         }
                     });
                 </script>";
-        
+
                 }
 
-              
+
 
             } else {
                 echo "Se ha presentado un error al actualizar.";
@@ -410,8 +402,8 @@ class UsuariosController
                     }
                 });
             </script>";
-    
-    
+
+
             } else if ($identificador == 2) {
                 echo "<script>
                 Swal.fire({
@@ -426,10 +418,10 @@ class UsuariosController
                     }
                 });
             </script>";
-    
+
             }
 
-           
+
         }
         unset($_SESSION['usuario_data']);
         unset($_SESSION['usuario_data_perfil']);
