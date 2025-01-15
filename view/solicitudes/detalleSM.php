@@ -1,5 +1,4 @@
-<div
-    class="mt-5">
+<div class="mt-5">
     <h3 class="display-4">Solicitud</h3>
 </div>
 <div class="page-header">
@@ -18,6 +17,8 @@
         </li> -->
     </ul>
 </div>
+<form action="<?php echo getUrl("Solicitud", "Solicitud", "cambiarEstado"); ?>" method="post">
+
 <div class="row">
     <div class="col-md-12">
         <div class="card ">
@@ -78,27 +79,27 @@
                         echo "    <div class='form-group'>";
                         echo "       <label for='image' class='d-block'>Imagen de la señal dañada</label>";
                         echo "       <img src=" . $soli['solicitud_senial_mal_estado_imagen'] . " class='img-fluid' data-toggle='modal' data-target='#imageModal' ";
-                        echo "       onClick='setImage(". "../web/assets/img/calva.jpg" .")'";
+                        echo "       onClick='setImage(" . "../web/assets/img/calva.jpg" . ")'";
 
                         echo "    </div>";
 
                         echo "</div>";
 
-                            echo "<div class='modal fade' id='imageModal' tabindex='-1' role='dialog' aria-labelledby='imageModalLabel' aria-hidden='true'>";
-                            echo "  <div class='modal-dialog' role='document'>";
-                            echo "     <div class='modal-content'>";
-                            echo "       <div class='modal-header'>";
-                            echo "          <h5 class='modal-tittle' id='imageModalLabel'>Img</h5>";
-                            echo "         <button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
-                            echo "           <span aria-hidden='true'>&times;</span>";
-                            echo "         </button>";
-                            echo "       </div>";
-                            echo "       <div class='modal-body'>";
-                            echo "        <img id='modalImage' src='' alt='' class='img-fluid'>";
-                            echo "       </div>";
-                            echo "     </div>";
-                            echo "  </div>";
-                            echo "</div>";
+                        echo "<div class='modal fade' id='imageModal' tabindex='-1' role='dialog' aria-labelledby='imageModalLabel' aria-hidden='true'>";
+                        echo "  <div class='modal-dialog' role='document'>";
+                        echo "     <div class='modal-content'>";
+                        echo "       <div class='modal-header'>";
+                        echo "          <h5 class='modal-tittle' id='imageModalLabel'>Img</h5>";
+                        echo "         <button type='button' class='close' data-dismiss='modal' aria-label='Close'>";
+                        echo "           <span aria-hidden='true'>&times;</span>";
+                        echo "         </button>";
+                        echo "       </div>";
+                        echo "       <div class='modal-body'>";
+                        echo "        <img id='modalImage' src='' alt='' class='img-fluid'>";
+                        echo "       </div>";
+                        echo "     </div>";
+                        echo "  </div>";
+                        echo "</div>";
                     }
                     ?>
                     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
@@ -108,6 +109,28 @@
                         }
                     </script>
                 </div>
+                <div class="col-md-6 col-lg-4">
+
+
+
+                 
+                <?php if ($_SESSION["rol"] != 2 && $estados!=2) { ?>
+                            <input type="submit" name="accion" class="btn btn-success" value="Autorizar">
+                            <input type="submit" name="accion" class="btn btn-danger" value="Rechazar">
+
+                        <?php } else if ($_SESSION["rol"] == 2 && $estados==3) { ?>
+                                <input type="Submit" name="accion" class="btn btn-success" value="Revisar">
+
+                        <?php } ?>
+                        <?php
+                        echo "<input type='hidden' value='$estados' name='estado_id'>";
+                        echo "<input type='hidden' value='" . $soli['solicitud_senial_mal_estado_id'] . "' name='solicitud_id'>";
+                        echo "<input type='hidden' value='$id_tipo_soli' name='tipo_solicitud_id'>";
+
+                        ?>
+                </div>
             </div>
         </div>
     </div>
+    </div>
+    </form>

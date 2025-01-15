@@ -87,13 +87,47 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_nueva_direccion) ,se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono,
-         tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_nuevas s JOIN 
-         seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id
-          JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN
-           estados e ON s.estado_id = e.estado_id";
+        $rol = $_SESSION['rol'];
+        switch ($rol) {
+            case 2:
 
-        $solicitud_seniales_nuevas = pg_fetch_all($obj->consult($sql));
+                $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_nueva_direccion) ,se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono,
+tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_nuevas s JOIN 
+seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id
+ JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN
+  estados e ON s.estado_id = e.estado_id ORDER BY s.solicitud_senial_nueva_id ASC";
+                $solicitud_seniales_nuevas = pg_fetch_all($obj->consult($sql));
+
+
+                break;
+            case 4:
+                $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_nueva_direccion) ,se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono,
+tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_nuevas s JOIN 
+seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id
+ JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN
+  
+  estados e ON s.estado_id = e.estado_id 
+  WHERE s.estado_id = 4
+  ORDER BY s.solicitud_senial_nueva_id ASC";
+                $solicitud_seniales_nuevas = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+
+            case 5:
+                $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_nueva_direccion) ,se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono,
+tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_nuevas s JOIN 
+seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id
+ JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN
+  estados e ON s.estado_id = e.estado_id
+   WHERE s.estado_id = 5 ORDER BY s.solicitud_senial_nueva_id ASC";
+                $solicitud_seniales_nuevas = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+
+        }
+
 
         if ($solicitud_seniales_nuevas) {
             include_once '../view/solicitudSenal/nueva/consult.php';
@@ -109,7 +143,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "GetCreateNuevaSenial") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
                     }
                 });
             </script>";
@@ -221,9 +255,42 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
+        $rol = $_SESSION['rol'];
+        switch ($rol) {
+            case 2:
+                $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_mal_estado_direccion), se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, 
+                usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+                solicitud_seniales_mal_estado s JOIN seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  
+                ON s.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id
+                 JOIN estados e ON s.estado_id = e.estado_id JOIN danios da ON s.danio_id=da.danio_id ORDER BY s.solicitud_senial_mal_estado_id ASC";
+                $solicitud_seniales_mal_estado = pg_fetch_all($obj->consult($sql));
 
-        $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_mal_estado_direccion), se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_seniales_mal_estado s JOIN seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON s.estado_id = e.estado_id JOIN danios da ON s.danio_id=da.danio_id";
-        $solicitud_seniales_mal_estado = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+            case 4:
+                $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_mal_estado_direccion), se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, 
+                usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+                solicitud_seniales_mal_estado s JOIN seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  
+                ON s.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id
+                 JOIN estados e ON s.estado_id = e.estado_id JOIN danios da ON s.danio_id=da.danio_id  WHERE s.estado_id = 4 ORDER BY s.solicitud_senial_mal_estado_id ASC";
+                $solicitud_seniales_mal_estado = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+
+
+            case 5:
+                $sql = "SELECT s.*, ST_AsText(s.solicitud_senial_mal_estado_direccion), se.senial_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, 
+                usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+                solicitud_seniales_mal_estado s JOIN seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  
+                ON s.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON s.tipo_solicitud_id = tip.tipo_solicitud_id
+                 JOIN estados e ON s.estado_id = e.estado_id JOIN danios da ON s.danio_id=da.danio_id  WHERE s.estado_id = 5 ORDER BY s.solicitud_senial_mal_estado_id ASC";
+                $solicitud_seniales_mal_estado = pg_fetch_all($obj->consult($sql));
+
+
+
+        }
 
         if ($solicitud_seniales_mal_estado) {
             include_once '../view/solicitudSenal/malEstado/consult.php';
@@ -239,7 +306,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "GetCreateSenialMalEstado") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
                     }
                 });
             </script>";
@@ -498,8 +565,83 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductores_mal_estado_direccion) ,re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_mal_estado r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id JOIN danios da ON r.danio_id=da.danio_id";
-        $solicitud_reductores_mal_estado = pg_fetch_all($obj->consult($sql));
+        $rol = $_SESSION['rol'];
+        switch ($rol) {
+            case 2:
+                $sql = "SELECT r.*, 
+                ST_AsText(r.solicitud_reductores_mal_estado_direccion), 
+                re.reductor_nombre, 
+                usu.usuario_nombre_1, 
+                usu.usuario_apellido_1, 
+                usu.usuario_telefono, 
+                da.danio_nombre, 
+                tip.tipo_solicitud_nombre, 
+                e.estado_nombre 
+         FROM solicitud_reductores_mal_estado r 
+         JOIN reductores re ON r.reductor_id = re.reductor_id 
+         JOIN usuarios usu ON r.usuario_id = usu.usuario_id 
+         JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+         JOIN estados e ON r.estado_id = e.estado_id 
+         JOIN danios da ON r.danio_id = da.danio_id 
+         ORDER BY r.solicitud_reductores_mal_estado_id ASC";
+
+
+                $solicitud_reductores_mal_estado = pg_fetch_all($obj->consult($sql));
+
+
+
+                break;
+            case 4:
+                $sql = "SELECT r.*, 
+               ST_AsText(r.solicitud_reductores_mal_estado_direccion) , 
+               re.reductor_nombre, 
+               usu.usuario_nombre_1, 
+               usu.usuario_apellido_1, 
+               usu.usuario_telefono, 
+               da.danio_nombre, 
+               tip.tipo_solicitud_nombre, 
+               e.estado_nombre 
+                FROM solicitud_reductores_mal_estado r 
+                JOIN reductores re ON r.reductor_id = re.reductor_id 
+                JOIN usuarios usu ON r.usuario_id = usu.usuario_id 
+                JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+                JOIN estados e ON r.estado_id = e.estado_id 
+                JOIN danios da ON r.danio_id = da.danio_id 
+                 WHERE r.estado_id = 4
+                ORDER BY r.solicitud_reductores_mal_estado_id ASC";
+
+                $solicitud_reductores_mal_estado = pg_fetch_all($obj->consult($sql));
+
+
+                break;
+
+            case 5:
+                $sql = "SELECT r.*, 
+               ST_AsText(r.solicitud_reductores_mal_estado_direccion) , 
+               re.reductor_nombre, 
+               usu.usuario_nombre_1, 
+               usu.usuario_apellido_1, 
+               usu.usuario_telefono, 
+               da.danio_nombre, 
+               tip.tipo_solicitud_nombre, 
+               e.estado_nombre 
+                FROM solicitud_reductores_mal_estado r 
+                JOIN reductores re ON r.reductor_id = re.reductor_id 
+                JOIN usuarios usu ON r.usuario_id = usu.usuario_id 
+                JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+                JOIN estados e ON r.estado_id = e.estado_id 
+                JOIN danios da ON r.danio_id = da.danio_id 
+                 WHERE r.estado_id = 5
+                ORDER BY r.solicitud_reductores_mal_estado_id ASC";
+
+                $solicitud_reductores_mal_estado = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+
+        }
+
+
 
         if ($solicitud_reductores_mal_estado) {
             include_once '../view/solicitudReductor/malEstado/consult.php';
@@ -515,7 +657,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "GetCreateReductorMalEstado") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
                     }
                 });
             </script>";
@@ -637,12 +779,45 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1,
-         usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
-         solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu 
-          ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
-          JOIN estados e ON r.estado_id = e.estado_id";
-        $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
+        $rol = $_SESSION['rol'];
+        switch ($rol) {
+            case 2:
+
+                $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1,
+                  usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+                  solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu 
+                   ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+                   JOIN estados e ON r.estado_id = e.estado_id ORDER BY r.solicitud_reductor_nuevo_id ASC";
+                $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
+
+                break;
+            case 4:
+                $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1,
+                usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+                solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu 
+                 ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+                 JOIN estados e ON r.estado_id = e.estado_id
+                  WHERE r.estado_id = 4
+                   ORDER BY r.solicitud_reductor_nuevo_id ASC";
+                $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+
+            case 5:
+                $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1,
+                  usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+                  solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu 
+                   ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+                   JOIN estados e ON r.estado_id = e.estado_id
+                    WHERE r.estado_id = 5
+                     ORDER BY r.solicitud_reductor_nuevo_id ASC";
+                $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
+                break;
+
+
+        }
+
 
         if ($solicitud_reductores_nuevos) {
             include_once '../view/solicitudReductor/nuevo/consult.php';
@@ -658,7 +833,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "GetCreateReductorNuevo") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
                     }
                 });
             </script>";
@@ -892,8 +1067,52 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
-        $sql = "SELECT v.*, ST_AsText(v.solicitud_via_mal_estado_direccion) , usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_vias_mal_estado v JOIN usuarios usu  ON v.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON v.estado_id = e.estado_id JOIN danios da ON v.danio_id=da.danio_id";
-        $vias = pg_fetch_all($obj->consult($sql));
+        $rol = $_SESSION['rol'];
+        switch ($rol) {
+            case 2:
+                $sql = "SELECT v.*, ST_AsText(v.solicitud_via_mal_estado_direccion), usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre 
+                FROM solicitud_vias_mal_estado v 
+                JOIN usuarios usu ON v.usuario_id = usu.usuario_id 
+                JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id 
+                JOIN estados e ON v.estado_id = e.estado_id 
+                JOIN danios da ON v.danio_id = da.danio_id
+                ORDER BY v.solicitud_via_mal_estado_id ASC";
+
+                $vias = pg_fetch_all($obj->consult($sql));
+
+                break;
+            case 4:
+                $sql = "SELECT v.*, ST_AsText(v.solicitud_via_mal_estado_direccion), usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre 
+                FROM solicitud_vias_mal_estado v 
+                JOIN usuarios usu ON v.usuario_id = usu.usuario_id 
+                JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id 
+                JOIN estados e ON v.estado_id = e.estado_id 
+                JOIN danios da ON v.danio_id = da.danio_id
+                WHERE v.estado_id = 4
+                ORDER BY v.solicitud_via_mal_estado_id ASC";
+
+                $vias = pg_fetch_all($obj->consult($sql));
+
+
+                break;
+
+            case 5:
+                $sql = "SELECT v.*, ST_AsText(v.solicitud_via_mal_estado_direccion), usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, da.danio_nombre, tip.tipo_solicitud_nombre, e.estado_nombre 
+                FROM solicitud_vias_mal_estado v 
+                JOIN usuarios usu ON v.usuario_id = usu.usuario_id 
+                JOIN tipo_solicitudes tip ON v.tipo_solicitud_id = tip.tipo_solicitud_id 
+                JOIN estados e ON v.estado_id = e.estado_id 
+                JOIN danios da ON v.danio_id = da.danio_id
+                 WHERE v.estado_id = 5
+                ORDER BY v.solicitud_via_mal_estado_id ASC";
+
+                $vias = pg_fetch_all($obj->consult($sql));
+                break;
+
+
+        }
+
+
 
         if ($vias) {
             include_once '../view/solicitudVial/consult.php';
@@ -909,7 +1128,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getCreateVia") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
                     }
                 });
             </script>";
@@ -993,7 +1212,6 @@ class SolicitudController
                 echo "Se ha presentado un error al insertar";
             }
         } else {
-            echo "feo";
             redirect(getUrl("Solicitud", "Solicitud", "GetcreatePQRS"));
         }
 
@@ -1169,11 +1387,11 @@ class SolicitudController
         $sql = "INSERT INTO solicitud_accidentes (tipo_choque_id,
         solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre,solicitud_accidente_direccion) VALUES (
      $tipo_choque, '$img','$descripcion','$lesionados', 3, $id_usuario, 4, '$choque_detalle_nombre',ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
-    if($direccion ==" "){
-        echo "error";
-    }else{
-        if ($validacion == true) {
-            $ejecutar = $obj->insert($sql);
+        if ($direccion == " ") {
+            echo "error";
+        } else {
+            if ($validacion == true) {
+                $ejecutar = $obj->insert($sql);
 
                 if ($ejecutar) {
                     echo "<script>
@@ -1211,13 +1429,84 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
+        $rol = $_SESSION['rol'];
 
-        $sql = "SELECT sa.*, ST_AsText(sa.solicitud_accidente_direccion), tc.tipo_choque_nombre, e.estado_nombre, tip.tipo_solicitud_nombre, e.estado_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono FROM
-          solicitud_accidentes sa JOIN
-           tipo_choques tc ON sa.tipo_choque_id=tc.tipo_choque_id JOIN usuarios usu  ON sa.usuario_id=usu.usuario_id JOIN 
-          tipo_solicitudes tip ON sa.tipo_solicitud_id = tip.tipo_solicitud_id JOIN 
-          estados e ON sa.estado_id = e.estado_id order by sa.solicitud_accidente_id ASC";
-        $accidentes = pg_fetch_all($obj->consult($sql));
+
+        switch ($rol) {
+            case 2:
+                $sql = "SELECT sa.*, 
+        ST_AsText(sa.solicitud_accidente_direccion), 
+        tc.tipo_choque_nombre, 
+        e.estado_nombre, 
+        tip.tipo_solicitud_nombre, 
+        e.estado_nombre, 
+        usu.usuario_nombre_1, 
+        usu.usuario_apellido_1, 
+        usu.usuario_telefono 
+ FROM solicitud_accidentes sa 
+ JOIN tipo_choques tc ON sa.tipo_choque_id = tc.tipo_choque_id 
+ JOIN usuarios usu ON sa.usuario_id = usu.usuario_id 
+ JOIN tipo_solicitudes tip ON sa.tipo_solicitud_id = tip.tipo_solicitud_id 
+ JOIN estados e ON sa.estado_id = e.estado_id 
+ ORDER BY sa.solicitud_accidente_id ASC";
+
+
+                $accidentes = pg_fetch_all($obj->consult($sql));
+
+
+
+                break;
+            case 4:
+                $sql = "SELECT sa.*, 
+        ST_AsText(sa.solicitud_accidente_direccion), 
+        tc.tipo_choque_nombre, 
+        e.estado_nombre, 
+        tip.tipo_solicitud_nombre, 
+        e.estado_nombre, 
+        usu.usuario_nombre_1, 
+        usu.usuario_apellido_1, 
+        usu.usuario_telefono 
+ FROM solicitud_accidentes sa 
+ JOIN tipo_choques tc ON sa.tipo_choque_id = tc.tipo_choque_id 
+ JOIN usuarios usu ON sa.usuario_id = usu.usuario_id 
+ JOIN tipo_solicitudes tip ON sa.tipo_solicitud_id = tip.tipo_solicitud_id 
+ JOIN estados e ON sa.estado_id = e.estado_id 
+  WHERE sa.estado_id = 4
+ ORDER BY sa.solicitud_accidente_id ASC";
+
+
+                $accidentes = pg_fetch_all($obj->consult($sql));
+
+
+                break;
+
+            case 5:
+                $sql = "SELECT sa.*, 
+        ST_AsText(sa.solicitud_accidente_direccion), 
+        tc.tipo_choque_nombre, 
+        e.estado_nombre, 
+        tip.tipo_solicitud_nombre, 
+        e.estado_nombre, 
+        usu.usuario_nombre_1, 
+        usu.usuario_apellido_1, 
+        usu.usuario_telefono 
+ FROM solicitud_accidentes sa 
+ JOIN tipo_choques tc ON sa.tipo_choque_id = tc.tipo_choque_id 
+ JOIN usuarios usu ON sa.usuario_id = usu.usuario_id 
+ JOIN tipo_solicitudes tip ON sa.tipo_solicitud_id = tip.tipo_solicitud_id 
+ JOIN estados e ON sa.estado_id = e.estado_id 
+  WHERE sa.estado_id = 5
+ ORDER BY sa.solicitud_accidente_id ASC";
+
+
+                $accidentes = pg_fetch_all($obj->consult($sql));
+
+                break;
+
+
+        }
+
+
 
 
 
@@ -1241,7 +1530,7 @@ class SolicitudController
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getCreateAccidente") . "';
+                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
                     }
                 });
             </script>";
@@ -1290,6 +1579,7 @@ class SolicitudController
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
         foreach ($tipo_solicitudes as $tipo_solicitud) {
+            $id_tipo_soli = $tipo_solicitud['tipo_solicitud_id'];
             $nombre_tipo_soli = $tipo_solicitud['tipo_solicitud_nombre'];
         }
 
@@ -1298,7 +1588,10 @@ class SolicitudController
 
         foreach ($usuario as $usu) {
             $id_usuario = $usu['usuario_num_identificacion'];
+            $rol_usuario = $usu['usuario_rol'];
         }
+
+
 
         $sql = "SELECT * FROM danios WHERE danio_id=$danios";
         $danio = pg_fetch_all($obj->consult($sql));
@@ -1360,6 +1653,8 @@ class SolicitudController
         $tipo_solicitudes = pg_fetch_all($obj->consult($sql));
 
         foreach ($tipo_solicitudes as $tipo_solicitud) {
+            $id_tipo_soli = $tipo_solicitud['tipo_solicitud_id'];
+
             $nombre_tipo_soli = $tipo_solicitud['tipo_solicitud_nombre'];
         }
 
@@ -1368,6 +1663,8 @@ class SolicitudController
 
         foreach ($usuario as $usu) {
             $id_usuario = $usu['usuario_num_identificacion'];
+            $rol_usuario = $usu['usuario_rol'];
+
         }
 
 
@@ -1438,18 +1735,167 @@ class SolicitudController
 
 
     }
-    // public function statusUpdate()
-    // {
-    //     $obj = new SolicitudModel();
-    //     $id_userRol = $_SESSION['rol'];
-    //     $sql = "SELECT * FROM roles WHERE rol_id=$id_userRol";
-    //     $roles = pg_fetch_all($obj->consult($sql));
+    public function cambiarEstado()
+    {
+       
 
-    //     foreach ($roles as $rol) {
-    //         $rol_nombre = $rol['rol_nombre'];
-    //     }
+        $obj = new SolicitudModel();
+        $id_rol = $_SESSION['rol'];
+        $accion = $_POST['accion'];
+        $estado = $_POST['estado_id'];
+        $id_soli = $_POST['solicitud_id'];
+        $tipo_soli = $_POST['tipo_solicitud_id'];
 
 
-    // }
+        if ($accion == 'Autorizar') {
+            if ($estado + 1 < 7) {
+                $estado = $estado + 1;
+
+
+            }
+        } else if ($accion == 'Rechazar') {
+            if ($estado - 1 > 4) {
+                $estado = $estado - 1;
+
+            }
+
+        } else if ($accion == 'Revisar') {
+            $estado = 4;
+
+        }
+        switch ($tipo_soli) {
+            case 1:
+                $sql = "UPDATE solicitud_seniales_mal_estado SET estado_id = $estado WHERE solicitud_senial_mal_estado_id = $id_soli";
+                $ejecutar = $obj->update($sql);  // $conn es tu conexión a la base de datos
+                if ($ejecutar) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Gracias!',
+                        text: 'Tu cambio de estado de solicitud se ha registrado correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
+                        }
+                    });
+                </script>";
+                } else {
+                    echo "Error al actualizar la solicitud 'Señal en mal estado'.";
+                }
+
+                break;
+            case 2:
+                $sql = "UPDATE solicitud_vias_mal_estado SET estado_id = $estado WHERE solicitud_via_mal_estado_id = $id_soli";
+                $ejecutar = $obj->update($sql);  // $conn es tu conexión a la base de datos
+                if ($ejecutar) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Gracias!',
+                        text: 'Tu cambio de estado de solicitud se ha registrado correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
+                        }
+                    });
+                </script>";
+                } else {
+                    echo "Error al actualizar la solicitud 'via en mal estado'.";
+                }
+                break;
+            case 3:
+                $sql = "UPDATE solicitud_reductores_mal_estado SET estado_id = $estado WHERE solicitud_reductores_mal_estado_id = $id_soli";
+                $ejecutar = $obj->update($sql);  // $conn es tu conexión a la base de datos
+                if ($ejecutar) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Gracias!',
+                        text: 'Tu cambio de estado de solicitud se ha registrado correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
+                        }
+                    });
+                </script>";
+                } else {
+                    echo "Error al actualizar la solicitud 'reductor en mal estado'.";
+                }
+                break;
+            case 4:
+                $sql = "UPDATE solicitud_accidentes SET estado_id = $estado WHERE solicitud_accidente_id = $id_soli";
+                $ejecutar = $obj->update($sql);  // $conn es tu conexión a la base de datos
+                if ($ejecutar) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Gracias!',
+                        text: 'Tu cambio de estado de solicitud se ha registrado correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
+                        }
+                    });
+                </script>";
+                } else {
+                    echo "Error al actualizar la solicitud 'Señal en mal estado'.";
+                }
+                break;
+            case 5:
+                $sql = "UPDATE solicitud_seniales_nuevas SET estado_id = $estado WHERE solicitud_senial_nueva_id = $id_soli";
+                $ejecutar = $obj->update($sql);  // $conn es tu conexión a la base de datos
+                if ($ejecutar) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Gracias!',
+                        text: 'Tu cambio de estado de solicitud se ha registrado correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
+                        }
+                    });
+                </script>";
+                } else {
+                    echo "Error al actualizar la solicitud 'Señal nueva'.";
+                }
+                break;
+            case 6:
+                $sql = "UPDATE solicitud_reductores_nuevos SET estado_id = $estado WHERE solicitud_reductor_nuevo_id = $id_soli";
+                $ejecutar = $obj->update($sql);  // $conn es tu conexión a la base de datos
+                if ($ejecutar) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Gracias!',
+                        text: 'Tu cambio de estado de solicitud se ha registrado correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Solicitud", "Solicitud", "postSolicitud") . "';
+                        }
+                    });
+                </script>";
+                } else {
+                    echo "Error al actualizar la solicitud 'reductor nuevo'.";
+                }
+                break;
+
+        }
+
+
+
+    }
 }
 ?>
