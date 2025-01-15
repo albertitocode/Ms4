@@ -62,6 +62,7 @@
                                 data-url='<?php echo getUrl("Usuarios", "Usuarios", "buscarUsuario", false, "ajax"); ?>'>
                         </div>
                         <div class="row" id="datos">
+                        <input type="hidden" name="identificador_update" value="1">
 
 
                         </div>

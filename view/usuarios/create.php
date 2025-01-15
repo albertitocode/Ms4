@@ -284,7 +284,14 @@
                                                     id="usuario_contrasenia" class="form-control" placeholder="Clave"
                                                     autocomplete="new-password">
                                                 <span class="small-text text-danger"
-                                                    id="error_usuario_contrasenia"></span>
+                                                    id="error_usuario_contrasenia"></span><br>
+
+                                                <label for="usuario_confirmar_contrasenia">Confirmar Contraseña</label>
+                                                <input type="password" name="usuario_confirmar_contrasenia" id="usuario_confirmar_contrasenia"
+                                                    class="form-control" placeholder="Confirmar Contraseña">
+                                                <span class="small-text text-danger"
+                                                    id="error_usuario_confirmar_contrasenia"></span>
+                                          
 
                                                 <select name="rol" id="rol" class="form-select mt-4">
                                                     <option value="">Rol...</option>
@@ -299,6 +306,7 @@
 
 
                                             </div>
+                                            
                                         </div>
 
 

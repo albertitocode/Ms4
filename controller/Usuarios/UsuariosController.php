@@ -67,7 +67,7 @@ class UsuariosController
         $numero3 = $_POST['numero3'];
         $barrio = $_POST['barrio'];
 
-        $foto_perfil='../web/assets/img/imagen_usuario.png';
+        $foto_perfil = '../web/assets/img/imagen_usuario.png';
         if (isset($_POST['rol'])) {
 
             $rol = $_POST['rol'];
@@ -172,7 +172,7 @@ class UsuariosController
         $obj = new UsuariosModel();
 
         $id_datos = $_POST['id_data'];
-        
+
         $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_id=$id_datos";
         $_SESSION['id_datos'] = $id_datos;
         $usuario = pg_fetch_all($obj->consult($sql));
@@ -181,12 +181,15 @@ class UsuariosController
         $sql = "SELECT * FROM roles";
         $roles = pg_fetch_all($obj->consult($sql));
 
+
+
+
         if ($usuario) {
-            
+
             $_SESSION['usuario_data'] = $usuario;
-            
+
             include_once '../view/usuarios/buscarUsuarios.php';
-        }else{
+        } else {
             echo "<br>";
             echo "<br>";
 
@@ -228,30 +231,50 @@ class UsuariosController
     {
         $obj = new UsuariosModel();
 
-
-        $sql = "SELECT * FROM roles";
+        $rol_id = $_SESSION['rol'];
+        $id = $_SESSION['id'];
+        $sql = "SELECT * FROM roles WHERE rol_id=$rol_id";
         $roles = pg_fetch_all($obj->consult($sql));
+        foreach ($roles as $rol) {
+            $rol_id = $rol['rol_id'];
 
+            $rol_nombre = $rol['rol_nombre'];
+        }
 
         $sql = "SELECT * FROM tipo_documentos";
         $tipo_documento = pg_fetch_all($obj->consult($sql));
+        foreach ($roles as $rol) {
+            $rol_id = $rol['rol_id'];
 
+            $rol_nombre = $rol['rol_nombre'];
+        }
         $sql = "SELECT * FROM estados";
         $estado = pg_fetch_all($obj->consult($sql));
 
-        $sql = "SELECT * FROM usuarios";
-        $usuario = pg_fetch_all($obj->consult($sql));
+        $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_id=$id";
 
-        include_once '../view/usuarios/perfil.php';
+        $usuario = pg_fetch_all($obj->consult($sql));
+        foreach ($usuario as $usu) {
+            $usu_telefono=$usu['usuario_telefono'];
+        }
+        if ($usuario) {
+            $_SESSION['usuario_data_perfil'] = $usuario;
+            include_once '../view/usuarios/perfil.php';
+        }else{
+            echo "Usuario no encontrado";
+        }
     }
     public function getUpdateUsuarios()
     {
         $obj = new UsuariosModel();
 
 
-        $sql = "SELECT * FROM roles";
+        $rol_id = $_SESSION['rol'];
+        $sql = "SELECT * FROM roles WHERE rol_id=$rol_id";
         $roles = pg_fetch_all($obj->consult($sql));
-
+        foreach ($roles as $rol) {
+            $rol_nombre = $rol['rol_nombre'];
+        }
 
         $sql = "SELECT * FROM tipo_documentos";
         $tipo_documento = pg_fetch_all($obj->consult($sql));
@@ -276,65 +299,109 @@ class UsuariosController
         $identificador = $_POST['identificador_update'];
 
 
+       
+
+
+        $usu_nombre_1 = $_POST['usuario_nombre_1'];
+        $usu_nombre_2 = $_POST['usuario_nombre_2'];
+        $usu_apellido_1 = $_POST['usuario_apellido_1'];
+        $usu_apellido_2 = $_POST['usuario_apellido_2'];
+        $usu_correo = $_POST['usuario_correo'];
+        $usu_contrasenia = $_POST['usuario_confirmar_contrasenia'];
+        $rol = $_POST['rol_id'];
+        $usu_telefono = $_POST['usuario_telefono'];
+        $tipo_documento = $_POST['tipo_documento_id'];
+        $numero_documento = $_POST['usuario_num_identificacion'];
+
+        $campos = array(
+            'usuario_nombre_1' => $usu_nombre_1,
+            'usuario_nombre_2' => $usu_nombre_2,
+            'usuario_apellido_1' => $usu_apellido_1,
+            'usuario_apellido_2' => $usu_apellido_2,
+            'usuario_correo' => $usu_correo,
+            'usuario_contrasenia' => $usu_contrasenia,
+            'rol_id' => $rol,
+            'usuario_telefono' => $usu_telefono,
+            'tipo_documento_id' => $tipo_documento,
+            'usuario_num_identificacion' => $numero_documento
+        );
+
+        $campos_a_actualizar = array();
+        if ($identificador == 1) {
+
+            $id = $_SESSION['id_datos'];
             $usuario_bd = $_SESSION['usuario_data'][0];
-            if($identificador==1){
 
-                $id = $_SESSION['id_datos'];
-            }else if($identificador==2){
-                $id = $_SESSION['id'];
-            }
 
-            
-            $usu_nombre_1 = $_POST['usuario_nombre_1'];
-            $usu_nombre_2 = $_POST['usuario_nombre_2'];
-            $usu_apellido_1 = $_POST['usuario_apellido_1'];
-            $usu_apellido_2 = $_POST['usuario_apellido_2'];
-            $usu_correo = $_POST['usuario_correo'];
-            $usu_contrasenia = $_POST['usuario_contrasenia'];
-            $rol = $_POST['rol_id'];
-            $usu_telefono = $_POST['usuario_telefono'];
-            $tipo_documento = $_POST['tipo_documento_id'];
-            $numero_documento = $_POST['usuario_num_identificacion'];
+        } else if ($identificador == 2) {
+            $id = $_SESSION['id'];
+            $usuario_bd = $_SESSION['usuario_data_perfil'][0];
 
-            $campos = array(
-                'usuario_nombre_1' => $usu_nombre_1,
-                'usuario_nombre_2' => $usu_nombre_2,
-                'usuario_apellido_1' => $usu_apellido_1,
-                'usuario_apellido_2' => $usu_apellido_2,
-                'usuario_correo' => $usu_correo,
-                'usuario_contrasenia' => $usu_contrasenia,
-                'rol_id' => $rol,
-                'usuario_telefono' => $usu_telefono,
-                'tipo_documento_id' => $tipo_documento,
-                'usuario_num_identificacion' => $numero_documento
-            );
-            
-            $campos_a_actualizar = array();
-        
-            // Validaciones y actualizaciones
-            foreach ($campos as $campo => $valor) {
-                // Validar si el valor no está vacío y es diferente al valor actual en la base de datos
-                if (!empty($valor) && $valor != $usuario_bd[$campo]) {
-                    if (is_numeric($valor)) {
-                        $campos_a_actualizar[] = "$campo=" . intval($valor);
-                    } else {
-                        $campos_a_actualizar[] = "$campo='" . addslashes($valor) . "'";
-                    }
+        }
+        // Validaciones y actualizaciones
+        foreach ($campos as $campo => $valor) {
+            // Validar si el valor no está vacío y es diferente al valor actual en la base de datos
+            if (!empty($valor) && $valor != $usuario_bd[$campo]) {
+                if (is_numeric($valor)) {
+                    $campos_a_actualizar[] = "$campo=" . intval($valor);
+                } else {
+                    $campos_a_actualizar[] = "$campo='" . addslashes($valor) . "'";
                 }
             }
-        
+        }
+
 
         if (!empty($campos_a_actualizar)) {
             $sql = "UPDATE usuarios SET " . implode(", ", $campos_a_actualizar) . " WHERE usuario_id=$id";
 
             $ejecutar = $obj->update($sql);
-            if ($ejecutar) {
 
+            if ($ejecutar) {
+                if ($identificador == 1) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'Los datos se actualizaron correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUpdateUsuarios") . "';
+                        }
+                    });
+                </script>";
+        
+        
+                } else if ($identificador == 2) {
+                    echo "<script>
+                    Swal.fire({
+                        title: '¡Éxito!',
+                        text: 'Los datos se actualizaron correctamente.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then((result) => {
+                        // Redirigimos al usuario después de que cierre la alerta
+                        if (result.isConfirmed) {
+                            window.location.href = '" . getUrl("Usuarios", "Usuarios", "getPerfilAdmin") . "';
+                        }
+                    });
+                </script>";
+        
+                }
+
+              
+
+            } else {
+                echo "Se ha presentado un error al actualizar.";
+            }
+        } else {
+            if ($identificador == 1) {
                 echo "<script>
                 Swal.fire({
-                    title: '¡Éxito!',
-                    text: 'Los datos se actualizaron correctamente.',
-                    icon: 'success',
+                    title: 'Sin cambios',
+                    text: 'No se detectaron cambios en los datos para actualizar.',
+                    icon: 'info',
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
@@ -343,29 +410,31 @@ class UsuariosController
                     }
                 });
             </script>";
-
-            } else {
-                echo "Se ha presentado un error al actualizar.";
+    
+    
+            } else if ($identificador == 2) {
+                echo "<script>
+                Swal.fire({
+                    title: 'Sin cambios',
+                    text: 'No se detectaron cambios en los datos para actualizar.',
+                    icon: 'info',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    // Redirigimos al usuario después de que cierre la alerta
+                    if (result.isConfirmed) {
+                        window.location.href = '" . getUrl("Usuarios", "Usuarios", "getPerfilAdmin") . "';
+                    }
+                });
+            </script>";
+    
             }
-        } else {
 
-            echo "<script>
-            Swal.fire({
-                title: 'Sin cambios',
-                text: 'No se detectaron cambios en los datos para actualizar.',
-                icon: 'info',
-                confirmButtonText: 'Aceptar'
-            }).then((result) => {
-                // Redirigimos al usuario después de que cierre la alerta
-                if (result.isConfirmed) {
-                    window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUpdateUsuarios") . "';
-                }
-            });
-        </script>";
+           
         }
         unset($_SESSION['usuario_data']);
+        unset($_SESSION['usuario_data_perfil']);
 
-      
+
     }
     public function updateStatus()
     {

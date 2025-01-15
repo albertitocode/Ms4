@@ -6,7 +6,7 @@ class SolicitudController
     public function getSolicitud()
     {
         $obj = new SolicitudModel();
-        
+
         $x = $_GET['x'];
         $y = $_GET['y'];
 
@@ -19,7 +19,7 @@ class SolicitudController
     //     $obj = new SolicitudModel();
 
     //     $id_solicitud = $_POST['id_solicitud'];
-       
+
 
     //     $x = $_GET['x'];
     //     $y = $_GET['y'];
@@ -149,23 +149,23 @@ class SolicitudController
         //agregar los cambios de estados
         $coordi_x = $_POST['coordenada_x_seniN'];
         $coordi_y = $_POST['coordenada_y_seniN'];
-        
+
         $senial_id = $_POST['senial_id'];
         $solicitud_senial_nueva_descripcion = $_POST['solicitud_senial_nueva_descripcion'];
-        $solicitud_senial_nueva_direccion = $coordi_x." ".$coordi_y;
+        $solicitud_senial_nueva_direccion = $coordi_x . " " . $coordi_y;
 
         $usuario_id = $_SESSION['id'];
 
         //validaciones 
         $validacion = true;
         $campos = array(
-            
+
             'senial_id' => 'Es requerido llenar el campo señal'
 
         );
 
         foreach ($campos as $campo => $mensaje) {
-            $c=trim($$campo);
+            $c = trim($$campo);
             if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
@@ -346,7 +346,7 @@ class SolicitudController
         $usuario_id = $_SESSION['id'];
         $coordi_x = $_POST['coordenada_x_seniM'];
         $coordi_y = $_POST['coordenada_y_seniM'];
-        $solicitud_direccion = $coordi_x." ".$coordi_y;
+        $solicitud_direccion = $coordi_x . " " . $coordi_y;
 
 
 
@@ -543,7 +543,7 @@ class SolicitudController
         $coordi_y = $_POST['coordenada_y_reduM'];
         $solicitud_reductores_mal_estado_descripcion = $_POST['solicitud_reductores_mal_estado_descripcion'];
 
-        $direccion = $coordi_x. " ". $coordi_y;
+        $direccion = $coordi_x . " " . $coordi_y;
         $danio_id = $_POST['danio_id'];
         $usuario_id = $_SESSION['id'];
         $reductor_id = $_POST['reductor_id'];
@@ -551,12 +551,12 @@ class SolicitudController
 
         if (isset($_FILES['solicitud_reductor_imagen']) && $_FILES['solicitud_reductor_imagen']['error'] === 0) {
             $img = $_FILES['solicitud_reductor_imagen']['name'];
-        
+
             // Usar una ruta absoluta para evitar problemas con rutas relativas
             $ruta = "assets/img/img_solicitudes/$img";
-        
+
             move_uploaded_file($_FILES['solicitud_reductor_imagen']['tmp_name'], $ruta);
-               
+
         } else {
             $img = "Sin imagen";
         }
@@ -571,7 +571,7 @@ class SolicitudController
 
 
         foreach ($campos as $campo => $mensaje) {
-            $c=trim($$campo);
+            $c = trim($$campo);
             if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
@@ -623,7 +623,11 @@ class SolicitudController
 
         $obj = new SolicitudModel();
 
-        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu  ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id JOIN estados e ON r.estado_id = e.estado_id";
+        $sql = "SELECT r.*,ST_AsText(r.solicitud_reductor_nuevo_direccion), re.reductor_nombre, usu.usuario_nombre_1,
+         usu.usuario_apellido_1, usu.usuario_telefono, tip.tipo_solicitud_nombre, e.estado_nombre FROM 
+         solicitud_reductores_nuevos r JOIN reductores re ON r.reductor_id=re.reductor_id JOIN usuarios usu 
+          ON r.usuario_id=usu.usuario_id JOIN tipo_solicitudes tip ON r.tipo_solicitud_id = tip.tipo_solicitud_id 
+          JOIN estados e ON r.estado_id = e.estado_id";
         $solicitud_reductores_nuevos = pg_fetch_all($obj->consult($sql));
 
         if ($solicitud_reductores_nuevos) {
@@ -674,8 +678,8 @@ class SolicitudController
         $coordi_y = $_POST['coordenada_y_reduN'];
 
         $solicitud_reductor_nuevo_descripcion = $_POST['solicitud_reductor_nuevo_descripcion'];
-      
-        $direccion = $coordi_x. " ". $coordi_y;
+
+        $direccion = $coordi_x . " " . $coordi_y;
         $solicitud_reductor_nuevo_imagen = $_POST['solicitud_reductor_nuevo_imagen'];
         // var_dump($solicitud_reductor_nuevo_imagen);
         $usuario_id = $_SESSION['id'];
@@ -690,7 +694,7 @@ class SolicitudController
 
 
         foreach ($campos as $campo => $mensaje) {
-            $c=trim($$campo);
+            $c = trim($$campo);
             if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
@@ -767,21 +771,21 @@ class SolicitudController
     {
 
         $obj = new SolicitudModel();
-      
+
         $coordi_x = $_POST['coordenada_x_via'];
         $coordi_y = $_POST['coordenada_y_via'];
-        $direccion = $coordi_x. " ". $coordi_y;
+        $direccion = $coordi_x . " " . $coordi_y;
         $danio = $_POST['danio_id'];
         $usuario = $_SESSION['id'];
 
         if (isset($_FILES['solicitud_via_imagen']) && $_FILES['solicitud_via_imagen']['error'] === 0) {
             $img = $_FILES['solicitud_via_imagen']['name'];
-        
+
             // Usar una ruta absoluta para evitar problemas con rutas relativas
             $ruta = "assets/img/img_solicitudes/$img";
-        
+
             move_uploaded_file($_FILES['solicitud_via_imagen']['tmp_name'], $ruta);
-               
+
         } else {
             $img = "Sin imagen";
         }
@@ -801,7 +805,7 @@ class SolicitudController
 
         // Bucle para validar los campos
         foreach ($campos as $campo => $mensaje) {
-            $c=trim($$campo);
+            $c = trim($$campo);
             if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
@@ -924,13 +928,14 @@ class SolicitudController
 
         //VALIDACIONES
         $validacion = true;
-        $campos = array(            'tipo_pqrs_id' => 'El campo tipo pqrs es requerido',
+        $campos = array(
+            'tipo_pqrs_id' => 'El campo tipo pqrs es requerido',
             'descripcion_pqrs' => 'El campo descripcion es requerido'
-    );
+        );
 
         // Bucle para validar los campos
         foreach ($campos as $campo => $mensaje) {
-            $c=trim($$campo);
+            $c = trim($$campo);
             if (empty($c)) {
 
                 $_SESSION['errores'][] = $mensaje;
@@ -988,7 +993,7 @@ class SolicitudController
     //Empieza Accidentes
     public function GetCreateAccidente()
     {
-        
+
         $obj = new SolicitudModel();
 
         $x = $_GET['x'];
@@ -1062,12 +1067,12 @@ class SolicitudController
         // $barrio = $_POST['barrio'];
 
         $tipo_choque = $_POST['tipo_choque'];
-        
+
         $id_usuario = $_SESSION['id'];
         $coordi_x = $_POST['coordenada_x_acci'];
         $coordi_y = $_POST['coordenada_y_acci'];
-        $direccion = $coordi_x ." ". $coordi_y;
-        
+        $direccion = $coordi_x . " " . $coordi_y;
+
 
         if (isset($_FILES['solicitud_accidente_imagen']) && $_FILES['solicitud_accidente_imagen']['error'] === 0) {
             $img = $_FILES['solicitud_accidente_imagen']['name'];
@@ -1135,19 +1140,19 @@ class SolicitudController
         //     return preg_match($patron,$input)===1;
 
         // }
-        
+
 
         $sql = "INSERT INTO solicitud_accidentes (tipo_choque_id,
         solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre,solicitud_accidente_direccion) VALUES (
      $tipo_choque, '$img','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre',ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
-    if($direccion ==" "){
-        echo "error";
-    }else{
-        if ($validacion == true) {
-            $ejecutar = $obj->insert($sql);
+        if ($direccion == " ") {
+            echo "error";
+        } else {
+            if ($validacion == true) {
+                $ejecutar = $obj->insert($sql);
 
-            if ($ejecutar) {
-                echo "<script>
+                if ($ejecutar) {
+                    echo "<script>
                 Swal.fire({
                     title: '¡Gracias!',
                     text: 'Tu solicitud se ha registrado correctamente',
@@ -1160,14 +1165,14 @@ class SolicitudController
                     }
                 });
             </script>";
+                } else {
+                    echo "Se ha presentado un error al insertar";
+                }
             } else {
-                echo "Se ha presentado un error al insertar";
+                redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente"));
             }
-        } else {
-            redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente"));
         }
-    }
-        
+
 
 
 

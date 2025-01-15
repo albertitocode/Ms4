@@ -334,6 +334,13 @@ include_once '../view/partials/scripts.php';
                                                     <span class="small-text text-danger" id="error_usuario_contrasenia"></span>
 
                                                 </div>
+                                                <div class="form-group">
+                                                <label for="usuario_confirmar_contrasenia">Confirmar Contraseña</label>
+                                                <input type="password" name="usuario_confirmar_contrasenia" id="usuario_confirmar_contrasenia"
+                                                    class="form-control" placeholder="Confirmar Contraseña">
+                                                <span class="small-text text-danger"
+                                                    id="error_usuario_confirmar_contrasenia"></span>
+                                            </div>
                                             </div>
 
                                         </div>
