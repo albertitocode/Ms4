@@ -1,4 +1,4 @@
-<footer class="footer" onload="loadColor();">
+<footer class="footer" style="padding: 1px;">
  <div class="container-fluid d-flex justify-content-between">
     <nav class="pull-left">
      <ul class="nav">

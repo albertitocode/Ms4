@@ -13,14 +13,14 @@
 
  -->
 <div class="mt-5">
-    <h3 class="display-4">Reporte accidentes</h3>
+    <h3 class="display-4">Reporte nuevas señales</h3>
 </div>
  <div class="content">
  
 
  <div class="card" style="width: 50rem;">
       <div class="card-body">
-      <button class="btn btn-success " id="downloadExcel">Descargar</button>
+      <button class="btn btn-success "id="downloadExcel">Descargar</button>
 
         <canvas id="chartis"></canvas>
         
@@ -31,7 +31,7 @@
             data: {
               labels: ['<?=  $nombres['nombre_1'] ?>', '<?= $nombres['nombre_2'] ?>', '<?= $nombres['nombre_3'] ?>', '<?= $nombres['nombre_4'] ?>', '<?= $nombres['nombre_5'] ?>'],
               datasets: [{
-                label: 'Solicitudes realizadas',
+                label: "<?= $nombre_reporte ?>",
                 data: [<?= $dato1 ?>, <?= $dato2 ?>, <?=$dato3 ?>, <?= $dato4 ?>,  <?=$dato5 ?>],
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.4)',

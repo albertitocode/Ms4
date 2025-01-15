@@ -71,7 +71,7 @@
                             </div>
                             
                             <div class="mt-5">
-                                <input type="submit" id="btnReportes" value="Enviar" class="btn btn-success">
+                                <input type="submit" id="btnReporteAcci" value="Enviar" class="btn btn-success">
                             </div>
                         </div>
                     </div>

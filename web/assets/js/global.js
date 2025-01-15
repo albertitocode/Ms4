@@ -67,6 +67,15 @@ $(document).ready(function () {
   const campoCorreo = {
     'correo_usuario' : 'Correo'
   }
+  const camposPQRS = { 
+    'tipo_pqrs_id' : 'tipo pqrs',
+    'descripcion_pqrs' : 'Descripcion'
+    }
+
+// const camposlogin = {
+//     'user': 'email',
+//     'pass': 'contraseña'
+//   }
 
   function validarCampoLetras(input) {
     const patron = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u;
@@ -194,41 +203,41 @@ $(document).ready(function () {
   });
 
 
-  $('#formLogin').submit(function(e) {
-    e.preventDefault(); 
+//   $('#formLogin').submit(function(e) {
+//     e.preventDefault(); 
 
-    var correo = $('#user').val();
-    var contrasenia = $('#pass').val();
-console.log(correo);
-console.log(contrasenia);
+//     var correo = $('#user').val();
+//     var contrasenia = $('#pass').val();
+// console.log(correo);
+// console.log(contrasenia);
 
-    // Limpiar los mensajes de error antes de la validación
-    $('#errorCorreo').hide();
-    $('#errorContrasenia').hide();
-    var valid = true;
+//     // Limpiar los mensajes de error antes de la validación
+//     $('#errorCorreo').hide();
+//     $('#errorContrasenia').hide();
+//     var valid = true;
 
-    // Validar el correo
-    if (correo === '') {
-        $('#errorCorreo').text('El correo es obligatorio').show();
-        valid = false;
-    } else if (!validarCorreo(correo)) {
-        $('#errorCorreo').text('El correo no es válido').show();
-        valid = false;
-    }
+//     // Validar el correo
+//     if (correo === '') {
+//         $('#errorCorreo').text('El correo es obligatorio').show();
+//         valid = false;
+//     } else if (!validarCorreo(correo)) {
+//         $('#errorCorreo').text('El correo no es válido').show();
+//         valid = false;
+//     }
 
-    // Validar la contraseña
-    if (contrasenia === '') {
-        $('#errorContrasenia').text('La contraseña es obligatoria').show();
-        valid = false;
-    }
+//     // Validar la contraseña
+//     if (contrasenia === '') {
+//         $('#errorContrasenia').text('La contraseña es obligatoria').show();
+//         valid = false;
+//     }
 
-    if (valid) {
-        // Si la validación es exitosa, puedes hacer el submit o realizar otras acciones
-        // Por ejemplo:
-        // this.submit();
-        console.log('Formulario enviado');
-    }
-});
+//     if (valid) {
+//         // Si la validación es exitosa, puedes hacer el submit o realizar otras acciones
+//         // Por ejemplo:
+//         // this.submit();
+//         console.log('Formulario enviado');
+//     }
+// });
 
 
 
@@ -494,7 +503,47 @@ console.log(contrasenia);
 
     }
   });
+$('#formLogin').submit(function (event){
+  event.preventDefault();
+  let esValido = true;
+  var contrasena = document.getElementById('pass').value;
+  var errorContrasena = document.getElementById('error_usuario_contrasena');
+  var correo = document.getElementById('user').value;
+  var errorCorreo = document.getElementById('error_usuario_email');
+errorConta = 'error_usuario_contrasena';
 
+  document.getElementById('error_usuario_email').textContent =" ";    
+ document.getElementById('error_usuario_contrasena').textContent=" ";
+    // Validar campos vacíos correo
+    if (correo.trim() === '') {
+        document.getElementById('error_usuario_email').textContent = `*El campo correo es obligatorio*`;
+        esValido = false;
+      
+    }else if (!validarCorreo(correo)) {
+      document.getElementById('error_usuario_email').textContent = `*Por favor, ingrese un correo electrónico válido (ejemplo: usuario@dominio.com).*`;
+      esValido = false;
+    } else if (correo.length > 50) {
+      document.getElementById('error_usuario_email').textContent = `*Correo muy largo*`;
+      esValido = false;
+    }
+
+
+    
+
+     // Validar campos vacíos contrasenia
+     if (contrasena.trim() === '') {
+      document.getElementById('error_usuario_contrasena').textContent = `*El campo contraseña es obligatorio*`;
+      esValido = false;
+
+     } else if (!validarContrasenias(contrasena,errorConta)){
+      esValido =false;
+     }
+
+     if (esValido) {
+      this.submit();
+
+    }
+});
 
 
 
@@ -896,6 +945,22 @@ console.log(contrasenia);
     });
   });
 
+  $(document).on('change', "#id_consult_mapa", function () {
+    console.log("mapita");  
+    let id_consult_mapa = $(this).val();
+    let url = $(this).attr('data-url');
+     
+    // console.log("Valor seleccionado: " + id_solicitud);
+    $.ajax({
+      url: url,
+      type: 'POST',
+      data: { 'id_consult_mapa': id_consult_mapa},
+      success: function (data) {
+        $('#mapita').html(data);
+      }
+    });
+  });
+
   $('select, input').on('input change', function () {
     // Concatenar los valores de los campos de dirección
     var tipoVia = $('#tipo_via').val();
@@ -1214,4 +1279,109 @@ $(document).on('input', '#formContra input', function () {
   }
 });
 
+$(document).on('input', '#formPqrs input, #formPqrs select', function () {
+
+  var formData = $('#formPqrs').serializeArray();
+  let esValido = true;
+  const fileInput = document.querySelector('input[name="adjuncion_pqrs"]');
+    const file = fileInput.files[0]; // Accede al archivo seleccionado
+   
+  
+    if (!file) {
+      console.log('El archivo no fue seleccionado');
+  
+  
+    } else if (!['image/png', 'image/jpeg', 'image/jpg'].includes(file.type)) {
+      document.getElementById("error_adjuncion_pqrs").textContent = `*El formato de la imagen no es valido*`;
+      esValido = false;
+  
+    } else if (file.size > 2 * 1024 * 1024) { // 2 MB
+      document.getElementById("error_adjuncion_pqrs").textContent = `*El archivo es demasiado grande*`;
+      esValido = false;
+  
+    } else {
+      console.log('archivo ingresado')
+    }
+  
+  // Limpiar los mensajes de error antes de comenzar la validación
+  Object.keys(camposPQRS).forEach(campoPQRS => {
+    const error = `error_${campoPQRS}`;
+    document.getElementById(error).textContent = ""; // Limpia los errores
+  });
+  
+  // Validación de los campos
+  formData.forEach(function (campoData) {
+    const { name, value } = campoData;
+    const error = `error_${name}`;
+    const valor = camposPQRS[name];
+  
+    // Validar campos vacíos
+    if (value.trim() === '') {
+      if (camposPQRS[name]) {
+  
+        document.getElementById(error).textContent = `*El campo ${valor} es obligatorio*`;
+        esValido = false;
+      }
+    }
+  });
+  
+  const submitButton = document.getElementById('btnPQRS');
+  if (esValido) {
+    console.log('Formulario válido');
+    submitButton.disabled = false;
+  } else {
+    console.log('Formulario no válido');
+    submitButton.disabled = true;
+  }
+  });
+
+  $(document).on('input', '#formLogin input, #formLogin select', function () {
+
+  console.log("En la funcion");
+  
+    // var formData = $('#formLogin').serializeArray();
+    let esValido = true;
+    var contrasena = document.getElementById('pass').value;
+    var errorContrasena = document.getElementById('error_usuario_contrasena');
+    var correo = document.getElementById('user').value;
+    var errorCorreo = document.getElementById('error_usuario_email');
+  errorConta = 'error_usuario_contrasena';
+  
+    document.getElementById('error_usuario_email').textContent =" ";    
+   document.getElementById('error_usuario_contrasena').textContent=" ";
+      // Validar campos vacíos correo
+      if (correo.trim() === '') {
+          document.getElementById('error_usuario_email').textContent = `*El campo correo es obligatorio*`;
+          esValido = false;
+        
+      }else if (!validarCorreo(correo)) {
+        document.getElementById('error_usuario_email').textContent = `*Por favor, ingrese un correo electrónico válido (ejemplo: usuario@dominio.com).*`;
+        esValido = false;
+      } else if (correo.length > 50) {
+        document.getElementById('error_usuario_email').textContent = `*Correo muy largo*`;
+        esValido = false;
+      }
+  
+  
+      
+  
+       // Validar campos vacíos contrasenia
+       if (contrasena.trim() === '') {
+        document.getElementById('error_usuario_contrasena').textContent = `*El campo contraseña es obligatorio*`;
+        esValido = false;
+  
+       } else if (!validarContrasenias(contrasena,errorConta)){
+        esValido =false;
+       }
+    
+  
+    const submitButton = document.getElementById('btnLogin');
+    if (esValido) {
+      console.log('Formulario válido');
+      submitButton.disabled = false;
+    } else {
+      console.log('Formulario no válido');
+      submitButton.disabled = true;
+    }
+  });
 });

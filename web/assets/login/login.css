@@ -1,6 +1,4 @@
-
 *{
-
     margin: 0;
     padding: 0;
 }
@@ -8,7 +6,7 @@
 
 .logo{
     height: 10rem;
-    width: 10rem;
+    width: 11rem;
 }
 
 /* contenido menu */
@@ -54,8 +52,8 @@ main .texto h1{
 /* formulario */
 
 main .formulario{
-    width: 22rem;
-    height:30rem;
+    width: 25rem;
+    height:39rem;
     background-color:  #fff;
     display: flex;
     border-radius: 9px;
@@ -67,6 +65,7 @@ main .formulario{
     box-sizing: border-box;
     border-color: #b90fdb;
     border: 2px;
+    box-shadow: 17px 15px 6px 1px rgba(0, 0, 255, .2);
 
 }
 
@@ -132,10 +131,10 @@ footer {
     font-size: 14px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 850px) {
     
     main .principal{
-        height: 43rem;
+        height: 60rem;
         width: 100%;
         overflow: hidden;
     }
@@ -143,7 +142,6 @@ footer {
       display: none;
     }
     main .texto h1{
-        color: #fff;
         font-weight: 800;
         font-size: 2rem;
         line-height: 1;
@@ -152,7 +150,6 @@ footer {
     main .formulario{
         margin: 0;
         padding: 0;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
   }
-  

@@ -5,7 +5,7 @@
 
 <div class="mt-5">
 
-    <form action="<?php echo getUrl("Solicitud", "Solicitud", "PostCreatePQRS"); ?>" method="post" id="form">
+    <form action="<?php echo getUrl("Solicitud", "Solicitud", "PostCreatePQRS"); ?>" method="post" id="formPqrs">
         <div class="page-header">
             <h3 class="fw-bold mb-3">Registro</h3>
             <ul class="breadcrumbs mb-3">
@@ -51,14 +51,16 @@
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="tipo_pqrs">Tipo PQRS</label>
-                                    <select name="tipo_pqrs_id" id="" class="form-control">
+                                    <select name="tipo_pqrs_id" class="form-control">
                                         <option value="">Seleccione el tipo...</option>
                                         <?php
                                         foreach ($tipo_pqrs as $_pqrs) {
                                             echo "<option  value='" . $_pqrs['tipo_pqrs_id'] . "'>" . $_pqrs['tipo_pqrs_nombre'] . "</option>";
                                         }
                                         ?>
+
                                     </select>
+                                    <span class="small-text text-danger" id="error_tipo_pqrs_id"></span>
                                 </div>
 
 
@@ -67,13 +69,15 @@
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="descripcion_pqrs"> Describa el motivo</label>
-                                    <textarea type="text" name="descripcion_pqrs" id="" class="form-control" placeholder="Motivo de su PQRS"></textarea>
+                                    <textarea type="text" name="descripcion_pqrs" id="descripicon_pqrs" class="form-control" placeholder="Motivo de su PQRS"></textarea>
+                                    <span class="small-text text-danger" id="error_descripcion_pqrs"></span>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
                                     <label for="adjuncion_pqrs">Archivo adjuntado (Opcional)</label>
                                     <input type="file" name="adjuncion_pqrs" class="form-control">
+                                    <span class="small-text text-danger" id="error_adjuncion_pqrs"></span>
                                 </div>
 
                             </div>
@@ -87,7 +91,7 @@
         
 
         <div class="mt-5">
-            <input type="submit" value="Enviar" class="btn btn-success">
+            <input type="submit" value="Enviar" class="btn btn-success" id="btnPQRS">
         </div>
     </form>
 </div>

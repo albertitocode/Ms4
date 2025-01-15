@@ -15,6 +15,8 @@ include_once '../lib/helphers.php';
   <link rel="shortcut icon" href="" type="image/x-icon">
   <title>GEO CALI</title>
   <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../web/assets/js/global.js"></script>
 </head>
 
 <body>
@@ -33,25 +35,36 @@ include_once '../lib/helphers.php';
           <!-- </div> -->
           <!-- <div class="col-md-6"> -->
             <!-- <div class="d-flex justify-content-center align-items-center h-100"> -->
+              
+
+              
+
+
+              
+              
+             
           <div class="formulario">
             <h3>Iniciar Sesión</h3>
             <img src="assets/img/logo1.png" class='logo'>
 
            
-            <form action="<?php echo getUrl("Acceso", "Acceso", "login", "", "ajax"); ?>" method="post" id="formUsu">
+            <form action="<?php echo getUrl("Acceso", "Acceso", "login", false, "ajax"); ?>" method="post" id="formLogin">
             <label for="uname"><b>Correo</b></label>
               <div class="inputbox mb-3">
                 <i class='bx bxs-user'></i>
-                <input type="email" class="" name="user" id="user" required>
+                <input type="email" class="form-control" name="user" id="user">
+                <span class="small-text text-danger" id="error_usuario_email"></span><br>
               </div>
               
 
               <label for="psw"><b>Contraseña</b></label>
               <div class="inputbox mb-3">
                 <i class='bx bxs-lock-alt'></i>
-                <input type="password" class="" name="pass" id="pass" required>
+                <input type="password" class="form-control" name="pass" id="pass">
+                <span class="small-text text-danger" id="error_usuario_contrasena"></span><br>
+              
               </div>
-              <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", "", "ajax"); ?>">
+              <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", false, "ajax"); ?>">
                   <p>Olvidó su contraseña?</p>
                 </a>
 
@@ -61,6 +74,7 @@ include_once '../lib/helphers.php';
                 <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
               </form>
             </div>
+            
             <!-- </div> -->
           <!-- </div> -->
         <!-- </div>  -->

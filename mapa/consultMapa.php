@@ -37,23 +37,24 @@
             <input type="text" name="usu_id" class="form-control" placeholder="Id">
             
         </div> -->
-        
                         <div class="col-md-3 mt-4">
                             <!-- <label for="">Id</label>
                             <input type="text" name="id_solicitud" id="id_solicitud" class="form-control"
                                 placeholder="Buscar por tipo de solcitud" data-url='
                          -->
                         <label for="">Tipo de solicitud a consultar</label>
-                                <select name="tipo_solicitud_id" id="id_consult_solicitud" class="form-select" data-url='<?php echo getUrl("Solicitud", "Solicitud", "obtenerSolicitudes", false, "ajax");?>'>
-                                    <option value="">Seleccione...</option>
+                                <select name="tipo_solicitud" id="id_consult_mapa" class="form-select" data-url='<?php echo getUrl("Mapa", "Mapa", "abrirMapaAccidentes", false, "ajax");?>'>
+                                    <option value="0">Seleccione...</option>
                                     <?php
                                     foreach ($tipo_solicitud as $tipo_s) {
                                         echo "<option  value='" . $tipo_s['tipo_solicitud_id'] . "'>" . $tipo_s['tipo_solicitud_nombre'] . "</option>";
                                     }
                                     ?>
                                 </select>
+                                
                                 </div>
-                        <div id="formularios">
+
+                        <div id="mapita">
                            
                         
                            

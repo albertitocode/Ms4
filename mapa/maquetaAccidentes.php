@@ -202,6 +202,7 @@
         <h4 class="display-4">Consulte las solicitudes de accidente registrados en el mapa</h4>
     </div>
     <div class="card-body">
+    <!-- <?php echo $prueba3   ?> -->
         <div class="contenedor">
 
             <div class="mscross" style="overflow: hidden; width: 500px; height: 400px;
@@ -260,117 +261,117 @@
          position: relative; z-index: 200; border-radius: 15px; margin-left: 15px; " id="dc_main2"> </div>
                 </div>
 
-               
+
 
 
             </div>
             <div id="Layer2">
-                    <div class="card ms-4">
-                        <div class="card-header">
-                            <div class="card-tittle">
-                                Simbolos del mapa
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <img class="img" src="../mapa/misc/symbols/reducN.gif" alt="Nuevo reductor">
-
-                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
-
-                                    <span>Solicitud Via en mal estado</span>
-                                </div>
-
-
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-4">
-                                    <img class="img" src="../mapa/misc/symbols/senialN.gif" alt="Nuevo reductor">
-                                </div>
-
-                                <div class="col-md-3 mt-3">
-
-                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
-                                </div>
-
-                                <div class="col-md-5 mt-3">
-
-                                    <span>Solicitud Señal en mal estado</span>
-                                </div>
-
-                            </div>
-
-
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="img" src="../mapa/misc/symbols/hump.gif" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-5 mt-3">
-                                    <span>Solicitud Reductor en mal estado</span>
-
-                                </div>
-
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="img" src="../mapa/misc/symbols/senialM.gif" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nueva señal</span>
-
-                                </div>
-
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="img" src="../mapa/misc/symbols/reducM.gif" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
-
-                                </div>
-
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img class="img" src="../mapa/misc/symbols/Accidente.gif" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-3 mt-3">
-                                    <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
-
-                                </div>
-                                <div class="col-md-5 mt-3">
-                                    <span>Solicitud Accidente</span>
-
-                                </div>
-
-
-                            </div>
-
+                <div class="card ms-4">
+                    <div class="card-header">
+                        <div class="card-tittle">
+                            Simbolos del mapa
                         </div>
                     </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <img class="img" src="../mapa/misc/symbols/reducN.gif" alt="Nuevo reductor">
 
+                                <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                                <span>Solicitud Via en mal estado</span>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <img class="img" src="../mapa/misc/symbols/senialN.gif" alt="Nuevo reductor">
+                            </div>
+
+                            <div class="col-md-3 mt-3">
+
+                                <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+                            </div>
+
+                            <div class="col-md-5 mt-3">
+
+                                <span>Solicitud Señal en mal estado</span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="img" src="../mapa/misc/symbols/hump.gif" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-5 mt-3">
+                                <span>Solicitud Reductor en mal estado</span>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="img" src="../mapa/misc/symbols/senialM.gif" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-5 mt-3">
+                                <span>Solicitud Nueva señal</span>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="img" src="../mapa/misc/symbols/reducM.gif" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-5 mt-3">
+                                <span>Solicitud Nuevo reductor</span>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="img" src="../mapa/misc/symbols/Accidente.gif" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-3 mt-3">
+                                <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
+
+                            </div>
+                            <div class="col-md-5 mt-3">
+                                <span>Solicitud Accidente</span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
                 </div>
+
+            </div>
 
 
 
@@ -381,8 +382,22 @@
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
                 myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setLayers('Cinco Six One Two Puntos1 ');
+                <?php if($puntos == 'Puntos1') {?>
+                myMap1.setLayers('Cinco Six One Two Puntos1');
                 // $map=Mymap1;
+                 <?php }else if ($puntos == 'Puntos2'){?>
+                 myMap1.setLayers('Cinco Six One Two Puntos2');
+                    <?php }else if($puntos == 'Puntos3'){?>
+                 myMap1.setLayers('Cinco Six One Two Puntos3');
+                   <?php }else if($puntos == 'Puntos4'){ ?>
+                myMap1.setLayers('Cinco Six One Two Puntos4');
+                    <?php }else if($puntos == 'Puntos5'){?>
+                myMap1.setLayers('Cinco Six One Two Puntos5');
+                    <?php }else if($puntos == 'Puntos6'){?>
+                myMap1.setLayers('Cinco Six One Two Puntos6');
+                    <?php }else if($puntos == 'Todos'){?>
+                myMap1.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
+                    <?php }?>
                 myMap2 = new msMap(document.getElementById("dc_main2"), 'standardRight');
 
                 myMap2.setActionNone();
@@ -455,28 +470,69 @@
                         // Envía una solicitud AJAX al servidor para obtener los datos.
                         consultar2 = new objectoAjax();
 
-                        consultar2.open("GET", "../mapa/procesar.php?xx=" + xx + "&yy=" + yy, true);
+                        consultar2.open("GET", "../mapa/procesar.php?xx=" + xx + "&yy=" + yy + "&id="+ <?php echo $id_solicitud; ?> , true);
 
-                        consultar2.onreadystatechange = function () {
+                        consultar2.onreadystatechange = function() {
                             if (consultar2.readyState == 4) {
+                                // const id=0;
                                 var result = consultar2.responseText;
                                 const data = JSON.parse(result);
                                 if (data.length > 0) {
                                     // Extraer la información del primer objeto (en caso de que haya más de uno)
                                     const info = data[0];
-                                    const id = info.solicitud_accidente_id;
-                                    const nombre = info.detalle_choque_nombre;
-                                    const geom = info.solicitud_accidente_direccion;
+                                    switch (<?php echo $id_solicitud; ?>){
+                                        case 1:
+                                         id = info.solicitud_senial_mal_estado_id;
+                                        descripcion = info.solicitud_senial_mal_estado_descripcion;
+                                         tipo_solicitud = info.tipo_solicitud_nombre;
+                                         fecha = info.solicitud_senial_mal_estado_fecha_creacion;
+                                        break;
+                                        case 2:
+                                         id = info.solicitud_via_mal_estado_id;  
+                                         descripcion = info.solicitud_via_mal_estado_descripcion;
+                                         tipo_solicitud = info.tipo_solicitud_nombre;
+                                         fecha = info.solicitud_via_mal_estado_fecha_creacion;
+                                        break;
+                                        case 3:
+                                        id = info.solicitud_reductores_mal_estado_id;
+                                        descripcion = info.solicitud_reductores_mal_estado_descripcion;
+                                        tipo_solicitud = info.tipo_solicitud_nombre;
+                                        fecha = info.solicitud_senial_mal_estado_fecha_creacion;
+                                        break;
+                                        case 4:
+                                        id = info.solicitud_accidente_id;
+                                        descripcion = info.solicitud_accidente_descripcion;
+                                        tipo_solicitud = info.tipo_solicitud_nombre;
+                                        fecha = info.solicitud_accidente_fecha_creacion;
+                                        break;
+                                        case 5:
+                                         id = info.solicitud_senial_nueva_id;
+                                         descripcion = info.solicitud_senial_nueva_descripcion;
+                                         tipo_solicitud = info.tipo_solicitud_nombre;
+                                         fecha = info.solicitud_senial_nueva_fecha_creacion;
+                                        break;
+                                        case 6:
+                                           id = info.solicitud_reductor_nuevo_id;
+                                           descripcion = info.solicitud_reductor_nuevo_descripcion;
+                                           tipo_solicitud = info.tipo_solicitud_nombre;
+                                           fecha = info.solicitud_reductor_nuevo_fecha_creacion;
+                                        break;
+                                    }
+                                    
+                                    alert(id);
+                                    // const nombre = info.detalle_choque_nombre;
+                                    // const geom = info.solicitud_accidente_direccion;
                                     // Extraer las coordenadas del campo
-                                    const coords = geom.replace('POINT(', '').replace(')', '').split(' ');
-                                    const lat = coords[1];
-                                    const lon = coords[0];
+                                    // const coords = geom.replace('POINT(', '').replace(')', '').split(' ');
+                                    // const lat = coords[1];
+                                    // const lon = coords[0];
 
                                     // Crear el contenido para la modal
                                     const modalContent = `
                                                     <strong>ID:</strong> ${id} <br>
-                                                    <strong>Nombre:</strong> ${nombre} <br>
-                                                    <strong>Coordenadas:</strong> Lat: ${lat}, Lon: ${lon}
+                                                    <strong>Descripcion:</strong> ${descripcion} <br>
+                                                    <strong>Tipo solicitud:</strong> ${tipo_solicitud} <br>
+                                                    <strong>Fecha de creacion:</strong> ${fecha} <br>
                                                 `;
 
                                     // Mostrar la información en el cuerpo de la modal

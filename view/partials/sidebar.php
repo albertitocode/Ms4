@@ -115,9 +115,9 @@
                 </a>
               </li>
               <li>
-                <!-- <a href="icon-menu.html">
-                  <span class="sub-item">Icon Menu</span>
-                </a> -->
+                <a href="icon-menu.html">
+                  <span class="sub-item">Listar pqrs</span>
+                </a>
               </li>
             </ul>
           </div>
@@ -132,7 +132,7 @@
           <div class="collapse" id="maps">
             <ul class="nav nav-collapse">
               <li>
-              <a href="<?php echo getUrl("Mapa", "Mapa", "abrirMapaAccidentes")?>">
+              <a href="<?php echo getUrl("Mapa", "Mapa", "consultMapa")?>">
               <span class="sub-item">Ver Mapa</span>
                 </a>
               </li>
@@ -153,8 +153,8 @@
           <div class="collapse" id="charts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="<?php echo getUrl("Reportes","Reportes","getReporte") ?>">
-                  <span class="sub-item">Reportes generales</span>
+                <a href="<?php echo getUrl("Reportes","Reportes","reporteGeneral") ?>">
+                  <span class="sub-item">Reporte general</span>
                 </a>
               </li>
               <li>
@@ -171,7 +171,7 @@
             <p>Widgets</p>
             <span class="badge badge-success">4</span>
           </a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a href="../../documentation/index.html">
             <i class="fas fa-file"></i>
@@ -179,7 +179,7 @@
             <span class="badge badge-secondary">1</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a data-bs-toggle="collapse" href="#charts">
             <i class="fas fa-cog"></i>
             <p>Configuracion</p>

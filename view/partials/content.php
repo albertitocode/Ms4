@@ -206,7 +206,7 @@ if ($_SESSION['rol']==3){
    
     <div class="card" style="width: 50rem;">
       <div class="card-body">
-      <button class="btn btn-success ">Descargar</button>
+      <button class="btn btn-success " id="downloadExcel">Descargar</button>
 
         <canvas id="chartPrincipal"></canvas>
         <script>
@@ -251,6 +251,46 @@ if ($_SESSION['rol']==3){
               }
             }
           });
+          document.getElementById('downloadExcel').addEventListener('click', async function () {
+    console.log("Me metí a la funcion");
+    const dataValues = [<?= $reportes['SenialM'] ?>, <?=$reportes['SenialN'] ?>, <?= $reportes['ReductorM']  ?>, <?= $reportes['ReductorN']  ?>,  <?=$reportes['Accidente']  ?>, <?= $reportes['Vias']  ?>];
+
+    const labels = ['Señales en mal estado', 'Nuevas señales', 'Reductores en mal estado', 'Nuevos reductores', 'Accidentes', 'Vias en mal estado'];
+        
+        // Obtener el gráfico como imagen
+        const canvas = document.getElementById("chartPrincipal");
+        const imageData = canvas.toDataURL("image/png"); // Convertir a Base64
+
+        // Crear un libro de trabajo ExcelJS
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Reporte");
+
+        // Agregar datos al Excel
+        worksheet.addRow(["Filtros", "Total"]); // Encabezados
+        labels.forEach((label, index) => {
+            worksheet.addRow([label, dataValues[index]]);
+        });
+
+        // Insertar la imagen en el Excel
+        const imageId = workbook.addImage({
+            base64: imageData,
+            extension: 'png',
+        });
+
+        // Posicionar la imagen (columna A, fila 10, por ejemplo)
+        worksheet.addImage(imageId, {
+            tl: { col: 0.2, row: labels.length + 3 },
+            ext: { width: 500, height: 300 },
+        });
+
+        // Descargar el archivo
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Reporte_con_grafico.xlsx";
+        link.click();
+    });
         </script>
 
       </div>

@@ -164,15 +164,22 @@ class SolicitudController
 
         );
 
-        foreach ($campos as $campo => $mensaje) {
-            $c=trim($$campo);
-            if (empty($c)) {
+        // foreach ($campos as $campo => $mensaje) {
+        //     $c=trim($$campo);
+        //     if (empty($c)) {
 
-                $_SESSION['errores'][] = $mensaje;
-                $validacion = false;
-            } else {
+        //         $_SESSION['errores'][] = $mensaje;
+        //         $validacion = false;
+        //     } else {
 
-            }
+        //     }
+        // }
+        if (isset($_POST['solicitud_nueva_senial_descripcion'])) {
+            $solicitud_senial_nueva_descripcion = $_POST['solicitud_nueva_senial_descripcion'];
+
+        } else {
+            $solicitud_senial_nueva_descripcion = "Sin descripción";
+
         }
 
 
@@ -541,7 +548,7 @@ class SolicitudController
 
         $coordi_x = $_POST['coordenada_x_reduM'];
         $coordi_y = $_POST['coordenada_y_reduM'];
-        $solicitud_reductores_mal_estado_descripcion = $_POST['solicitud_reductores_mal_estado_descripcion'];
+        
 
         $direccion = $coordi_x. " ". $coordi_y;
         $danio_id = $_POST['danio_id'];
@@ -560,7 +567,14 @@ class SolicitudController
         } else {
             $img = "Sin imagen";
         }
+        
+        if (isset($_POST['solicitud_reductor_mal_estado_descripcion'])) {
+            $solicitud_reductores_mal_estado_descripcion = $_POST['solicitud_reductor_mal_estado_descripcion'];
 
+        } else {
+            $solicitud_reductores_mal_estado_descripcion = "Sin descripción";
+
+        }
         $validacion = true;
         $campos = array(
             'danio_id' => 'El campo daño es requerido',
@@ -673,7 +687,7 @@ class SolicitudController
         $coordi_x = $_POST['coordenada_x_reduN'];
         $coordi_y = $_POST['coordenada_y_reduN'];
 
-        $solicitud_reductor_nuevo_descripcion = $_POST['solicitud_reductor_nuevo_descripcion'];
+        
       
         $direccion = $coordi_x. " ". $coordi_y;
         $solicitud_reductor_nuevo_imagen = $_POST['solicitud_reductor_nuevo_imagen'];
@@ -698,6 +712,16 @@ class SolicitudController
             }
 
         }
+          
+        if (isset($_POST['solicitud_reductor_nuevo_descripcion'])) {
+            $solicitud_reductor_nuevo_descripcion = $_POST['solicitud_reductor_nuevo_descripcion'];
+
+        } else {
+            $solicitud_reductor_nuevo_descripcion = "Sin descripción";
+
+        }
+
+
         $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,
         solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,
         solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion',
