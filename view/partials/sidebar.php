@@ -44,6 +44,7 @@
           </span>
           <h4 class="text-section">Menu</h4>
         </li>
+        <?php if($_SESSION['rol'] !=1 ){ ?>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#solicitudes">
             <i class="fas fa-th-list"></i>
@@ -57,16 +58,22 @@
                   <span class="sub-item">Registrar Solicitudes</span>
                 </a>
               </li>
+              <?php if($_SESSION['rol']==2){ ?>
               <li>
                 <a href="<?php echo getUrl("Solicitud", "Solicitud", "postSolicitud"); ?>">
                   <span class="sub-item">Listar Solicitudes</span>
                 </a>
               </li>
+              <?php } ?>
             </ul>
           </div>
 
         </li>
-        <!-- <li class="nav-item">
+      
+        <?php 
+          }
+        if($_SESSION['rol']==1){?>
+        <li class="nav-item">
           <a data-bs-toggle="collapse" href="#usuarios">
             <i class="fas fa-user"></i>
             <p>Usuarios</p>
@@ -94,7 +101,8 @@
 
 
 
-        </li> -->
+        </li>
+      <?php } ?>
 
         <!-- termina accidente -->
 
@@ -122,7 +130,7 @@
             </ul>
           </div>
         </li>
-
+          <?php if($_SESSION['rol'] !=1 ) {?>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#maps">
             <i class="fas fa-map-marker-alt"></i>
@@ -144,6 +152,9 @@
             </ul>
           </div>
         </li>
+        <?php 
+          }
+        if($_SESSION['rol']==2){ ?>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#charts">
             <i class="far fa-chart-bar"></i>
@@ -165,6 +176,7 @@
             </ul>
           </div>
         </li>  
+        <?php }?>
         <!-- <li class="nav-item">
           <a href="widgets.html">
             <i class="fas fa-user-plus"></i>

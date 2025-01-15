@@ -1,8 +1,12 @@
 body{
-    background: linear-gradient(to bottom, #004594, #2c5c93 );
+    background: linear-gradient(to bottom, #ebebeb, #ffffff );
   
   
    }
+   main .imagen-central{
+    width: 20rem;
+    border-radius: 8px;
+}
 html{
     overflow: hidden;
 }

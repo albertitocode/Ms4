@@ -14,11 +14,8 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
     />
-    <link
-      rel="icon"
-      href="assets/img/kaiadmin/favicon.ico"
-      type="image/x-icon"
-    />
+    
+    <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
@@ -86,6 +83,7 @@
     }
 
     ?>
+    <!-- <img class="imagen-central" src="assets/img/logo1.png"> -->
     <form action="<?php echo getUrl2("Acceso", "Acceso", "postObtenerCodigo"); ?>" method="post" id="formCorreoRecu">
         <!-- <div class="page-header">
             <h3 class="fw-bold mb-3">Registrate</h3>

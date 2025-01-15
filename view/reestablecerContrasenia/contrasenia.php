@@ -7,11 +7,7 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
       name="viewport"
     />
-    <link
-      rel="icon"
-      href="assets/img/kaiadmin/favicon.ico"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
@@ -85,12 +81,12 @@
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">
                                 <label for="contrasenia_1">Digite aqui tu nueva contraseña</label>
-                                <input type="text" name="contrasenia_1" id="contrasenia_1" class="form-control" placeholder="Codigo">
+                                <input type="password" name="contrasenia_1" id="contrasenia_1" class="form-control" placeholder="Codigo">
                                 <span class="text-danger" id="error_contrasenia_1" ></span>
                             </div>
                             <div class="form-group">
                                 <label for="contrasenia_2">Confirma tu nueva contraseña</label>
-                                <input type="text" name="contrasenia_2" id="contrasenia_2" class="form-control" placeholder="Codigo">
+                                <input type="password" name="contrasenia_2" id="contrasenia_2" class="form-control" placeholder="Codigo">
                                 <span class="text-danger" id="error_contrasenia_2" ></span>
                             </div>
                             <input type="hidden" name="id" id="" class="form-control" value="<?php echo $id; ?>">
