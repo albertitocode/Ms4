@@ -34,6 +34,8 @@ $(document).ready(function () {
     'numero3': 'Número complemento 3',
     'barrio': 'Barrio',
     'usuario_contrasenia': 'Contraseña',
+    'usuario_nueva_contrasenia': 'Nueva contraseña',
+    'usuario_confirmar_contrasenia': 'Confirmar contraseña',
     'rol': 'Rol'
   };
   const camposSenialM = {
@@ -65,7 +67,7 @@ $(document).ready(function () {
     'danio_id': 'Daño'
   }
   const campoCorreo = {
-    'correo_usuario' : 'Correo'
+    'correo_usuario': 'Correo'
   }
   const camposPQRS = { 
     'tipo_pqrs_id' : 'tipo pqrs',
@@ -98,7 +100,7 @@ $(document).ready(function () {
   }
 
 
-  function validarContrasenia(input) {
+  function validarContrasenias(input, contrasenia_id) {
     const errores = [];
     const longitudMinima = 8;
     const tieneMinuscula = /[a-zñ]/.test(input);
@@ -134,7 +136,7 @@ $(document).ready(function () {
     }
 
     if (errores.length > 0) {
-      document.getElementById('error_usuario_contrasenia').textContent = `*La contraseña debe contener al menos: ${errores.join(', ')}.*`;
+      document.getElementById(contrasenia_id).textContent = `*La contraseña debe contener al menos: ${errores.join(', ')}.*`;
       valido = false;
 
     }
@@ -252,17 +254,35 @@ $(document).ready(function () {
     const error = `error_${campoUsu}`;
     const value = $(this).val().trim();
     let esValido = true;
+    if (document.getElementById('usuario_nueva_contrasenia')) {
+      var error_1 = "error_usuario_nueva_contrasenia";
+
+      var contrasenia_1 = document.getElementById('usuario_nueva_contrasenia').value;
+      document.getElementById(error_1).textContent = '';
+
+    } else {
+      var error_1 = "error_usuario_contrasenia";
+
+      var contrasenia_1 = document.getElementById('usuario_contrasenia').value;
+
+
+    }
+    var contrasenia_2 = document.getElementById('usuario_confirmar_contrasenia').value;
+
+    var error_2 = "error_usuario_confirmar_contrasenia";
+
+    document.getElementById(error_2).textContent = '';
 
     if (camposUsu[campoUsu]) {
-      if (!value.trim() && campoNombre !== 'Segundo nombre') {
+      if (!value.trim() && campoNombre !== 'Segundo nombre' && campoNombre !== 'Nueva contraseña' && campoNombre !== 'Confirmar contraseña') {
 
         document.getElementById(error).textContent = `*El campo ${campoNombre} es obligatorio.*`;
         esValido = false;
       } else {
         document.getElementById(error).textContent = "";
-
-
       }
+
+
     }
 
 
@@ -326,11 +346,30 @@ $(document).ready(function () {
           }
           break;
         case 'usuario_contrasenia':
-          if (!validarContrasenia(value)) {
+        case 'usuario_nueva_contrasenia':
 
+          if (!validarContrasenias(value, error)) {
+            esValido = false;
+          }
+
+          break;
+
+        case 'usuario_confirmar_contrasenia':
+
+
+          if (contrasenia_1.trim() === '') {
+            document.getElementById(error_1).textContent = `*El campo es obligatorio*`;
+            esValido = false;
+          }
+          // Validar la segunda contraseña
+
+          // Validar que ambas contraseñas coincidan
+          else if (contrasenia_1 !== contrasenia_2) {
+            document.getElementById(error_2).textContent = `*Las contraseñas deben ser iguales*`;
             esValido = false;
           }
           break;
+
         case 'tipo_documento_id':
           if (value === '') {
             document.getElementById(error).textContent = `*Debe seleccionar un tipo de documento.*`;
@@ -372,6 +411,30 @@ $(document).ready(function () {
     var formData = $('#formUsu').serializeArray();
     let esValido = true;
 
+    var contrasenia_2 = document.getElementById('usuario_confirmar_contrasenia').value;
+
+    var error_2 = "error_usuario_confirmar_contrasenia";
+
+    document.getElementById(error_2).textContent = '';
+
+    if (document.getElementById('usuario_nueva_contrasenia')) {
+      var error_1 = "error_usuario_nueva_contrasenia";
+
+      var contrasenia_1 = document.getElementById('usuario_nueva_contrasenia').value;
+      document.getElementById(error_1).textContent = '';
+
+    } else {
+      var error_1 = "error_usuario_contrasenia";
+
+      var contrasenia_1 = document.getElementById('usuario_contrasenia').value;
+      if (contrasenia_2.trim() === '') {
+        document.getElementById(error_2).textContent = `*El campo es obligatorio*`;
+        esValido = false;
+      }
+
+
+    }
+   
 
     // Limpiar los mensajes de error antes de comenzar la validación
     Object.keys(camposUsu).forEach(campoUsu => {
@@ -397,7 +460,7 @@ $(document).ready(function () {
       }
 
       // Validar campos vacíos
-      if (valor && valor !== 'Segundo nombre' && value.trim() === '') {
+      if (valor && valor !== 'Segundo nombre' && value.trim() === '' && valor !== 'Nueva contraseña' && valor !== 'Confirmar contraseña') {
 
         document.getElementById(error).textContent = `*El campo ${valor} es obligatorio*`;
         esValido = false;
@@ -464,8 +527,33 @@ $(document).ready(function () {
             }
             break;
           case 'usuario_contrasenia':
-            if (!validarContrasenia(value)) {
+          case 'usuario_nueva_contrasenia':
 
+            if (!validarContrasenias(value, error)) {
+              esValido = false;
+            }
+
+            break;
+
+          case 'usuario_confirmar_contrasenia':
+
+
+            if (contrasenia_1.trim() === '') {
+              document.getElementById(error_1).textContent = `*El campo es obligatorio*`;
+              esValido = false;
+            }
+
+            
+            
+            
+
+            // Validar la segunda contraseña
+            else if (!validarContrasenias(contrasenia_2, error_2)) {
+              esValido = false;
+            }
+            // Validar que ambas contraseñas coincidan
+            else if (contrasenia_1 !== contrasenia_2) {
+              document.getElementById(error_2).textContent = `*Las contraseñas deben ser iguales*`;
               esValido = false;
             }
             break;
@@ -495,8 +583,10 @@ $(document).ready(function () {
             break;
 
         }
+         
       }
     });
+    
 
     if (esValido) {
       this.submit();
@@ -975,13 +1065,13 @@ errorConta = 'error_usuario_contrasena';
 
     // Concatenar la dirección
     var direccion = (tipoVia + ' ' + numVia)
-    + (letra1 ? ' ' + letra1 : '')
-    + (bis ? ' Bis' : '')
-    + (orientacion ? ' ' + orientacion : '')
-    + (numero2 ? ' #' + numero2 : '')
-    + (letra2 ? ' ' + letra2 : '')
-    + (numero3 ? '-' + numero3 : '')
-    + (barrio ? ', barrio ' + barrio : '');
+      + (letra1 ? ' ' + letra1 : '')
+      + (bis ? ' Bis' : '')
+      + (orientacion ? ' ' + orientacion : '')
+      + (numero2 ? ' #' + numero2 : '')
+      + (letra2 ? ' ' + letra2 : '')
+      + (numero3 ? '-' + numero3 : '')
+      + (barrio ? ', barrio ' + barrio : '');
     // Mostrar la dirección en el span
     $('#direccion').text('Dirección: ' + direccion);
   });
@@ -1171,113 +1261,72 @@ errorConta = 'error_usuario_contrasena';
 
   });
 
-$(document).on('input', '#formCorreoRecu input', function () {
-  
-  let esValido = true;
-  var correo = document.getElementById('correo_usuario').value;
-  
-  // console.log(correo);
-  
-  document.getElementById('error_correo_usuario').textContent = '';
+  $(document).on('input', '#formCorreoRecu input', function () {
+
+    let esValido = true;
+    var correo = document.getElementById('correo_usuario').value;
+
+    // console.log(correo);
+
+    document.getElementById('error_correo_usuario').textContent = '';
 
     if (correo === '') {
-        document.getElementById('error_correo_usuario').textContent = `*El campo Correo es obligatorio*`;
-        esValido = false;
-      
-    }else if(!validarCorreo(correo)){      
+      document.getElementById('error_correo_usuario').textContent = `*El campo Correo es obligatorio*`;
+      esValido = false;
+
+    } else if (!validarCorreo(correo)) {
       document.getElementById('error_correo_usuario').textContent = `*Por favor ingrese un Correo válido*`;
-       esValido = false;
+      esValido = false;
     }
 
-  const submitButton = document.getElementById('btnEnviarCorreo');
-  if (esValido) {
-    console.log('Formulario válido');
-    submitButton.disabled = false;
-  } else {
-    console.log('Formulario no válido');
-    submitButton.disabled = true;
-  }
-});
-function validarContrasenias(input,contrasenia_id) {
-  const errores = [];
-  const longitudMinima = 8;
-  const tieneMinuscula = /[a-zñ]/.test(input);
-  const tieneMayuscula = /[A-ZÑ]/.test(input);
-  const tieneNumero = /[0-9]/.test(input);
-  const tieneEspecial = /[!@#$%^&*()_+.\-]/.test(input);
-  let valido = true;
+    const submitButton = document.getElementById('btnEnviarCorreo');
+    if (esValido) {
+      console.log('Formulario válido');
+      submitButton.disabled = false;
+    } else {
+      console.log('Formulario no válido');
+      submitButton.disabled = true;
+    }
+  });
 
-  if (input.length < longitudMinima) {
-    errores.push("al menos 8 caracteres");
-    valido = false;
+  $(document).on('input', '#formContra input', function () {
 
-  }
-  if (!tieneMinuscula) {
-    errores.push("una letra minúscula");
-    valido = false;
+    let esValido = true;
+    var contrasenia_1 = document.getElementById('contrasenia_1').value;
+    var contrasenia_2 = document.getElementById('contrasenia_2').value;
+    // var contrasenias = array (
 
-  }
-  if (!tieneMayuscula) {
-    errores.push("una letra mayúscula");
-    valido = false;
+    // )
+    console.log(contrasenia_1);
 
-  }
-  if (!tieneNumero) {
-    errores.push("un número");
-    valido = false;
+    document.getElementById('error_contrasenia_1').textContent = '';
+    document.getElementById('error_contrasenia_2').textContent = '';
 
-  }
-  if (!tieneEspecial) {
-    errores.push("un carácter especial");
-    valido = false;
+    error_1 = 'error_contrasenia_1';
+    error_2 = 'error_contrasenia_2';
 
-  }
-
-  if (errores.length > 0) {
-    document.getElementById(contrasenia_id).textContent = `*La contraseña debe contener al menos: ${errores.join(', ')}.*`;
-    valido = false;
-
-  }
-  return valido;
-}
-$(document).on('input', '#formContra input', function () {
-  
-  let esValido = true;
-  var contrasenia_1 = document.getElementById('contrasenia_1').value;
-  var contrasenia_2 = document.getElementById('contrasenia_2').value;
-  // var contrasenias = array (
-    
-  // )
-  console.log(contrasenia_1);
-  
-  document.getElementById('error_contrasenia_1').textContent = '';
-  document.getElementById('error_contrasenia_2').textContent = '';
-  
-  error_1 = 'error_contrasenia_1'; 
-  error_2 = 'error_contrasenia_2';
- 
     if (contrasenia_1 === '') {
-        document.getElementById('error_contrasenia_1').textContent = `*Este campo es obligatorio*`;
-        esValido = false;
-      
-    }else if(!validarContrasenias(contrasenia_1,error_1)){      
-       esValido = false;
-    }else if(!validarContrasenias(contrasenia_2,error_2)){
+      document.getElementById('error_contrasenia_1').textContent = `*Este campo es obligatorio*`;
       esValido = false;
-    }else if(contrasenia_1 !== contrasenia_2){
+
+    } else if (!validarContrasenias(contrasenia_1, error_1)) {
+      esValido = false;
+    } else if (!validarContrasenias(contrasenia_2, error_2)) {
+      esValido = false;
+    } else if (contrasenia_1 !== contrasenia_2) {
       document.getElementById('error_contrasenia_2').textContent = `*Las contraseñas deben ser iguales*`;
       esValido = false;
     }
 
-  const submitButton = document.getElementById('btnContrasenia');
-  if (esValido) {
-    console.log('Formulario válido');
-    submitButton.disabled = false;
-  } else {
-    console.log('Formulario no válido');
-    submitButton.disabled = true;
-  }
-});
+    const submitButton = document.getElementById('btnContrasenia');
+    if (esValido) {
+      console.log('Formulario válido');
+      submitButton.disabled = false;
+    } else {
+      console.log('Formulario no válido');
+      submitButton.disabled = true;
+    }
+  });
 
 $(document).on('input', '#formPqrs input, #formPqrs select', function () {
 

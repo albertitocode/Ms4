@@ -54,12 +54,12 @@
             <ul class="nav nav-collapse">
               <li>
                 <a href="<?php echo getUrl("Solicitud", "Solicitud", "getSolicitud"); ?>">
-                  <span class="sub-item">Registrar</span>
+                  <span class="sub-item">Registrar Solicitudes</span>
                 </a>
               </li>
               <li>
                 <a href="<?php echo getUrl("Solicitud", "Solicitud", "postSolicitud"); ?>">
-                  <span class="sub-item">Consultar</span>
+                  <span class="sub-item">Listar Solicitudes</span>
                 </a>
               </li>
             </ul>
@@ -76,12 +76,12 @@
             <ul class="nav nav-collapse">
               <li>
                 <a href="<?php echo getUrl("Usuarios", "Usuarios", "getUsuarios"); ?>">
-                  <span class="sub-item">Consultar</span>
+                  <span class="sub-item">Listar Usarios</span>
                 </a>
               </li>
               <li>
                 <a href="<?php echo getUrl("Usuarios", "Usuarios", "getCreate"); ?>">
-                  <span class="sub-item">Registrar</span>
+                  <span class="sub-item">Registrar Usuarios</span>
                 </a>
               </li>
               <li>
@@ -185,18 +185,14 @@
             <p>Configuracion</p>
             <span class="caret"></span>
           </a>
-          <div class="collapse" id="charts">
+          <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
               <li>
-                <a href="charts/charts.html">
-                  <span class="sub-item">Chart Js</span>
+                <a href="<?php echo getUrl("Solicitud", "Solicitud", "GetCreatePQRS"); ?>">
+                  <span class="sub-item">Registrar PQRS</span>
                 </a>
               </li>
-              <li>
-                <a href="charts/sparkline.html">
-                  <span class="sub-item">Sparkline</span>
-                </a>
-              </li>
+              
             </ul>
           </div>
         </li> -->
