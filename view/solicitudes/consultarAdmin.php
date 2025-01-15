@@ -42,8 +42,8 @@
                             <input type="text" name="id_solicitud" id="id_solicitud" class="form-control"
                                 placeholder="Buscar por tipo de solcitud" data-url='
                          -->
-                        <label for="">Tipo de solicitud a consultar</label>
-                                <select name="tipo_solicitud_id" id="id_consult" class="form-select" data-url='<?php echo getUrl("Solicitud", "Solicitud", "obtenerSolicitudes", false, "ajax");?>'>
+                        <label for="">Estado de solicitud a consultar</label>
+                                <select name="tipo_solicitud_id" id="id_consult_solicitud" class="form-select" data-url='<?php echo getUrl("Solicitud", "Solicitud", "obtenerSolicitudes", false, "ajax");?>'>
                                     <option value="">Seleccione...</option>
                                     <?php
                                     foreach ($tipo_solicitud as $tipo_s) {

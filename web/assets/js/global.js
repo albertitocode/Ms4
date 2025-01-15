@@ -956,7 +956,7 @@ $(document).ready(function () {
     });
   });
   //cargar consulta de solicitudes 
-  $(document).on('change', "#id_consult_solicitud", function () {
+  $(document).on('change', "#id_consult", function () {
     let id_consult_solicitud = $(this).val();
     let url = $(this).attr('data-url');
     console.log("gola");
