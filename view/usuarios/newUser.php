@@ -1,6 +1,7 @@
 <?php
 include_once '../lib/helphers.php';
 include_once '../view/partials/scripts.php';
+session_start();
 
 
 ?>
@@ -14,7 +15,11 @@ include_once '../view/partials/scripts.php';
     <meta charset="UTF-8">
 
     <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" />
+<!-- SweetAlert2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css" rel="stylesheet">
 
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -47,29 +52,29 @@ include_once '../view/partials/scripts.php';
 
 
 
-   <!-- Enlace a SweetAlert2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.7/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- Enlace a SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.7/dist/sweetalert2.min.css" rel="stylesheet">
 
-<!-- Enlace a SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.7/dist/sweetalert2.all.min.js"></script>
+    <!-- Enlace a SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.7/dist/sweetalert2.all.min.js"></script>
 
 
 </head>
 <style>
+    .small-text {
+        font-size: 12px;
+    }
 
-.small-text {
-    font-size: 12px;
-  }
     body {
 
-    background: linear-gradient(to bottom, #004594, #2c5c93 );
-    display:flex;
-    height: 98vh;
-    width: 100%;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    box-sizing: border-box;
+        background: linear-gradient(to bottom, #004594, #2c5c93);
+        display: flex;
+        height: 98vh;
+        width: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        box-sizing: border-box;
 
     }
 </style>
@@ -81,7 +86,8 @@ include_once '../view/partials/scripts.php';
 
 
     <div class="mt-5">
-       
+
+
         <form action="<?php echo getUrl("Usuarios", "Usuarios", "postCreate", "", "ajax"); ?>" method="post"
             id="formUsu">
             <!-- <div class="page-header">
@@ -108,6 +114,25 @@ include_once '../view/partials/scripts.php';
 
 
                                         <div class="row">
+                                            <?php if (isset($_SESSION['new_User'])) {
+                                                echo "<script>
+         Swal.fire({
+             title: '¡Felicidades!',
+             text: 'El usuario ha sido registrado exitosamente',
+             icon: 'success',
+             confirmButtonText: 'Aceptar'
+         }).then((result) => {
+             // Redirigimos al usuario después de que cierre la alerta
+             if (result.isConfirmed) {
+                 window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUsuarios") . "';
+             }
+         });
+     </script>";
+
+                                                // Limpiar la variable de sesión para que no se muestre de nuevo
+                                                unset($_SESSION['new_User']);
+                                            }
+                                            ?>
 
                                             <div class="col-md-4 col-lg-4">
                                                 <div class="form-group">
@@ -116,7 +141,7 @@ include_once '../view/partials/scripts.php';
                                                     <input type="text" name="usuario_nombre_1" id="usuario_nombre_1"
                                                         class="form-control" placeholder="Nombre 1">
                                                     <span class="small-text text-danger"
-                                                        id="error_usuario_nombre_1" ></span>
+                                                        id="error_usuario_nombre_1"></span>
                                                 </div>
 
 
@@ -128,7 +153,7 @@ include_once '../view/partials/scripts.php';
                                                     <input type="text" name="usuario_nombre_2" id="usuario_nombre_2"
                                                         class="form-control" placeholder="Nombre 2">
                                                     <span class="small-text text-danger"
-                                                        id="error_usuario_nombre_2" ></span>
+                                                        id="error_usuario_nombre_2"></span>
 
 
                                                 </div>
@@ -182,7 +207,8 @@ include_once '../view/partials/scripts.php';
                                                     <label for="usuario_telefono">Teléfono</label>
                                                     <input type="text" name="usuario_telefono" id="usuario_telefono"
                                                         class="form-control" placeholder="Teléfono celular">
-                                                    <span class="small-text text-danger" id="error_usuario_telefono"></span>
+                                                    <span class="small-text text-danger"
+                                                        id="error_usuario_telefono"></span>
 
                                                 </div>
                                             </div>
@@ -200,7 +226,8 @@ include_once '../view/partials/scripts.php';
                                                         }
                                                         ?>
                                                     </select>
-                                                    <span class="small-text text-danger" id="error_tipo_documento_id"></span>
+                                                    <span class="small-text text-danger"
+                                                        id="error_tipo_documento_id"></span>
 
                                                 </div>
                                             </div>
@@ -227,7 +254,8 @@ include_once '../view/partials/scripts.php';
                                                     <label for="direccion" class="fw-bold">Dirección</label>
                                                     <div class="row ">
                                                         <div class="col-6 col-md-4">
-                                                            <select name="tipo_via" id="tipo_via" class="form-select mt-1">
+                                                            <select name="tipo_via" id="tipo_via"
+                                                                class="form-select mt-1">
                                                                 <option value="">Tipo de vía...</option>
                                                                 <?php
 
@@ -237,13 +265,15 @@ include_once '../view/partials/scripts.php';
 
                                                                 ?>
                                                             </select>
-                                                            <span class="small-text text-danger" id="error_tipo_via"></span>
+                                                            <span class="small-text text-danger"
+                                                                id="error_tipo_via"></span>
 
                                                         </div>
                                                         <div class="col-6 col-md-4">
                                                             <input type="text" name="num_via" id="num_via"
                                                                 class="form-control" placeholder="Número vía">
-                                                            <span class="small-text text-danger" id="error_num_via"></span>
+                                                            <span class="small-text text-danger"
+                                                                id="error_num_via"></span>
                                                         </div>
                                                         <div class="col-6 col-md-4">
                                                             <select name="letra1" id="letra1" class="form-select mt-1">
@@ -275,14 +305,16 @@ include_once '../view/partials/scripts.php';
 
                                                                 ?>
                                                             </select>
-                                                            <span class="small-text text-danger" id="error_orientacion"></span>
+                                                            <span class="small-text text-danger"
+                                                                id="error_orientacion"></span>
 
                                                         </div>
 
                                                         <div class="col-6 col-md-4">
                                                             <input type="text" name="numero2" id="numero2"
                                                                 class="form-control" placeholder="#">
-                                                            <span class="small-text text-danger" id="error_numero2"></span>
+                                                            <span class="small-text text-danger"
+                                                                id="error_numero2"></span>
 
                                                         </div>
                                                         <div class="col-6 col-md-4">
@@ -299,7 +331,8 @@ include_once '../view/partials/scripts.php';
                                                         <div class="col-6 col-md-4 ">
                                                             <input type="text" name="numero3" id="numero3"
                                                                 class="form-control" placeholder="#">
-                                                            <span class="small-text text-danger" id="error_numero3"></span>
+                                                            <span class="small-text text-danger"
+                                                                id="error_numero3"></span>
 
                                                         </div>
                                                         <div class="col-6 col-md-4 ">
@@ -312,10 +345,11 @@ include_once '../view/partials/scripts.php';
 
                                                                 ?>
                                                             </select>
-                                                            <span class="small-text text-danger" id="error_barrio"></span>
+                                                            <span class="small-text text-danger"
+                                                                id="error_barrio"></span>
 
                                                         </div>
-                                                        <span  id="direccion">Direccion:</span>
+                                                        <span id="direccion">Direccion:</span>
 
                                                     </div>
                                                 </div>
@@ -331,16 +365,19 @@ include_once '../view/partials/scripts.php';
                                                     <input type="password" name="usuario_contrasenia"
                                                         id="usuario_contrasenia" class="form-control"
                                                         placeholder="Clave" autocomplete="new-password">
-                                                    <span class="small-text text-danger" id="error_usuario_contrasenia"></span>
+                                                    <span class="small-text text-danger"
+                                                        id="error_usuario_contrasenia"></span>
 
                                                 </div>
                                                 <div class="form-group">
-                                                <label for="usuario_confirmar_contrasenia">Confirmar Contraseña</label>
-                                                <input type="password" name="usuario_confirmar_contrasenia" id="usuario_confirmar_contrasenia"
-                                                    class="form-control" placeholder="Confirmar Contraseña">
-                                                <span class="small-text text-danger"
-                                                    id="error_usuario_confirmar_contrasenia"></span>
-                                            </div>
+                                                    <label for="usuario_confirmar_contrasenia">Confirmar
+                                                        Contraseña</label>
+                                                    <input type="password" name="usuario_confirmar_contrasenia"
+                                                        id="usuario_confirmar_contrasenia" class="form-control"
+                                                        placeholder="Confirmar Contraseña">
+                                                    <span class="small-text text-danger"
+                                                        id="error_usuario_confirmar_contrasenia"></span>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -348,8 +385,7 @@ include_once '../view/partials/scripts.php';
 
                                     </div>
                                     <div class="mt-5">
-                                        <input type="submit" id="btnSubmit" value="Enviar" class="btn btn-success"
-                                            >
+                                        <input type="submit" id="btnSubmit" value="Enviar" class="btn btn-success">
                                     </div>
                                 </div>
                             </div>
