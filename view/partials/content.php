@@ -76,16 +76,16 @@ if ($_SESSION['rol']==3){
   </div>
   <div class="carousel-inner">
   <div class="carousel-item active">
-    <img src="../web/assets/img/carusel/carusel1.png" class="d-block w-100" alt="...">
-    <a href="" class="btn-click">Click Aquí</a>
+    <img src="../web/assets/img/carrusel1.png" class="d-block w-100" alt="...">
+    <!-- <a href="" class="btn-click">Click Aquí</a> -->
   </div>
   <div class="carousel-item">
     <img src="../web/assets/img/carusel/carusel2.png" class="d-block w-100" alt="...">
-    <a href="" class="btn-click">Click Aquí</a>
+    <a href=<?php getUrl("Solicitud","Solicitud","getSolicitud")?> class="btn-click">Click Aquí</a>
   </div>
   <div class="carousel-item">
     <img src="../web/assets/img/carusel/carusel3.png" class="d-block w-100" alt="...">
-    <a href="" class="btn-click">Click Aquí</a>
+    <a href=<?php getUrl("Solicitud","Solicitud","getSolicitud");?> class="btn-click">Click Aquí</a>
   </div>
 </div>
 </div>

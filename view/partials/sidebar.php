@@ -58,7 +58,7 @@
                   <span class="sub-item">Registrar Solicitudes</span>
                 </a>
               </li>
-              <?php if($_SESSION['rol']==2){ ?>
+              <?php if($_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6  ){ ?>
               <li>
                 <a href="<?php echo getUrl("Solicitud", "Solicitud", "postSolicitud"); ?>">
                   <span class="sub-item">Listar Solicitudes</span>
@@ -117,16 +117,21 @@
           </a>
           <div class="collapse" id="sidebarLayouts">
             <ul class="nav nav-collapse">
+            <?php if($_SESSION['rol'] !=1 ) {?>
               <li>
-                <a href="<?php echo getUrl("Solicitud", "Solicitud", "GetCreatePQRS"); ?>">
+                <a href="<?php echo getUrl("Solicitud", "Solicitud", "getCreatePQRS"); ?>">
                   <span class="sub-item">Crear pqrs</span>
                 </a>
               </li>
+              <?php  }
+             if($_SESSION['rol'] ==1 ) {
+              ?>
               <li>
-                <a href="icon-menu.html">
+              <a href="<?php echo getUrl("Solicitud", "Solicitud", "getPqrs"); ?>">
                   <span class="sub-item">Listar pqrs</span>
                 </a>
               </li>
+              <?php }?>
             </ul>
           </div>
         </li>
@@ -154,7 +159,7 @@
         </li>
         <?php 
           }
-        if($_SESSION['rol']==2){ ?>
+         if($_SESSION['rol']==2 || $_SESSION['rol']==4 || $_SESSION['rol']==5 || $_SESSION['rol']==6  ){ ?>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#charts">
             <i class="far fa-chart-bar"></i>

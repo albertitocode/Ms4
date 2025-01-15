@@ -1138,7 +1138,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
     }
     //termina vias
 //Empieza pqrs
-    public function GetCreatePQRS()
+    public function getCreatePQRS()
     {
 
         $obj = new SolicitudModel();
@@ -1897,5 +1897,35 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
 
 
     }
+    public function getPqrs(){
+        $obj = new SolicitudModel();
+
+        $sql = "SELECT pq.*, tp.tipo_pqrs_nombre, usu.usuario_nombre_1, usu.usuario_num_identificacion  FROM pqrs pq JOIN tipo_pqrs tp ON pq.tipo_pqrs_id=tp.tipo_pqrs_id JOIN usuarios usu ON pq.usuario_id=usu.usuario_id";
+        $pqrs = pg_fetch_all($obj->consult($sql));
+
+        
+
+        if ($pqrs) {
+            include_once '../view/solicitudPQRS/consult.php';
+
+        } else {
+
+            echo "<script>
+                Swal.fire({
+                    title: '¡Lo sentimos!',
+                    text: 'No hay solicitudes Registradas',
+                    icon: 'info',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    // Redirigimos al usuario después de que cierre la alerta
+                    if (result.isConfirmed) {
+                        window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';
+                    }
+                });
+            </script>";
+
+        }
+    }
+
 }
 ?>
