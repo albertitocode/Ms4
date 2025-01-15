@@ -1,5 +1,5 @@
-
-<div class="main-header">
+<script src="../web/assets/js/global.js"></script>
+<div class="main-header" onload="loadColor();">
           <div class="main-header-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
@@ -76,9 +76,10 @@
                 
                 
                 <li class="nav-item">
-           <a id="toggleButton"  class="btn" style="color: black;">
-              <i class="fas fa-moon"></i>
-           Cambiar a Modo Oscuro
+                 
+           <a id="toggleButton"  class="btn rounded-fill" >
+              <i id="dl-icon" class="bi bi-moon-fill"></i>
+
            </a>
         </li>
 
@@ -139,11 +140,11 @@
                          <?php
                          }
                         ?>
-                        <a class="dropdown-item" href="#">My Balance</a>
+                        <!-- <a class="dropdown-item" href="#">My Balance</a>
                         <a class="dropdown-item" href="#">Inbox</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
-                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" href="<?php echo getUrl("Acceso","Acceso","logout");?>">Cerrar sesion</a>
                       </li>
                     </div>

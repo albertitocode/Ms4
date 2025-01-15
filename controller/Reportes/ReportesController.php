@@ -54,7 +54,7 @@ class ReportesController{
     }
     public function getReporteSenialMalEstado()
     {
-        $obj = new SolicitudModel();
+        $obj = new ReportesModel();
 
         $sql = "SELECT * FROM categoria_seniales";
         $categoria_senal = pg_fetch_all($obj->consult($sql));
@@ -141,7 +141,7 @@ class ReportesController{
 
     }
 
-    public function GetReporteAccidente()
+    public function getReporteAccidente()
     {
 
         $obj = new ReportesModel();
@@ -155,18 +155,76 @@ class ReportesController{
         $sql = "SELECT * FROM letras_via";
         $letras = pg_fetch_all($obj->consult($sql));
 
-        $sql = "SELECT * FROM tipos_via";
-        $vias = pg_fetch_all($obj->consult($sql));
-
-        $sql = "SELECT * FROM orientaciones";
-        $orientaciones = pg_fetch_all($obj->consult($sql));
-
         $sql = "SELECT * FROM tipo_choques";
         $choques = pg_fetch_all($obj->consult($sql));
 
 
         include_once '../view/reportes/reporteAccidentes.php';
 
+
+    }
+    public function postReporteAcci(){
+
+        $obj = new ReportesModel();
+
+        $tipo_report = $_POST['tipo_reporte'];
+
+        $tipo_dia = $_POST['diagrama'];
+
+       if($tipo_report=='tipo_choque'){
+         $sql = "SELECT COUNT(*) as totalAcci1 FROM solicitud_accidentes WHERE tipo_choque_id=1";
+         $totaldato1 = pg_fetch_row($obj->consult($sql));
+            $dato1 = $totaldato1[0];
+         $sql = "SELECT COUNT(*) as totalAcci2 FROM solicitud_accidentes WHERE tipo_choque_id=2";
+         $totaldato2 = pg_fetch_row($obj->consult($sql));         
+         $dato2 = $totaldato2[0];
+         $sql = "SELECT COUNT(*) as totalAcci3 FROM solicitud_accidentes WHERE tipo_choque_id=3";
+         $totaldato3 = pg_fetch_row($obj->consult($sql));
+         $dato3 = $totaldato3[0];
+         $sql = "SELECT COUNT(*) as totalAcci4 FROM solicitud_accidentes WHERE tipo_choque_id=4";
+         $totaldato4 = pg_fetch_row($obj->consult($sql));
+         $dato4 = $totaldato4[0];
+         $sql = "SELECT COUNT(*) as totalAcci5 FROM solicitud_accidentes WHERE tipo_choque_id=5";
+         $totaldato5 = pg_fetch_row($obj->consult($sql));
+         $dato5 = $totaldato5[0];
+
+
+         $nombres = array (
+            'nombre_1' => 'Colision entre vehiculos',
+            'nombre_2' => 'Colision con objeto fijo',
+            'nombre_3' => 'Atropello',
+            'nombre_4' => 'Volcamiento',
+             'nombre_5' => 'Otro'
+         );
+
+         
+       }else{
+        $sql = "SELECT COUNT(*) as totalAcci1 FROM solicitud_accidentes WHERE estado_id=3";
+        $totaldato1 = pg_fetch_row($obj->consult($sql));
+           $dato1 = $totaldato1[0];
+        $sql = "SELECT COUNT(*) as totalAcci2 FROM solicitud_accidentes WHERE estado_id=4";
+        $totaldato2 = pg_fetch_row($obj->consult($sql));         
+        $dato2 = $totaldato2[0];
+        $sql = "SELECT COUNT(*) as totalAcci3 FROM solicitud_accidentes WHERE estado_id=5";
+        $totaldato3 = pg_fetch_row($obj->consult($sql));
+        $dato3 = $totaldato3[0];
+        $sql = "SELECT COUNT(*) as totalAcci4 FROM solicitud_accidentes WHERE estado_id=6";
+        $totaldato4 = pg_fetch_row($obj->consult($sql));
+        $dato4 = $totaldato4[0];
+        $sql = "SELECT COUNT(*) as totalAcci5 FROM solicitud_accidentes WHERE estado_id=7";
+        $totaldato5 = pg_fetch_row($obj->consult($sql));
+        $dato5 = $totaldato5[0];
+
+        $nombres = array (
+            'nombre_1' => 'Pendiente',
+            'nombre_2' => 'En revision',
+            'nombre_3' => 'En proceso',
+            'nombre_4' => 'Completada',
+             'nombre_5' => 'Rechazada'
+         );
+       }
+        
+       include_once '../view/reportes/graficaAcci.php';
 
     }
     public function postReportes(){

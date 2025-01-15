@@ -278,7 +278,7 @@
 
                                     <img src="../mapa/misc/img/flecha.png" alt="Nuevo reductor">
 
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Via en mal estado</span>
                                 </div>
 
 
@@ -296,7 +296,7 @@
 
                                 <div class="col-md-5 mt-3">
 
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Señal en mal estado</span>
                                 </div>
 
                             </div>
@@ -328,7 +328,7 @@
 
                                 </div>
                                 <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Nueva señal</span>
 
                                 </div>
 
@@ -344,7 +344,7 @@
 
                                 </div>
                                 <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Reductor en mal estado</span>
 
                                 </div>
 
@@ -360,7 +360,7 @@
 
                                 </div>
                                 <div class="col-md-5 mt-3">
-                                    <span>Solicitud Nuevo reductor</span>
+                                    <span>Solicitud Accidente</span>
 
                                 </div>
 
@@ -379,9 +379,9 @@
 
                 myMap1 = new msMap(document.getElementById("dc_main"), 'standardRight');
                 myMap1.setCgi('/cgi-bin/mapserv.exe');
-                myMap1.setMapFile('/ms4w/Apache/htdocs/Geo/mapa/cali.map');
+                myMap1.setMapFile('/ms4w/Apache/htdocs/plantillaMvc/mapa/cali.map');
                 myMap1.setFullExtent(-76.5928, -76.4613, 3.33181);
-                myMap1.setLayers('Cinco Six One Two Puntos1');
+                myMap1.setLayers('Cinco Six One Two Puntos1 Puntos2 Puntos3 Puntos4 Puntos5 Puntos6');
                 // $map=Mymap1;
                 myMap2 = new msMap(document.getElementById("dc_main2"), 'standardRight');
 

@@ -53,31 +53,31 @@ class SolicitudController
         include_once '../view/solicitudes/consultar.php';
     }
 
-    // public function obtenerSolicitudes()
-    // {
-    //     $obj = new SolicitudModel();
+    public function obtenerSolicitudes()
+    {
+        $obj = new SolicitudModel();
 
-    //     $id_solicitud = $_POST['id_solicitud'];
+        $id_solicitud = $_POST['id_solicitud'];
 
-    //     if ($id_solicitud == 1) {
-    //         // include_once '../view/solicitudSenal/malEstado/create.php';
-    //         redirect(getUrl("Solicitud", "Solicitud", "getSenialMalEstado"));
-    //     } else if ($id_solicitud == 2) {
-    //         // include_once '../view/solicitudVial/create.php';
-    //         redirect(getUrl("Solicitud", "Solicitud", "getVias"));
-    //     } else if ($id_solicitud == 4) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getAccidentes"));
-    //     } else if ($id_solicitud == 5) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getSenialNueva"));
-    //     } else if ($id_solicitud == 3) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getReductorMalEstado"));
-    //     } else if ($id_solicitud == 6) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getReductorNuevo"));
-    //     }
+        if ($id_solicitud == 1) {
+            // include_once '../view/solicitudSenal/malEstado/create.php';
+            redirect(getUrl("Solicitud", "Solicitud", "getSenialMalEstado"));
+        } else if ($id_solicitud == 2) {
+            // include_once '../view/solicitudVial/create.php';
+            redirect(getUrl("Solicitud", "Solicitud", "getVias"));
+        } else if ($id_solicitud == 4) {
+            redirect(getUrl("Solicitud", "Solicitud", "getAccidentes"));
+        } else if ($id_solicitud == 5) {
+            redirect(getUrl("Solicitud", "Solicitud", "getSenialNueva"));
+        } else if ($id_solicitud == 3) {
+            redirect(getUrl("Solicitud", "Solicitud", "getReductorMalEstado"));
+        } else if ($id_solicitud == 6) {
+            redirect(getUrl("Solicitud", "Solicitud", "getReductorNuevo"));
+        }
 
 
 
-    // }
+    }
 
     //Empieza señales
     //Empieza señales nuevas
@@ -178,7 +178,7 @@ class SolicitudController
 
 
         $sql = "INSERT INTO solicitud_seniales_nuevas (solicitud_senial_nueva_descripcion,senial_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_senial_nueva_direccion)
-         VALUES('$solicitud_senial_nueva_descripcion',$senial_id,$usuario_id,5,1,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+         VALUES('$solicitud_senial_nueva_descripcion',$senial_id,$usuario_id,5,3,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -582,7 +582,7 @@ class SolicitudController
 
         $sql = "INSERT INTO solicitud_reductores_mal_estado (solicitud_reductores_mal_estado_descripcion,solicitud_reductores_mal_estado_imagen,reductor_id,
         danio_id,usuario_id,tipo_solicitud_id,estado_id,solicitud_reductores_mal_estado_direccion) VALUES('$solicitud_reductores_mal_estado_descripcion',
-        '$img',$reductor_id,$danio_id,$usuario_id,3,4,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+        '$img',$reductor_id,$danio_id,$usuario_id,3,3,ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         // var_dump($sql);
 
         if ($validacion == true) {
@@ -705,7 +705,7 @@ class SolicitudController
         $sql = "INSERT INTO solicitud_reductores_nuevos(solicitud_reductor_nuevo_descripcion,
         solicitud_reductor_nuevo_imagen,reductor_id,usuario_id,tipo_solicitud_id,estado_id,
         solicitud_reductor_nuevo_direccion) VALUES('$solicitud_reductor_nuevo_descripcion',
-        '$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,4,
+        '$solicitud_reductor_nuevo_imagen',$reductor_id,$usuario_id,6,3,
         ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -821,7 +821,7 @@ class SolicitudController
         // }
 
         $sql = "INSERT INTO solicitud_vias_mal_estado (solicitud_via_mal_estado_descripcion, solicitud_via_mal_estado_imagen, danio_id, usuario_id, 
-        tipo_solicitud_id, estado_id,solicitud_via_mal_estado_direccion) VALUES( '$descripcion', '$img', $danio,  $usuario,  2, 4, ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+        tipo_solicitud_id, estado_id,solicitud_via_mal_estado_direccion) VALUES( '$descripcion', '$img', $danio,  $usuario,  2, 3, ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
 
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
@@ -1144,12 +1144,12 @@ class SolicitudController
 
         $sql = "INSERT INTO solicitud_accidentes (tipo_choque_id,
         solicitud_accidente_imagen,solicitud_accidente_descripcion,solicitud_accidente_lesionados,estado_id,usuario_id,tipo_solicitud_id,detalle_choque_nombre,solicitud_accidente_direccion) VALUES (
-     $tipo_choque, '$img','$descripcion','$lesionados', 4, $id_usuario, 4, '$choque_detalle_nombre',ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
-        if ($direccion == " ") {
-            echo "error";
-        } else {
-            if ($validacion == true) {
-                $ejecutar = $obj->insert($sql);
+     $tipo_choque, '$img','$descripcion','$lesionados', 3, $id_usuario, 4, '$choque_detalle_nombre',ST_SetSRID(ST_GeomFromText('POINT ($coordi_x $coordi_y)'), 4326))";
+    if($direccion ==" "){
+        echo "error";
+    }else{
+        if ($validacion == true) {
+            $ejecutar = $obj->insert($sql);
 
                 if ($ejecutar) {
                     echo "<script>

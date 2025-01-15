@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 
-<div class="sidebar " onload='loadColor();'>
+<div class="sidebar" onload="loadColor();">
   <div class="sidebar-logo">
     <!-- Logo Header -->
     <div class="logo-header" onload="loadColor();">
@@ -66,7 +66,7 @@
           </div>
 
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a data-bs-toggle="collapse" href="#usuarios">
             <i class="fas fa-user"></i>
             <p>Usuarios</p>
@@ -94,29 +94,53 @@
 
 
 
-        </li>
+        </li> -->
 
         <!-- termina accidente -->
 
         <!-- empieza sñal -->
 
         </li>
-       
+        <li class="nav-item">
+          <a data-bs-toggle="collapse" href="#sidebarLayouts">
+            <i class="fas fa-comment"></i>
+            <p>PQRS</p>
+            <span class="caret"></span>
+          </a>
+          <div class="collapse" id="sidebarLayouts">
+            <ul class="nav nav-collapse">
+              <li>
+                <a href="<?php echo getUrl("Solicitud", "Solicitud", "GetCreatePQRS"); ?>">
+                  <span class="sub-item">Crear pqrs</span>
+                </a>
+              </li>
+              <li>
+                <!-- <a href="icon-menu.html">
+                  <span class="sub-item">Icon Menu</span>
+                </a> -->
+              </li>
+            </ul>
+          </div>
+        </li>
 
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#maps">
             <i class="fas fa-map-marker-alt"></i>
-            <p>Maps</p>
+            <p>Mapa</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="maps">
             <ul class="nav nav-collapse">
               <li>
               <a href="<?php echo getUrl("Mapa", "Mapa", "abrirMapaAccidentes")?>">
-              <span class="sub-item">Consultar Puntos de solicitudes</span>
+              <span class="sub-item">Ver Mapa</span>
                 </a>
               </li>
-             
+              <!-- <li>
+                <a href="maps/jsvectormap.html">
+                  <span class="sub-item">Jsvectormap</span>
+                </a>
+              </li> -->
             </ul>
           </div>
         </li>
@@ -130,24 +154,35 @@
             <ul class="nav nav-collapse">
               <li>
                 <a href="<?php echo getUrl("Reportes","Reportes","getReporte") ?>">
-                  <span class="sub-item">Crear reporte</span>
+                  <span class="sub-item">Reportes generales</span>
                 </a>
               </li>
-            
+              <li>
+              <a href="<?php echo getUrl("Reportes","Reportes","getReporte") ?>">
+                  <span class="sub-item">Reportes personalizados</span>
+                </a>
+              </li>
             </ul>
           </div>
-        </li> 
+        </li>  
         <!-- <li class="nav-item">
           <a href="widgets.html">
             <i class="fas fa-user-plus"></i>
             <p>Widgets</p>
             <span class="badge badge-success">4</span>
           </a>
-        </li> -->
+        </li>
         <li class="nav-item">
-          <a data-bs-toggle="collapse" href="#sidebarLayouts">
-            <i class="fas fa-comment"></i>
-            <p>PQRS</p>
+          <a href="../../documentation/index.html">
+            <i class="fas fa-file"></i>
+            <p>Manuales</p>
+            <span class="badge badge-secondary">1</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a data-bs-toggle="collapse" href="#charts">
+            <i class="fas fa-cog"></i>
+            <p>Configuracion</p>
             <span class="caret"></span>
           </a>
           <div class="collapse" id="sidebarLayouts">
@@ -160,15 +195,7 @@
               
             </ul>
           </div>
-        </li>
-        <li class="nav-item">
-          <a href="../../documentation/index.html">
-            <i class="fas fa-file"></i>
-            <p>Recursos y capacitación</p>
-            <span class="badge badge-secondary">1</span>
-          </a>
-        </li>
-       
+        </li> -->
       </ul>
     </div>
   </div>

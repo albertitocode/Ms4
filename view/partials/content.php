@@ -67,7 +67,7 @@ if ($_SESSION['rol']==3){
 
 
 ?>
-
+<script src="../web/assets/js/global.js"></script>
 <div id="carouselExampleIndicators" class="carousel slide">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -92,6 +92,7 @@ if ($_SESSION['rol']==3){
 
  <?php }else{ ?> 
 <div class="container">
+  
   <div class="page-inner">
     <div
       class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
@@ -112,7 +113,7 @@ if ($_SESSION['rol']==3){
     </div>
 
     <div class="row">
-      <div class="col-sm-6 col-md-6">
+      <!-- <div class="col-sm-6 col-md-6">
         <div class="card card-stats card-round">
           <div class="card-body">
             <div class="row align-items-center">
@@ -133,7 +134,7 @@ if ($_SESSION['rol']==3){
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="col-sm-6 col-md-6">
         <div class="card card-stats card-round">
           <div class="card-body">
@@ -205,6 +206,8 @@ if ($_SESSION['rol']==3){
    
     <div class="card" style="width: 50rem;">
       <div class="card-body">
+      <button class="btn btn-success ">Descargar</button>
+
         <canvas id="chartPrincipal"></canvas>
         <script>
           var ctx = document.getElementById("chartPrincipal").getContext("2d");
@@ -251,6 +254,7 @@ if ($_SESSION['rol']==3){
         </script>
 
       </div>
+
     </div>
     <!--Grafica con lightweight-charts -->
 
