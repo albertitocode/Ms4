@@ -90,7 +90,9 @@ main .formulario  form input{
     font-family: Nunito; 
     margin-bottom: 1px;
 }
-
+/* html{
+    overflow: hidden;
+} */
 
 
 main .formulario button{

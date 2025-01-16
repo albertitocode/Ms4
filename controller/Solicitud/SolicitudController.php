@@ -1171,21 +1171,21 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
 
         //VALIDACIONES
         $validacion = true;
-        $campos = array(
-            'tipo_pqrs_id' => 'El campo tipo pqrs es requerido',
-            'descripcion_pqrs' => 'El campo descripcion es requerido'
-        );
+        // $campos = array(
+        //     'tipo_pqrs_id' => 'El campo tipo pqrs es requerido',
+        //     'descripcion_pqrs' => 'El campo descripcion es requerido'
+        // );
 
-        // Bucle para validar los campos
-        foreach ($campos as $campo => $mensaje) {
-            $c = trim($$campo);
-            if (empty($c)) {
+        // // Bucle para validar los campos
+        // foreach ($campos as $campo => $mensaje) {
+        //     $c = trim($$campo);
+        //     if (empty($c)) {
 
-                $_SESSION['errores'][] = $mensaje;
-                $validacion = false;
-            }
+        //         $_SESSION['errores'][] = $mensaje;
+        //         $validacion = false;
+        //     }
 
-        }
+        // }
 
 
 
@@ -1353,35 +1353,9 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
             }
         }
 
-
-        // if (isset($_POST['bis'])) {
-        //     $bis = $_POST['bis'];
-        // } else {
-        //     $bis = "";
-        // }
-
-        // $direccion = "$tipo_via $num_via$letra1 $bis $orientacion $numero2$letra2 $numero3, barrio $barrio";
-
-        //VALIDACIONES
         $validacion = true;
-        $campos = array(
-            'tipo_choque' => 'El campo tipo de choque es requerido'
-        );
 
-        foreach ($campos as $campo => $mensaje) {
-            if (empty($$campo)) {  // Se usa $$campo para acceder dinámicamente a la variable
 
-                $_SESSION['errores'][] = $mensaje;
-                $validacion = false;
-            }
-
-        }
-
-        // function validarNumeros($input){
-        //     $patron = "/^[0-9]+$/";
-        //     return preg_match($patron,$input)===1;
-
-        // }
 
 
         $sql = "INSERT INTO solicitud_accidentes (tipo_choque_id,

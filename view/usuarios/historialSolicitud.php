@@ -10,7 +10,7 @@ class="mt-5">
     <h3 class="display-4">Consultar Usuarios</h3>
 </div>
 <div class="page-header">
-    <h3 class="fw-bold mb-3">Usuarios</h3>
+    <h3 class="fw-bold mb-3">Actualizacion</h3>
     <ul class="breadcrumbs mb-3">
         <li class="nav-home">
             <a href="window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';">
@@ -27,7 +27,7 @@ class="mt-5">
             <i class="icon-arrow-right"></i>
         </li>
         <li class="nav-item">
-            <a href="#">Consultar usuarios</a>
+            <a href="#">Actualizar usuarios</a>
         </li>
     </ul>
 </div>
@@ -88,29 +88,6 @@ class="mt-5">
                                 echo "<td>" . $usu['tipo_documento_nombre'] . "</td>";
                                 echo "<td>" . $usu['usuario_num_identificacion'] . "</td>";
                                 
-
-                                if($usu['estado_id']==1){
-                                    $clase='btn btn-danger';
-                                    $texto='Inhabilitar';
-                                }else if($usu['estado_id']==2){
-                                    $clase='btn btn-success';
-                                    $texto='Habilitar';
-                                }
-                                echo"<td>";
-                                     if(!empty($clase))echo "<button type='button' class='$clase' id='cambiar_estado' data-url='".getUrl("Usuarios","Usuarios","posUpdateStatus",false,"ajax")."' data-id='".$usu['estado_id']."' data-user='".$usu['usuario_id']."'>$texto</button>";
-
-                                echo "</td>";//arreglar
-
-                                //     echo"<td>"
-                                //         ."<a href='".getUrl("Usuarios","Usuarios","getUpdate",array("usu_id" =>$usu['usu_id']))."'>"
-                                //             ."<button class='btn btn-primary'>Editar</button>"
-                                //         ."</a>";
-                                //     "</td>";
-                                //     echo"<td>"
-                                //     ."<a href='".getUrl("Usuarios","Usuarios","getDelete",array("usu_id" =>$usu['usu_id']))."'>"
-                                //         ."<button class='btn btn-danger'>Elimminar</button>"
-                                //     ."</a>";
-                                // "</td>";
                                 echo "</tr>";
                             }
                         } else {

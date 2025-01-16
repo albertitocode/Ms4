@@ -72,12 +72,12 @@ include_once '../lib/helphers.php';
             <img src="assets/img/logo1.png" class='logo'>
 
            
-            <form action="<?php echo getUrl("Acceso", "Acceso", "login", false, "ajax"); ?>" method="post" id="formLogin">
+            <form action="<?php echo getUrl2("Acceso", "Acceso", "login", false, "ajax"); ?>" method="post" id="formLogin">
             <label for="uname"><b>Correo</b></label>
               <div class="inputbox mb-3">
                 <i class='bx bxs-user'></i>
                 <input type="email" class="form-control" name="user" id="user">
-                <span class="small-text text-danger" id="error_usuario_email"></span><br>
+                <span class="small-text text-danger" id="error_usuario_email"></span>
               </div>
               
 
@@ -85,17 +85,17 @@ include_once '../lib/helphers.php';
               <div class="inputbox mb-3">
                 <i class='bx bxs-lock-alt'></i>
                 <input type="password" class="form-control" name="pass" id="pass">
-                <span class="small-text text-danger" id="error_usuario_contrasena"></span><br>
+                <span class="small-text text-danger" id="error_usuario_contrasena"></span>
               
               </div>
-              </form>
 
               <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", false, "ajax"); ?>">
                   <p>Olvidó su contraseña?</p>
                 </a>
 
-              <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-                
+              <button type="submit" id="btnLogin" class="btn btn-primary w-100" disabled>Iniciar Sesión</button>
+              </form>
+
               <form action="<?php echo getUrl("Usuarios", "Usuarios", "getCreate", "", "ajax"); ?>" method="post" id="form2">
                 <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
               </form>
@@ -108,10 +108,9 @@ include_once '../lib/helphers.php';
     </section>
   </main>
   <footer>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet nostrum ad aspernatur odio. Quasi optio expedita mollitia excepturi cum, maiores ullam necessitatibus, eos iste inventore magnam. Vel saepe harum quisquam.
-      Deserunt cumque dolorum voluptatem quis provident optio askjbdkjbskdjbkjsbdkjsbJOIjeionlñoIIiouaishdfnujkadkbjadkvbkabvlkbriusbvjkjbrslkhbjkljhsfioejoidnhvkjfheliuhnldn.</p>
+    <p>GEOCALI</p>
   </footer>
-  <script src="assets/login/scrip.js"></script>
+  <!--     -->
 </body>
 
 </html>

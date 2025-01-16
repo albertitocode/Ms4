@@ -81,12 +81,12 @@
                         <div class="col-md-6 col-lg-12">
                             <div class="form-group">
                                 <label for="contrasenia_1">Digite aqui tu nueva contraseña</label>
-                                <input type="password" name="contrasenia_1" id="contrasenia_1" class="form-control" placeholder="Codigo">
+                                <input type="password" name="contrasenia_1" id="contrasenia_1" class="form-control" placeholder="Nueva contraseña">
                                 <span class="text-danger" id="error_contrasenia_1" ></span>
                             </div>
                             <div class="form-group">
                                 <label for="contrasenia_2">Confirma tu nueva contraseña</label>
-                                <input type="password" name="contrasenia_2" id="contrasenia_2" class="form-control" placeholder="Codigo">
+                                <input type="password" name="contrasenia_2" id="contrasenia_2" class="form-control" placeholder="Confirme su nueva contraseña">
                                 <span class="text-danger" id="error_contrasenia_2" ></span>
                             </div>
                             <input type="hidden" name="id" id="" class="form-control" value="<?php echo $id; ?>">

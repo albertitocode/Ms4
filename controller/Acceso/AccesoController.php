@@ -64,8 +64,24 @@ class AccesoController
                     }
                 }
             } else {
-                $_SESSION['error'] = "El correo y/o Contraseña no se encuentran";
-                redirect('login.php');
+                echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
+            
+                echo "<body>";
+                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+                echo "<script>
+                Swal.fire({
+                    title: '¡Ups!',
+                    text: 'Usuario y/o contraseña incorrecta.',
+                    icon: 'error',
+                     timer: 2000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                }).then((result) => {
+                      window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';
+                    
+                });
+            </script>";
+            echo "</body>";
             }
         } else {
             $_SESSION['error'] = "El correo y/o Contraseña no se encuentran";
@@ -191,7 +207,7 @@ class AccesoController
         $codigo_acceso = $_POST['codigo_acceso'];
         
         $sql = "SELECT * FROM reestablecerContrasenia WHERE reestablecerContrasenia_codigo=$codigo_acceso";
-        var_dump($sql);
+        // var_dump($sql);
         $acceso = pg_fetch_all($obj->consult($sql));
 
         if ($acceso) {
@@ -236,7 +252,7 @@ class AccesoController
 
         if($confirm =='confirm'){
           $sql = "SELECT * FROM usuarios WHERE usuario_id=$id";
-            var_dump($sql);
+            // var_dump($sql);
             $usuario_acceso = $obj->consult($sql);
             $acceso=$id;
             include_once '../view/reestablecerContrasenia/contrasenia.php';
@@ -272,7 +288,7 @@ class AccesoController
         $cambio_clave = pg_fetch_all($obj->consult($sql));
 
         $sql = "UPDATE usuarios set usuario_contrasenia='$contrasenia' WHERE usuario_id=$id";
-        var_dump($sql);
+        // var_dump($sql);
         $nueva_contrasenia = $obj->update($sql);
         if($nueva_contrasenia){
             foreach($cambio_clave as $clave){
