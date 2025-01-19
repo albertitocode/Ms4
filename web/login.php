@@ -18,15 +18,15 @@ include_once '../lib/helphers.php';
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="../web/assets/js/global.js"></script>
   <!-- SweetAlert2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css" rel="stylesheet">
 
-<!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
+  <!-- SweetAlert2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
 </head>
 
 <body>
-<?php if (isset($_SESSION['new_User'])) {
-                                                echo "<script>
+  <?php if (isset($_SESSION['new_User'])) {
+    echo "<script>
          Swal.fire({
              title: '¡Felicidades!',
              text: 'El usuario ha sido registrado exitosamente',
@@ -40,70 +40,70 @@ include_once '../lib/helphers.php';
          });
      </script>";
 
-                                                // Limpiar la variable de sesión para que no se muestre de nuevo
-                                                unset($_SESSION['new_User']);
-                                            }
-                                            ?>
-  <main > 
-     <section class="principal">  
-     <!-- <div class="row">  -->
-        <!-- <div class="col-md-12 d-flex "> -->
-          <!-- <img class="imagen-central" src="assets/img/logo1.png"> -->
-        <!-- </div> -->
-     
-        <!-- <div class="col-md-6 d-flex justify-content-center align-items-center"> -->
-          <div class="texto">
-            <h1>Bienvenido a nuestra aplicacion de movilidad</h1>
-            <!-- <p><br>Agregar descripcion</p> -->
-          </div>
-          <!-- </div> -->
-          <!-- <div class="col-md-6"> -->
-            <!-- <div class="d-flex justify-content-center align-items-center h-100"> -->
-              
+    // Limpiar la variable de sesión para que no se muestre de nuevo
+    unset($_SESSION['new_User']);
+  }
+  ?>
+  <main>
+    <section class="principal">
+      <!-- <div class="row">  -->
+      <!-- <div class="col-md-12 d-flex "> -->
+      <!-- <img class="imagen-central" src="assets/img/logo1.png"> -->
+      <!-- </div> -->
 
-              
+      <!-- <div class="col-md-6 d-flex justify-content-center align-items-center"> -->
+      <div class="texto">
+        <h1>Bienvenido a nuestra aplicacion de movilidad</h1>
+        <!-- <p><br>Agregar descripcion</p> -->
+      </div>
+      <!-- </div> -->
+      <!-- <div class="col-md-6"> -->
+      <!-- <div class="d-flex justify-content-center align-items-center h-100"> -->
 
 
-              
-              
-             
-          <div class="formulario">
-            <h3>Iniciar Sesión</h3>
-            <img src="assets/img/logo1.png" class='logo'>
 
-           
-            <form action="<?php echo getUrl2("Acceso", "Acceso", "login", false, "ajax"); ?>" method="post" id="formLogin">
-            <label for="uname"><b>Correo</b></label>
-              <div class="inputbox mb-3">
-                <i class='bx bxs-user'></i>
-                <input type="email" class="form-control" name="user" id="user">
+
+
+
+
+
+      <div class="formulario">
+        <h3>Iniciar Sesión</h3>
+        <img src="assets/img/logo1.png" class='logo'>
+
+
+        <form action="<?php echo getUrl2("Acceso", "Acceso", "login", false, "ajax"); ?>" method="post" id="formLogin">
+          <label for="uname"><b>Correo</b></label>
+          <div class="inputbox mb-3">
+            <i class='bx bxs-user'></i>
+            <input type="email" class="form-control" name="user" id="user" >
                 <span class="small-text text-danger" id="error_usuario_email"></span>
               </div>
               
 
               <label for="psw"><b>Contraseña</b></label>
               <div class="inputbox mb-3">
-                <i class='bx bxs-lock-alt'></i>
-                <input type="password" class="form-control" name="pass" id="pass">
-                <span class="small-text text-danger" id="error_usuario_contrasena"></span>
-              
-              </div>
+                <i class=' bx bxs-lock-alt'></i>
+            <input type="password" class="form-control" name="pass" id="pass">
+            <span class="small-text text-danger" id="error_usuario_contrasena"></span>
 
-              <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", false, "ajax"); ?>">
-                  <p>Olvidó su contraseña?</p>
-                </a>
+          </div>
 
-              <button type="submit" id="btnLogin" class="btn btn-primary w-100" disabled>Iniciar Sesión</button>
-              </form>
+          <a href="<?php echo getUrl("Acceso", "Acceso", "ObtenerCodigo", false, "ajax"); ?>">
+            <p>Olvidó su contraseña?</p>
+          </a>
 
-              <form action="<?php echo getUrl("Usuarios", "Usuarios", "getCreate", "", "ajax"); ?>" method="post" id="form2">
-                <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
-              </form>
-            </div>
-            
-            <!-- </div> -->
-          <!-- </div> -->
-        <!-- </div>  -->
+          <button type="submit" id="btnLogin" class="btn btn-primary w-100" disabled>Iniciar Sesión</button>
+        </form>
+
+        <form action="<?php echo getUrl("Usuarios", "Usuarios", "getCreate", "", "ajax"); ?>" method="post" id="form2">
+          <button type="submit" class="btn btn-primary w-100" name="registro">Registrarme</button>
+        </form>
+      </div>
+
+      <!-- </div> -->
+      <!-- </div> -->
+      <!-- </div>  -->
       <!-- </div> -->
     </section>
   </main>

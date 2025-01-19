@@ -15,11 +15,11 @@ session_start();
     <meta charset="UTF-8">
 
     <link rel="icon" href="assets/img/logo1.png" type="image/x-icon" />
-<!-- SweetAlert2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css" rel="stylesheet">
 
-<!-- SweetAlert2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
     <!-- Fonts and icons -->
     <script src="assets/js/plugin/webfont/webfont.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -61,6 +61,10 @@ session_start();
 
 </head>
 <style>
+    b {
+        color: red;
+    }
+
     .small-text {
         font-size: 12px;
     }
@@ -102,6 +106,8 @@ session_start();
                             </div>
                         </div>
                         <div class="card-body">
+                            <p><b>Los campos con un * son obligatorios</b></p>
+
                             <!-- <div class="col-md-4">
             <label for="usu_id">Id</label>
             <input type="text" name="usu_id" class="form-control" placeholder="Id">
@@ -137,7 +143,8 @@ session_start();
                                             <div class="col-md-4 col-lg-4">
                                                 <div class="form-group">
 
-                                                    <label for="usuario_nombre_1">Primer nombre</label>
+                                                    <label for="usuario_nombre_1">Primer nombre <b>*</b></label>
+
                                                     <input type="text" name="usuario_nombre_1" id="usuario_nombre_1"
                                                         class="form-control" placeholder="Nombre 1">
                                                     <span class="small-text text-danger"
@@ -150,6 +157,7 @@ session_start();
                                             <div class="col-md-4 col-lg-4">
                                                 <div class="form-group ">
                                                     <label for="usuario_nombre_2">Segundo nombre</label>
+
                                                     <input type="text" name="usuario_nombre_2" id="usuario_nombre_2"
                                                         class="form-control" placeholder="Nombre 2">
                                                     <span class="small-text text-danger"
@@ -161,7 +169,7 @@ session_start();
 
                                             <div class="col-md-4 col-lg-4">
                                                 <div class="form-group ">
-                                                    <label for="usuario_apellido_1">Primer apellido</label>
+                                                    <label for="usuario_apellido_1">Primer apellido <b>*</b></label>
                                                     <input type="text" name="usuario_apellido_1" id="usuario_apellido_1"
                                                         class="form-control" placeholder="Apellido 1">
                                                     <span class="small-text text-danger"
@@ -176,47 +184,11 @@ session_start();
                                                         class="form-control" placeholder="Apellido 2">
                                                     <span class="small-text text-danger"
                                                         id="error_usuario_apellido_2"></span>
-
                                                 </div>
                                             </div>
                                             <div class="col-md-4 col-lg-4">
                                                 <div class="form-group ">
-                                                    <label for="usuario_correo">Correo Electrónico</label>
-                                                    <input type="text" name="usuario_correo" id="usuario_correo"
-                                                        class="form-control" placeholder="Correo">
-                                                    <span class="small-text text-danger"
-                                                        id="error_usuario_correo"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 col-lg-4">
-                                                <div class="form-group ">
-                                                    <label for="usuario_fecha_nacimiento">Fecha de nacimiento</label>
-                                                    <input type="date" name="usuario_fecha_nacimiento"
-                                                        id="usuario_fecha_nacimiento" class="form-control">
-                                                    <span class="small-text  text-danger"
-                                                        id="error_usuario_fecha_nacimiento"></span>
-                                                </div>
-
-
-
-                                            </div>
-
-                                            <div class="col-md-4 col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="usuario_telefono">Teléfono</label>
-                                                    <input type="text" name="usuario_telefono" id="usuario_telefono"
-                                                        class="form-control" placeholder="Teléfono celular">
-                                                    <span class="small-text text-danger"
-                                                        id="error_usuario_telefono"></span>
-
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-md-4 col-lg-4">
-                                                <div class="form-group ">
-                                                    <label for="tipo_documento_id">Tipo de documento</label>
+                                                    <label for="tipo_documento_id">Tipo de documento <b>*</b></label>
                                                     <select name="tipo_documento_id" id="tipo_documento_id"
                                                         class="form-control">
                                                         <option value="">Seleccione...</option>
@@ -234,7 +206,8 @@ session_start();
 
                                             <div class="col-md-4 col-lg-4">
                                                 <div class="form-group ">
-                                                    <label for="usuario_num_identificacion">Número documento</label>
+                                                    <label for="usuario_num_identificacion">Número documento
+                                                        <b>*</b></label>
                                                     <input type="text" name="usuario_num_identificacion"
                                                         id="usuario_num_identificacion" class="form-control"
                                                         placeholder="Documento">
@@ -242,9 +215,44 @@ session_start();
                                                         id="error_usuario_num_identificacion"></span>
 
                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="form-group ">
+                                                    <label for="usuario_correo">Correo Electrónico <b>*</b></label>
+                                                    <input type="text" name="usuario_correo" id="usuario_correo"
+                                                        class="form-control" placeholder="Correo" data-url='<?php 
+         echo getUrl("Usuarios","Usuarios","validarCorreo", false, "ajax");?>'>
+                                                    <span class="small-text text-danger"
+                                                        id="error_usuario_correo"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="form-group ">
+                                                    <label for="usuario_fecha_nacimiento">Fecha de nacimiento
+                                                        <b>*</b></label>
+                                                    <input type="date" name="usuario_fecha_nacimiento"
+                                                        id="usuario_fecha_nacimiento" class="form-control">
+                                                    <span class="small-text  text-danger"
+                                                        id="error_usuario_fecha_nacimiento"></span>
+                                                </div>
+
 
 
                                             </div>
+
+                                            <div class="col-md-4 col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="usuario_telefono">Teléfono <b>*</b></label>
+                                                    <input type="text" name="usuario_telefono" id="usuario_telefono"
+                                                        class="form-control" placeholder="Teléfono celular">
+                                                    <span class="small-text text-danger"
+                                                        id="error_usuario_telefono"></span>
+
+                                                </div>
+                                            </div>
+
 
                                             <div class="col-md-8 col-lg-8">
 
@@ -256,7 +264,7 @@ session_start();
                                                         <div class="col-6 col-md-4">
                                                             <select name="tipo_via" id="tipo_via"
                                                                 class="form-select mt-1">
-                                                                <option value="">Tipo de vía...</option>
+                                                                <option value=""> <b>*</b>Tipo de vía...</option>
                                                                 <?php
 
                                                                 foreach ($vias as $via) {
@@ -271,7 +279,7 @@ session_start();
                                                         </div>
                                                         <div class="col-6 col-md-4">
                                                             <input type="text" name="num_via" id="num_via"
-                                                                class="form-control" placeholder="Número vía">
+                                                                class="form-control" placeholder=" *Número vía">
                                                             <span class="small-text text-danger"
                                                                 id="error_num_via"></span>
                                                         </div>
@@ -297,7 +305,7 @@ session_start();
                                                         <div class="col-6 col-md-4">
                                                             <select name="orientacion" id="orientacion"
                                                                 class="form-select mt-1">
-                                                                <option value="">Orientación...</option>
+                                                                <option value=""> <b>*</b>Orientación...</option>
                                                                 <?php
                                                                 foreach ($orientaciones as $orientacion) {
                                                                     echo "<option  value='" . $orientacion['orientacion_nombre'] . "'>" . $orientacion['orientacion_nombre'] . "</option>";
@@ -312,7 +320,7 @@ session_start();
 
                                                         <div class="col-6 col-md-4">
                                                             <input type="text" name="numero2" id="numero2"
-                                                                class="form-control" placeholder="#">
+                                                                class="form-control" placeholder="*#">
                                                             <span class="small-text text-danger"
                                                                 id="error_numero2"></span>
 
@@ -330,14 +338,14 @@ session_start();
                                                         </div>
                                                         <div class="col-6 col-md-4 ">
                                                             <input type="text" name="numero3" id="numero3"
-                                                                class="form-control" placeholder="#">
+                                                                class="form-control" placeholder=" *#">
                                                             <span class="small-text text-danger"
                                                                 id="error_numero3"></span>
 
                                                         </div>
                                                         <div class="col-6 col-md-4 ">
                                                             <select name="barrio" id="barrio" class="form-select mt-1">
-                                                                <option value="">Barrio...</option>
+                                                                <option value=""> <b>*</b>Barrio...</option>
                                                                 <?php
                                                                 foreach ($barrios as $barrio) {
                                                                     echo "<option  value='" . $barrio['barrio_nombre'] . "'>" . $barrio['barrio_nombre'] . "</option>";
@@ -361,7 +369,7 @@ session_start();
 
 
                                                 <div class="form-group">
-                                                    <label for="usuario_contrasenia">Contraseña</label>
+                                                    <label for="usuario_contrasenia">Contraseña <b>*</b></label>
                                                     <input type="password" name="usuario_contrasenia"
                                                         id="usuario_contrasenia" class="form-control"
                                                         placeholder="Clave" autocomplete="new-password">
@@ -370,8 +378,9 @@ session_start();
 
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="usuario_confirmar_contrasenia">Confirmar
-                                                        Contraseña</label>
+                                                    <label for="usuario_confirmar_contrasenia">Confirmar Contraseña
+                                                        <b>*</b></label>
+
                                                     <input type="password" name="usuario_confirmar_contrasenia"
                                                         id="usuario_confirmar_contrasenia" class="form-control"
                                                         placeholder="Confirmar Contraseña">

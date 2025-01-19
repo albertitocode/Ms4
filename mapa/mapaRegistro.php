@@ -268,7 +268,7 @@
                             <p align="left">
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[2]" value="One">
                                 <strong>One</strong>     -->
-                            <p align="left">
+                            <!-- <p align="left">
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[0]" value="Puntos1">
                                 <strong>Puntos</strong>
 
@@ -291,7 +291,7 @@
                                 <input CHECKED onClick="chgLayers()" type="checkbox" name="layer[5]" value="Puntos6">
                                 <strong>Puntos 6</strong>
                         </ul>
-
+ -->
 
 
 

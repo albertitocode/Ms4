@@ -99,7 +99,7 @@
                       />
                     </div>
                     <span class="profile-username">
-                      <!-- <span class="op-7">Hi,</span> -->
+                       <span class="op-7">Hi,<?=$_SESSION['rol nombre']?></span> 
                       <span class="fw-bold"><?=$_SESSION['primer nombre']?></span>
                     </span>
                   </a>
@@ -117,6 +117,8 @@
                           <div class="u-text">
                             <h4><?=$_SESSION['primer nombre']." ".$_SESSION['primer apellido']?></h4>
                             <p class="text-muted"><?=$_SESSION['correo']?></p>
+                            <p class="text-muted"><?=$_SESSION['rol nombre']?></p>
+
                             <a
 
                             <?php  if($_SESSION['rol']!=1){   ?>

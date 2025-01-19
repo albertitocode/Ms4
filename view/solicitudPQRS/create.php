@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label for="adjuncion_pqrs">Archivo adjuntado (Opcional)</label>
+                                    <label for="adjuncion_pqrs">Imagen adjunta (PNG,PNG,JPG...)</label>
                                     <input type="file" name="adjuncion_pqrs" class="form-control">
                                     <span class="small-text text-danger" id="error_adjuncion_pqrs"></span>
                                 </div>
@@ -91,7 +91,7 @@
         
 
         <div class="mt-5">
-            <input type="submit" value="Enviar" class="btn btn-success" id="btnPQRS">
+            <input type="submit" value="Enviar" class="btn btn-success" id="btnPQRS" disabled>
         </div>
     </form>
 </div>

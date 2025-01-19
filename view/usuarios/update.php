@@ -56,9 +56,9 @@
             
         </div> -->
                         <div class="col-md-3 mt-4">
-                            <label for="">Id</label>
+                            <label for="">Número de documento</label>
                             <input type="text" name="id_data" id="id_data" class="form-control"
-                                placeholder="Buscar por id"
+                                placeholder="Ingrese el número de documento aquí"
                                 data-url='<?php echo getUrl("Usuarios", "Usuarios", "buscarUsuario", false, "ajax"); ?>'>
                         </div>
                         <div class="row" id="datos">
