@@ -49,6 +49,7 @@ class="mt-5">
                                     <th>ID</th>
                                     <th>Tipo de pqrs</th>
                                     <th>Descripcion</th>
+                                    <th>id usuario relacionado</th>
                                     
 
                                 </tr>
@@ -59,9 +60,11 @@ class="mt-5">
                                 // $clase="";
                                 // $texto="";
                                 echo "<tr>";
-                                echo "<td>" . $pq['prqs_id'] . "</td>";
+                                echo "<td>" . $pq['pqrs_id'] . "</td>";
                                 echo "<td>" . $pq['tipo_pqrs_nombre'] . "</td>";
-                                echo "<td>" . $pq['prqs_descripcion'] . "</td>";
+                                echo "<td>" . $pq['pqrs_descripcion'] . "</td>";
+                                echo "<td>" . $pq['usuario_num_identificacion'] . "</td>";
+
                                 
                         
                                 echo "</tr>";

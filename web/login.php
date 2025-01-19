@@ -53,7 +53,7 @@ include_once '../lib/helphers.php';
 
       <!-- <div class="col-md-6 d-flex justify-content-center align-items-center"> -->
       <div class="texto">
-        <h1>Bienvenido a nuestra aplicacion de movilidad</h1>
+        <h1>Bienvenido a nuestra aplicación de movilidad</h1>
         <!-- <p><br>Agregar descripcion</p> -->
       </div>
       <!-- </div> -->

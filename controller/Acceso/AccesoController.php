@@ -23,7 +23,7 @@ class AccesoController
         $pass = $_POST['pass'];
 
         $sql = "SELECT r.rol_nombre, u.* FROM usuarios u JOIN roles r ON u.rol_id=r.rol_id WHERE u.usuario_correo='$user' AND u.usuario_contrasenia='$pass'";
-        $usuarios = $obj->consult($sql);
+        $usuarios = pg_fetch_all($obj->consult($sql));
         if ($usuarios) {
         
                 foreach ($usuarios as $usu) {

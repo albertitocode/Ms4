@@ -36,7 +36,7 @@ class="mt-5">
         <div class="card overflow-x-scroll">
             <div class="card-header">
                 <div class="card-tittle">
-                    Actualizacion Usuarios
+                    
                 </div>
             </div>
             <div class="card-body">

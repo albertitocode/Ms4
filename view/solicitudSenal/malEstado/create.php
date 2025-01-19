@@ -1,3 +1,11 @@
+<style>
+    .pe {
+        color: red;
+    }
+    .be {
+        color: red;
+    }
+</style>
 <div class="mt-2">
     <h4 class="display-4">Señales viales en mal Estado</h4>
 </div>
@@ -53,10 +61,11 @@
                         </div>
                     </div>
                     <div class="card-body">
+                    <p class="pe">Los campos con un * son obligatorios</p>
                         <div class="row">
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label for="categoria_senal_id">Categoria de la señal</label>
+                                    <label for="categoria_senal_id">Categoria de la señal <b class="be">*</b> </label>
                                     <span class="ms-2 text-primary" tabindex="0" data-bs-toggle="popover"
                                         data-bs-trigger="click" data-bs-html="true" data-bs-content="Por favor, ingresa la <strong>Categoria de la señal</strong> 
                                     que se encuentra en mal estado.<br> Si no sabes cuáles son las categorías, 
@@ -86,7 +95,7 @@
                                     <span class="text-danger" id="error_categoria_senial_id"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="danio_id"> Daño</label>
+                                    <label for="danio_id"> Daño <b class="be">*</b></label>
                                     <span class="ms-2 text-primary" tabindex="0" data-bs-toggle="popover"
                                         data-bs-trigger="click" data-bs-html="true"
                                         data-bs-content="Este es otro ejemplo de popover">
@@ -106,7 +115,7 @@
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group">
-                                    <label for="tipo_senal_id">Tipo de señal</label>
+                                    <label for="tipo_senal_id">Tipo de señal <b class="be">*</b></label>
                                     <select name="tipo_senial_id" id="tipo_senial_id" class="form-control" data-url='<?php echo
                                         getUrl(
                                             "Solicitud",
@@ -125,15 +134,16 @@
                                     <span class="text-danger" id="error_tipo_senial_id"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="solicitud_senial_mal_estado_descripcion"> Describa el daño</label>
+                                    <label for="solicitud_senial_mal_estado_descripcion"> Describa el daño <b class="be">*</b></label>
                                     <input type="text" name="solicitud_senial_mal_estado_descripcion"
                                         id="solicitud_senial_descripcion" class="form-control"
                                         placeholder="Describa el estado de la señal">
+                                        <span class="text-danger" id="error_solicitud_senial_mal_estado_descripcion" ></span>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-4">
                                 <div class="form-group mb-3 d-none" id="senal">
-                                    <label for="senial_id">Nombre de la señal</label>
+                                    <label for="senial_id">Nombre de la señal <b class="be">*</b></label>
                                     <select name="senial_id" id="senial_id" class="form-control">
                                         <option value="">Seleccione categoria...</option>
                                         <?php
@@ -145,7 +155,7 @@
                                     <span class="text-danger" id="error_senial_id"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image" class="d-block">Imagen de la señal dañada</label>
+                                    <label for="image" class="d-block">Imagen de la señal dañada </label>
                                     <input type="file" name="solicitud_senial_imagen" accept="image/png, image/jpeg, image/jpg" class="form-control">
                                     <br>
                                     <span class="text-danger" id="error_solicitud_senial_imagen"></span>

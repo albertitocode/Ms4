@@ -61,6 +61,9 @@ session_start();
 
 </head>
 <style>
+    p {
+        color: red;
+    }
     b {
         color: red;
     }
@@ -106,7 +109,7 @@ session_start();
                             </div>
                         </div>
                         <div class="card-body">
-                            <p><b>Los campos con un * son obligatorios</b></p>
+                            <p>Los campos con un * son obligatorios</p>
 
                             <!-- <div class="col-md-4">
             <label for="usu_id">Id</label>
