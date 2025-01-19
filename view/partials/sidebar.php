@@ -109,6 +109,7 @@
         <!-- empieza sñal -->
 
         </li>
+        <?php if($_SESSION['rol']!=1){ ?>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#sidebarLayouts">
             <i class="fas fa-comment"></i>
@@ -124,7 +125,7 @@
                 </a>
               </li>
               <?php  }
-             if($_SESSION['rol'] ==1 ) {
+             if($_SESSION['rol'] !=1 || $_SESSION['rol']!=3) {
               ?>
               <li>
               <a href="<?php echo getUrl("Solicitud", "Solicitud", "getPqrs"); ?>">
@@ -135,7 +136,9 @@
             </ul>
           </div>
         </li>
-          <?php if($_SESSION['rol'] !=1 ) {?>
+          <?php 
+        }          
+          if($_SESSION['rol'] !=1 ) {?>
         <li class="nav-item">
           <a data-bs-toggle="collapse" href="#maps">
             <i class="fas fa-map-marker-alt"></i>

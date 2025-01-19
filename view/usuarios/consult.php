@@ -27,7 +27,7 @@ class="mt-5">
             <i class="icon-arrow-right"></i>
         </li>
         <li class="nav-item">
-            <a href="#">Consultar usuarios</a>
+            <a href="#">Consutar usuarios</a>
         </li>
     </ul>
 </div>

@@ -23,10 +23,9 @@ class AccesoController
         $pass = $_POST['pass'];
 
         $sql = "SELECT * FROM usuarios WHERE usuario_correo='$user' AND usuario_contrasenia='$pass'";
-        $usuarios = $obj->consult($sql);
+        $usuarios = pg_fetch_all($obj->consult($sql));
         if ($usuarios) {
-            if (pg_num_rows($usuarios) > 0) {
-                $usuarios = pg_fetch_all($usuarios);
+        
                 foreach ($usuarios as $usu) {
                     // if(password_verify($pass,$usu['usu_clave'])){
                     $_SESSION['id'] = $usu['usuario_id'];
@@ -63,29 +62,26 @@ class AccesoController
                         redirect('../web/index.php');
                     }
                 }
-            } else {
-                echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
             
-                echo "<body>";
-                echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
-                echo "<script>
-                Swal.fire({
-                    title: '¡Ups!',
-                    text: 'Usuario y/o contraseña incorrecta.',
-                    icon: 'error',
-                     timer: 2000,
-                    timerProgressBar: true,
-                    showConfirmButton: false
-                }).then((result) => {
-                      window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';
-                    
-                });
-            </script>";
-            echo "</body>";
-            }
         } else {
-            $_SESSION['error'] = "El correo y/o Contraseña no se encuentran";
-            redirect('login.php');
+            echo "<link rel='stylesheet' href='assets/css/estilos.css' />";
+            
+            echo "<body>";
+            echo "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>";
+            echo "<script>
+            Swal.fire({
+                title: '¡Ups!',
+                text: 'Usuario y/o contraseña incorrecta.',
+                icon: 'error',
+                 timer: 2000,
+                timerProgressBar: true,
+                showConfirmButton: false
+            }).then((result) => {
+                  window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';
+                
+            });
+        </script>";
+        echo "</body>";
         }
         if (isset($_POST['registro'])) {
             redirect('../view/usuarios/create.php');
@@ -306,7 +302,7 @@ class AccesoController
                 timerProgressBar: true,
                 showConfirmButton: false
             }).then((result) => {
-                  window.location.href = '" . getUrl2("Acceso", "Acceso", "login") . "';
+                  window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';
                 
             });
 

@@ -139,9 +139,11 @@
                         <a class="dropdown-item" href="<?php echo getUrl("Usuarios","Usuarios","getPerfilAdmin");?>">My Perfil</a>
                          <?php
                          }
+                          if($_SESSION['rol']!=1){   
                         ?>
-                        <!-- <a class="dropdown-item" href="#">My Balance</a>
-                        <a class="dropdown-item" href="#">Inbox</a>
+                        <a class="dropdown-item" href="<?php echo getUrl("Solicitud","Solicitud","getHistorial") ?>">Seguimiento solicitudes</a>
+                        <?php } ?>
+                        <!-- <a class="dropdown-item" href="#">Inbox</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div> -->

@@ -14,32 +14,7 @@ class SolicitudController
         $tipo_solicitud = pg_fetch_all($obj->consult($sql));
         include_once '../view/solicitudes/registrar.php';
     }
-    // public function buscarSolicitud()
-    // {
-    //     $obj = new SolicitudModel();
-
-    //     $id_solicitud = $_POST['id_solicitud'];
-
-
-    //     $x = $_GET['x'];
-    //     $y = $_GET['y'];
-
-    //     if ($id_solicitud == 1) {
-    //         // include_once '../view/solicitudSenal/malEstado/create.php';
-    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateSenialMalEstado",array("x"=> $x, "y" => $y)));
-    //     } else if ($id_solicitud == 2) {
-    //         // include_once '../view/solicitudVial/create.php';
-    //         redirect(getUrl("Solicitud", "Solicitud", "GetCreateVia",array("x"=> $x, "y" => $y)));
-    //     } else if ($id_solicitud == 4) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateAccidente",array("x"=> $x, "y" => $y)));
-    //     } else if ($id_solicitud == 5) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateNuevaSenial",array("x"=> $x, "y" => $y)));
-    //     } else if ($id_solicitud == 3) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorMalEstado",array("x"=> $x, "y" => $y)));
-    //     } else if ($id_solicitud == 6) {
-    //         redirect(getUrl("Solicitud", "Solicitud", "getCreateReductorNuevo",array("x"=> $x, "y" => $y)));
-    //     }
-    // }
+   
 
 
     public function postSolicitud()
@@ -233,7 +208,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getCreateNuevaSenial") . "';
+                        window.location.href = '" . getUrl("Solicitud","Solicitud","getHistorial") . "';
                     }
                 });
             </script>";
@@ -481,7 +456,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getSolicitud") . "';
+                        window.location.href = '" . getUrl("Solicitud","Solicitud","getHistorial") . "';
                     }
                 });
             </script>";
@@ -753,7 +728,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getCreateReductorMalEstado") . "';
+                        window.location.href = '" . getUrl("Solicitud","Solicitud","getHistorial") . "';
                     }
                 });
             </script>";
@@ -918,7 +893,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getSolicitud") . "';
+                        window.location.href = '" . getUrl("Solicitud","Solicitud","getHistorial") . "';
                     }
                 });
             </script>";
@@ -1035,7 +1010,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "GetCreateVia") . "';
+                        window.location.href = '" . getUrl("Solicitud","Solicitud","getHistorial") . "';
                     }
                 });
             </script>";
@@ -1194,7 +1169,10 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
         if ($validacion == true) {
             $ejecutar = $obj->insert($sql);
 
+
             if ($ejecutar) {
+
+                
                 echo "<script>
                 Swal.fire({
                     title: '¡Gracias!',
@@ -1365,6 +1343,8 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
             echo "error";
         } else {
             if ($validacion == true) {
+
+                   
                 $ejecutar = $obj->insert($sql);
 
                 if ($ejecutar) {
@@ -1377,7 +1357,7 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 }).then((result) => {
                     // Redirigimos al usuario después de que cierre la alerta
                     if (result.isConfirmed) {
-                        window.location.href = '" . getUrl("Solicitud", "Solicitud", "getSolicitud") . "';
+                        window.location.href = '" . getUrl("Solicitud","Solicitud","getHistorial") . "';
                     }
                 });
             </script>";
@@ -1898,6 +1878,34 @@ seniales se ON s.senial_id=se.senial_id JOIN usuarios usu  ON s.usuario_id=usu.u
                 });
             </script>";
 
+        }
+    }
+
+    public function getHistorial(){
+
+        $obj = new SolicitudModel();
+
+        $id_usuario = $_SESSION['id'];
+
+        $sql = "SELECT hs.*, tp.tipo_solicitud_nombre, e.estado_nombre, usu.usuario_nombre_1, usu.usuario_apellido_1 FROM historial_solicitudes hs JOIN tipo_solicitudes tp ON hs.tipo_solicitud_id=tp.tipo_solicitud_id JOIN estados e ON hs.estado_id=e.estado_id JOIN usuarios usu ON hs.usuario_id=usu.usuario_id WHERE hs.usuario_id=$id_usuario";
+        $historial_solicitud = pg_fetch_all($obj->consult($sql));
+
+        if($historial_solicitud){
+            include_once '../view/solicitudes/historialSolicitud.php';
+        }else{
+            echo "<script>
+            Swal.fire({
+                title: '¡Lo sentimos!',
+                text: 'No hay solicitudes Registradas',
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            }).then((result) => {
+                // Redirigimos al usuario después de que cierre la alerta
+                if (result.isConfirmed) {
+                    window.location.href = 'http://localhost:8080/plantillaMvc/web/index.php';
+                }
+            });
+        </script>";
         }
     }
 

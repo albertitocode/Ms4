@@ -113,7 +113,7 @@ if ($_SESSION['rol']==3){
     </div>
 
     <div class="row">
-      <!-- <div class="col-sm-6 col-md-6">
+      <div class="col-sm-6 col-md-6">
         <div class="card card-stats card-round">
           <div class="card-body">
             <div class="row align-items-center">
@@ -134,7 +134,7 @@ if ($_SESSION['rol']==3){
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
       <div class="col-sm-6 col-md-6">
         <div class="card card-stats card-round">
           <div class="card-body">
