@@ -79,8 +79,8 @@
                                             <div class="form-group">
                                                 <label for="usuario_correo">correo</label>
                                                 <input type="text" name="usuario_correo" id="" class="form-control"
-                                                    value="<?= $_SESSION['correo'] ?>" data-url='<?php
-                                                      echo getUrl("Usuarios", "Usuarios", "validarCorreo", false, "ajax"); ?>'>
+                                                    value="<?=  $usu_correo ?>" 
+                                                    >
                                                 <span class="small-text text-danger" id="error_usuario_correo"></span>
                                             </div>
                                             <div class="form-group">

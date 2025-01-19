@@ -343,10 +343,6 @@ $(document).ready(function () {
           } else if (value.length > 50) {
             document.getElementById(error).textContent = `*Correo muy largo*`;
             esValido = false;
-          } else if (!validarCorreoExistente(value)) {
-            document.getElementById(error).textContent = `*Correo ya registrado*`;
-            esValido = false;
-
           }
           break;
         case 'usuario_telefono':

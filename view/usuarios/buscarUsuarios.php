@@ -2,7 +2,7 @@
 
     <div class="form-group ms-3">
         <label for="usuario_id">Id de usuario</label>
-        <input type="text" name="usuario_id" id="" class="form-control w-25 " value="<?= $_SESSION['id'] ?>" readonly>
+        <input type="text" name="usuario_id" id="" class="form-control w-25 " value="<?= $usu['usuario_id'] ?>" readonly>
     </div>
     <div class="col-md-6 col-lg-4">
 
@@ -21,8 +21,7 @@
         <div class="form-group">
             <label for="usuario_correo">Correo</label>
             <input type="text" name="usuario_correo" id="usuario_correo" class="form-control"
-                value="<?= $usu['usuario_correo'] ?>" data-url='<?php 
-         echo getUrl("Usuarios","Usuarios","validarCorreo", false, "ajax");?>'>
+                value="<?= $usu['usuario_correo'] ?>">
             <span class="small-text text-danger" id="error_usuario_correo"></span>
 
         </div>

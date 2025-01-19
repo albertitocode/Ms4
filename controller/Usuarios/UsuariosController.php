@@ -185,7 +185,6 @@ class UsuariosController
         $id_datos = $_POST['id_data'];
 
         $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_num_identificacion=$id_datos";
-        $_SESSION['id_datos'] = $id_datos;
         $usuario = pg_fetch_all($obj->consult($sql));
         $sql = "SELECT * FROM tipo_documentos";
         $tipo_documento = pg_fetch_all($obj->consult($sql));
@@ -193,7 +192,7 @@ class UsuariosController
         $roles = pg_fetch_all($obj->consult($sql));
 
         if ($usuario) {
-
+            $_SESSION['id_datos'] = $id_datos;
             $_SESSION['usuario_data'] = $usuario;
 
             include_once '../view/usuarios/buscarUsuarios.php';
@@ -262,6 +261,7 @@ class UsuariosController
         $usuario = pg_fetch_all($obj->consult($sql));
         foreach ($usuario as $usu) {
             $usu_telefono = $usu['usuario_telefono'];
+            $usu_correo = $usu['usuario_correo'];
         }
         if ($usuario) {
             $_SESSION['usuario_data_perfil'] = $usuario;
@@ -318,7 +318,6 @@ class UsuariosController
         $usu_telefono = $_POST['usuario_telefono'];
         $tipo_documento = $_POST['tipo_documento_id'];
         $numero_documento = $_POST['usuario_num_identificacion'];
-
         $campos = array(
             'usuario_nombre_1' => $usu_nombre_1,
             'usuario_nombre_2' => $usu_nombre_2,
@@ -331,8 +330,8 @@ class UsuariosController
             'tipo_documento_id' => $tipo_documento,
             'usuario_num_identificacion' => $numero_documento
         );
-
         $campos_a_actualizar = array();
+
         if ($identificador == 1) {
 
             $id = $_SESSION['id_datos'];
@@ -340,14 +339,15 @@ class UsuariosController
 
 
         } else if ($identificador == 2) {
-            $id = $_SESSION['id'];
+            $id = $_SESSION['numero_documento'];
             $usuario_bd = $_SESSION['usuario_data_perfil'][0];
 
         }
+
         // Validaciones y actualizaciones
         foreach ($campos as $campo => $valor) {
             // Validar si el valor no está vacío y es diferente al valor actual en la base de datos
-            if (!empty($valor) && $valor != $usuario_bd[$campo]) {
+            if ($valor != $usuario_bd[$campo]) {
                 if (is_numeric($valor)) {
                     $campos_a_actualizar[] = "$campo=" . intval($valor);
                 } else {
@@ -355,10 +355,19 @@ class UsuariosController
                 }
             }
         }
+        echo $id;
+
+        var_dump( $usuario_bd);
+        var_dump( $campos);
+
+
+        var_dump( $campos_a_actualizar);
+
+
 
 
         if (!empty($campos_a_actualizar)) {
-            $sql = "UPDATE usuarios SET " . implode(", ", $campos_a_actualizar) . " WHERE usuario_id=$id";
+            $sql = "UPDATE usuarios SET " . implode(", ", $campos_a_actualizar) . " WHERE usuario_num_identificacion=$id";
 
             $ejecutar = $obj->update($sql);
 
