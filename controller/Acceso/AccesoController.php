@@ -22,7 +22,7 @@ class AccesoController
         $user = $_POST['user'];
         $pass = $_POST['pass'];
 
-        $sql = "SELECT * FROM usuarios WHERE usuario_correo='$user' AND usuario_contrasenia='$pass'";
+        $sql = "SELECT r.rol_nombre, u.* FROM usuarios u JOIN roles r ON u.rol_id=r.rol_id WHERE u.usuario_correo='$user' AND u.usuario_contrasenia='$pass'";
         $usuarios = $obj->consult($sql);
         if ($usuarios) {
             if (pg_num_rows($usuarios) > 0) {
@@ -36,7 +36,7 @@ class AccesoController
                     $_SESSION['segundo apellido'] = $usu['usuario_apellido_2'];
                     $_SESSION['correo'] = $usu['usuario_correo'];
                     $_SESSION['rol'] = $usu['rol_id'];
-                    //$_SESSION['rol nombre']=$usu['rol_nombre'];
+                    $_SESSION['rol nombre']=$usu['rol_nombre'];
                     $_SESSION['telefono'] = $usu['usuario_telefono'];
                     $_SESSION['direccion'] = $usu['usuario_direccion'];
                     $_SESSION['contrasenia'] = $usu['usuario_contrasenia'];
@@ -91,6 +91,7 @@ class AccesoController
             redirect('../view/usuarios/create.php');
         }
     }
+    
 
     public function logout()
     {

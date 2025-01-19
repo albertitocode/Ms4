@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="solicitud_senial_mal_estado_descripcion"> Describa el daño</label>
-                                    <input type="text" name="solicitud_senial_descripcion"
+                                    <input type="text" name="solicitud_senial_mal_estado_descripcion"
                                         id="solicitud_senial_descripcion" class="form-control"
                                         placeholder="Describa el estado de la señal">
                                 </div>

@@ -6,6 +6,25 @@ class UsuariosController
     // public function test(){
     //     echo"Funciona maifren";
     // }
+    public function validarCorreo()
+{
+    $obj = new UsuariosModel();
+
+    $correo = $_POST['correo'];
+
+    if (isset($correo)) {
+        $sql = "SELECT COUNT(usuario_correo) AS total FROM usuarios WHERE usuario_correo = '$correo'";
+        $resultado = pg_fetch_all($obj->consult($sql));
+
+        // Verificar si existe el correo
+        if (isset($resultado[0]['total']) && $resultado[0]['total'] > 0) {
+            echo "correo existe";
+            return;
+        }
+    }
+
+    echo "correo no existe"; // Si no existe
+}
 
 
     public function getCreate()
@@ -165,7 +184,7 @@ class UsuariosController
 
         $id_datos = $_POST['id_data'];
 
-        $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_id=$id_datos";
+        $sql = "SELECT u.*,r.rol_nombre, t.tipo_documento_nombre FROM usuarios u, roles r, tipo_documentos t WHERE u.rol_id =r.rol_id AND u.tipo_documento_id=t.tipo_documento_id AND u.usuario_num_identificacion=$id_datos";
         $_SESSION['id_datos'] = $id_datos;
         $usuario = pg_fetch_all($obj->consult($sql));
         $sql = "SELECT * FROM tipo_documentos";
@@ -173,18 +192,13 @@ class UsuariosController
         $sql = "SELECT * FROM roles";
         $roles = pg_fetch_all($obj->consult($sql));
 
-
-
-
         if ($usuario) {
 
             $_SESSION['usuario_data'] = $usuario;
 
             include_once '../view/usuarios/buscarUsuarios.php';
         } else {
-            echo "<br>";
-            echo "<br>";
-
+         
             echo "No se encuentra id asociado";
         }
     }
@@ -359,7 +373,7 @@ class UsuariosController
                     }).then((result) => {
                         // Redirigimos al usuario después de que cierre la alerta
                         if (result.isConfirmed) {
-                            window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUpdateUsuarios") . "';
+                            window.location.href = '" . getUrl("Usuarios", "Usuarios", "getUsuarios") . "';
                         }
                     });
                 </script>";
